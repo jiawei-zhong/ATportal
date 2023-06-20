@@ -1,0 +1,53 @@
+tabPanel(title = 'Forest-plot',
+  sidebarLayout(
+    position = 'left',
+    
+    sidebarPanel(
+      selectInput(inputId = 'cohort_fr',
+                  label = 'Cohorts to include.',
+                  choices = list('EMIF'='EMIF','Krieg et al.'='Krieg','Schleinitz et al.'='Schleinitz',
+                                 'Keller et al'='Keller','Mazaki et al'='Mazaki',
+                                 'Hoggard et al'='Hoggard'),
+                  selected = list('EMIF'='EMIF','Krieg et al.'='Krieg','Schleinitz et al.'='Schleinitz',
+                                  'Keller et al'='Keller','Mazaki et al'='Mazaki',
+                                  'Hoggard et al'='Hoggard'),
+                  multiple = T),
+      selectInput(inputId = 'ref_depot_fr',
+                  label = 'Reference depot.',
+                  choices = list('SAT Abdomen'='SAT Abdomen','VAT Omentum'='VAT Omentum'),
+                  selected = 'SAT Abdomen',
+                  multiple = F),
+      selectInput(inputId = 'qry_depot_fr',
+                  label = 'Query depot.',
+                  choices = list('SAT Abdomen'='SAT Abdomen','VAT Omentum'='VAT Omentum'),
+                  selected = 'VAT Omentum',
+                  multiple = F),
+      selectInput(inputId = 'disease_status_fr',
+                  label = 'Disease statuses',
+                  choices = list('Healthy'='Healthy','Obese'='Obese','Cancer'='Cancer'),
+                  selected = list('Healthy'='Healthy','Obese'='Obese','Cancer'='Cancer'),
+                  multiple = T),
+      textAreaInput(inputId = 'gene_fr',
+                    label = 'Input gene name.',
+                    value = 'ITLN1',
+                    width = '300px',
+                    height = '50px',
+                    placeholder = 'Only one gene'),
+      pickerInput(inputId = 'cor_method_fr',
+                  label = 'Correlation method.',
+                  selected = 'pearson',
+                  choices = list('Pearson' = 'pearson', 'Spearman' = 'spearman'),
+                  inline = T,
+                  options = list(size = 10, `live-search` = T, `actions-box` = T)),
+      actionButton(inputId = 'SearchBotton_fr',
+                   label = 'Search',
+                   style = 'simple',
+                   color = 'primary',
+                   size = 'sm')
+    ),
+    mainPanel(
+      withLoader(plotOutput(outputId = 'graph_fr'),loader='dnaspin'),
+      downloadButton('download_forest_pdf','Download forest-plot as a .pdf')
+    )
+  )
+)
