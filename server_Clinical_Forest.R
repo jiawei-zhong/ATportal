@@ -89,14 +89,14 @@ plotdata_fp <- eventReactive(input$SearchButton_fp, {
 
 output$forestplot <- renderPlot({
   
-  meta::forest(plotdata_fp()$plot)
+  meta::forest(plotdata_fp()$plot, test.overall.fixed = T, test.overall.random = T, squaresize = 1, digits.pval = 4)
   
 })
 
 output$downloadPlot_fp <- downloadHandler(filename = function() {"forestplot.pdf"},
                                           content = function(fname) {
                                             pdf(fname, width=10, height=6)
-                                            meta::forest(plotdata_fp()$plot)
+                                            meta::forest(plotdata_fp()$plot, test.overall.fixed = T, test.overall.random = T, squaresize = 1, digits.pval = 4)
                                             dev.off()
                                           })
 

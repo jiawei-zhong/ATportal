@@ -59,7 +59,7 @@ plot_temp_fr <- eventReactive(input$SearchBotton_fr, {
   
 })
 
-forest <- reactive({meta::forest(plot_temp_fr())})
+forest <- reactive({meta::forest(plot_temp_fr(), test.overall.fixed = T, test.overall.random = T, squaresize = 1, digits.pval = 4)})
 
 output$graph_fr <- renderPlot({
   
@@ -70,7 +70,7 @@ output$graph_fr <- renderPlot({
 output$download_forest_pdf <- downloadHandler(
   
   filename = function() {paste0('forest-plot',Sys.Date(),'.pdf')},
-  content = function(file) {pdf(file,width=10,height=6); meta::forest(plot_temp_fr()); dev.off()},
+  content = function(file) {pdf(file,width=10,height=6); meta::forest(plot_temp_fr(), test.overall.fixed = T, test.overall.random = T, squaresize = 1, digits.pval = 4); dev.off()},
   contentType = 'application/pdf'
   
 )

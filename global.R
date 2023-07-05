@@ -11,8 +11,8 @@ suppressMessages(library(viridis))
 
 ## Clinical ----
 
-clinical_measure_vector <- c("BMI" = "BMI", "HOMA" = "HOMA", "Age" = "Age", "WHR" = "WHR", "Waist" = "Waist", "Hip" = "Hip", "Glucose" = "Glucose", "Insulin" = "Insulin", "LEP" = "LEP", "TG" = "TG", "Chol" = "Chol", 
-                             "HDL" = "HDL", "LDL" = "LDL", "CRP" = "CRP", "Hba1c" = "Hba1c", "TNF" = "TNF", "MCP1" = "MCP1", "cell_vol" = "cell_vol", "basal_TG" = "basal_TG", "iso_TG" = "iso_TG", "iso_basal" = "iso_basal")
+clinical_measure_vector <- c("BMI" = "BMI", "HOMA" = "HOMA", "Age" = "Age", "WHR" = "WHR", "Waist" = "Waist", "Hip" = "Hip", "Glucose" = "Glucose", "Insulin" = "Insulin", "LEP Protein" = "LEP_protein", "TG" = "TG", "Chol" = "Chol", 
+                             "HDL" = "HDL", "LDL" = "LDL", "CRP" = "CRP", "Hba1c" = "Hba1c", "TNF Protein" = "TNF_protein", "MCP1 Protein" = "MCP1_protein", "cell_vol" = "cell_vol", "basal_TG" = "basal_TG", "iso_TG" = "iso_TG", "iso_basal" = "iso_basal")
 
 cohort_forest <- c("DEOSH"="DEOSHeset_Baseline", "DiOGenes1"="GSE141221_diogenes1", "DiOGenes2"="GSE95640_diogenes2", "EMIF sc"="EMIFeset_sc", "Krieg et al. sc"="Krieg_et_al_sc", "Keller et al. sc"="Keller_et_al_sc", "PO"="POeset_Baseline", "RIKEN"="RIKENeset", "SOWOT"="SOWOTeset","METSIM 770"="METSIM_770eset","METSIM 434"="METSIM_434eset","METSIM 200"="METSIM_200eset","EMIF om"="EMIFeset_om", "Krieg et al. om"="Krieg_et_al_om", "Keller et al. om"="Keller_et_al_om")
 
@@ -31,10 +31,11 @@ data_SVF <- read.delim("./data/Characterization/TimeCourseSVF.txt")
 data_SVF$timepoint <- factor(data_SVF$timepoint, levels = c("day4"   ,    "day8"   ,    "day12"  ,    "adipocytes"))
 data_SVF_heat <- read.delim("./data/Characterization/TimeCourse_wideSVF.txt", row.names = 1)
 data_novo <- read.delim("./data/Characterization/novoarray.txt")
-data_novo_heat <- read.delim("./data/Characterization/novo_heat.txt", row.names = 1)
+# data_novo_heat <- read.delim("./data/Characterization/novo_heat.txt", row.names = 1)
+data_novo_heat <- read.delim("./data/Characterization/novo_heat_unique.txt", row.names = 1) # zjw edited
 data_fantom <- read.delim("./data/Characterization/fantom.txt", row.names = 1)
 
-## snRNAseq ----
+# snRNAseq ----
 
 META_all <- readRDS("./data/Singlecell/META_all.sub.RDS")
 META_all_sc <- readRDS("./data/Singlecell/META_all.s.sub.RDS")
@@ -125,9 +126,7 @@ Jesper_et_al_insulin_marker <- readRDS("./data/Spatial/Jesper_et_al_insulin_mark
 Jesper_et_al_insulin_marker <- Jesper_et_al_insulin_marker[Jesper_et_al_insulin_marker$avg_log2FC>0.25 & (Jesper_et_al_insulin_marker$pct.1>0.1 | Jesper_et_al_insulin_marker$pct.2>0.1) & Jesper_et_al_insulin_marker$p_val_adj<0.05,]
 
 
-# Jesper_et_al_baseline_marker$p_val <- signif(Jesper_et_al_baseline_marker$p_val,4)
-# Jesper_et_al_baseline_marker$p_val_adj <- signif(Jesper_et_al_baseline_marker$p_val_adj,4)
-# Jesper_et_al_baseline_marker$avg_log2FC <- signif(Jesper_et_al_baseline_marker$avg_log2FC,4)
+
 
 for (i in grep("marker$",ls(),value = T)) {
   eval(parse(text=paste0(i,'$p_val <- signif(',i,'$p_val,4)')))

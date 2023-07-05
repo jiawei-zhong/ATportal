@@ -1,5 +1,6 @@
 # Load packages ----
 suppressMessages(library(shiny))
+suppressMessages(library(shinythemes))
 suppressMessages(library(shinyhelper))
 suppressMessages(library(shinyWidgets))
 suppressMessages(library(shinydashboard))  # for box()

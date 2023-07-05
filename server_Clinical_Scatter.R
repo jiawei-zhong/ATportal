@@ -74,7 +74,7 @@ plotdata_sp <- eventReactive(input$SearchButton_sp, {
     
     cor_df <- cor_df[order(cor_df$r,decreasing = T),]
     cor_df$gene <- factor(cor_df$gene,levels = cor_df$gene)
-    cor_df <- cor_df[c(1:20,(nrow(cor_df)-19):nrow(cor_df)),]
+    # cor_df <- cor_df[c(1:30,(nrow(cor_df)-29):nrow(cor_df)),]
     
   } else {
     
@@ -116,38 +116,71 @@ plotdata_sp <- eventReactive(input$SearchButton_sp, {
   
   cor_df$p <- (-log10(cor_df$p))
   
+  cor_df_temp <- cor_df[abs(cor_df$r)>=as.numeric(input$correlation_cutoff_sp),]
   
+  if (nrow(cor_df_temp)>60) {
+    cor_df_temp <- cor_df_temp[c(1:30,(nrow(cor_df_temp)-29):nrow(cor_df_temp)),]
+  } else {
+    cor_df_temp <- cor_df_temp
+  }
   
-  ggscatter(cor_df, x = "gene", y = "r", color = "p", size = "mean_exp")+
+  temp <- list()
+  
+  temp$df <- cor_df
+  
+  temp$plot <- ggscatter(cor_df_temp, x = "gene", y = "r", color = "p", size = "mean_exp")+
     theme(legend.position = "right",
           axis.text.x = element_text(angle=90,hjust = 1,vjust = 0.5,colour = "black")) + 
     labs(x = "Genes", y = paste0(ifelse(test = input$correlation_method_sp=="spearman",yes = "Spearman",no = "Pearson")," correlation"), color = "- Log10 P-value", size = "Mean expression") + 
-    scale_color_gradientn(colours = colorRampPalette(brewer.pal(n = 7, name ="PRGn"))(51))
+    scale_color_gradientn(colours = colorRampPalette(brewer.pal(n = 7, name ="PRGn"))(51)[26:51])
   
+  
+  temp
+  
+
   
 })
 
 output$scatter <- renderPlot({
   
-  plotdata_sp()
+  plotdata_sp()$plot
   
 })
 
 
+output$df_sp <- DT::renderDataTable(server = FALSE,{return(plotdata_sp()$df %>% mutate_if(is.numeric, round,4))},
+                                    extensions = c('Buttons'),
+                                    options = list(scrollX = TRUE,
+                                                   pageLength = 10,
+                                                   lengthMenu = c(10, 25, 50, 100),
+                                                   dom = 'Blfrtip',
+                                                   buttons = list(
+                                                     list(extend = "csv", text = "Download Current Page", filename = "page",
+                                                          exportOptions = list(modifier = list(page = "current"))),
+                                                     list(extend = "csv", text = "Download Full data frame", filename = "data",
+                                                          exportOptions = list(modifier = list(page = "all"))))))
 
 
 
 output$downloadPlot_sp <- downloadHandler(filename = function() {"scatter.pdf"},
-                                          content = function(fname) {ggsave(filename = fname, plot = plotdata_sp(), height = 10, width = 20, units = "in")})
+                                          content = function(fname) {ggsave(filename = fname, plot = plotdata_sp()$plot, height = 10, width = 20, units = "in")})
 
 
 
 
 output$ui_sp <- renderUI({if (input$SearchButton_sp) {
-  list(column(12,plotOutput(outputId = "scatter", height = '600px')),
-       column(12,downloadBttn(outputId = 'downloadPlot_sp', label = "Download scatter plot", style= "simple", color = "primary", size = "sm")))
-}
-})
+  tabsetPanel(id = "inTabset_sp",
+              tabPanel(title = "Plot",
+                       column(12,plotOutput(outputId = "scatter", height = '600px')),
+                       if (nrow(plotdata_sp()$plot$data)==60) {
+                         column(12,paste0('please note that only top 60 genes were visualized'))
+                       },
+                       column(12,downloadBttn(outputId = 'downloadPlot_sp', label = "Download scatter plot", style= "simple", color = "primary", size = "sm"))),
+              tabPanel(title = "Data frame",
+                       column(12,DT::dataTableOutput("df_sp"))))
+  }})
+
+
 
 
 

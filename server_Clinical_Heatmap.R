@@ -213,8 +213,8 @@ output$ui_all_hm <- renderUI({if (input$SearchButton_hm) {
   tabsetPanel(id = "inTabset",
               tabPanel(title = "plot",
                        column(12,list(box(width=12,
-                                          style=paste0('height: ',min(30*20+120,nrow(plotdata_hm()$r)*20+120),'px; overflow-x: scroll; overflow-y: scroll;'),
-                                          plotOutput(outputId = "heat_map", height = paste0(nrow(plotdata_hm()$r)*20+100,'px'), width = paste0(ncol(plotdata_hm()$r)*20+900,'px'))),
+                                          style=paste0('height: ',min(30*20+160,nrow(plotdata_hm()$r)*20+160),'px; overflow-x: scroll; overflow-y: scroll;'),
+                                          plotOutput(outputId = "heat_map", height = paste0(nrow(plotdata_hm()$r)*20+120,'px'), width = paste0(ncol(plotdata_hm()$r)*20+900,'px'))),
                                       column(12,downloadBttn(outputId = 'downloadPlot_hm', label = "Download heatmap", style= "simple", color = "primary", size = "sm"))
                        ))),
               tabPanel(title = "r/rho matrix",

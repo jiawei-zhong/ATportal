@@ -10,14 +10,14 @@ tabPanel(title = "Sex difference",
                                                                  placeholder = "Only 1 gene"),
                                                    pickerInput(inputId = "cohort_sex", 
                                                                label = "Choose a cohort", 
-                                                               choices = list(subcutaneous=c("DiOGenes1" = "GSE141221_diogenes1", "DiOGenes2" = "GSE95640_diogenes2", "GTEx sc" = "GTEx_sc","Keller et al. sc"="Keller_et_al_sc"),
-                                                                              omental=c("GTEx om" = "GTEx_om","Keller et al. om"="Keller_et_al_om")
+                                                               choices = list(subcutaneous=c("DiOGenes1" = "GSE141221_diogenes1", "DiOGenes2" = "GSE95640_diogenes2", "GTEx v8 sc" = "GTEx_v8_sc", "Krieg et al. om"="Krieg_et_al_sc", "Keller et al. sc"="Keller_et_al_sc"),
+                                                                              omental=c("GTEx v8 om" = "GTEx_v8_om", "Krieg et al. om"="Krieg_et_al_om", "Keller et al. om"="Keller_et_al_om")
                                                                               # epiploic=c("Krieg et al."="Krieg_et_al_ep"),
                                                                               # `mesenteric duodenum`=c("Krieg et al."="Krieg_et_al_md")
                                                                ),
                                                                width = "300px",
                                                                options = list(size = 10, `live-search` = TRUE),
-                                                               choicesOpt = list(subtext = c("sc","sc","sc","sc","om","om"))),
+                                                               choicesOpt = list(subtext = c("sc","sc","sc","sc","sc","om","om","om"))),
                                                    prettyRadioButtons(inputId = "statistical_test_sex", 
                                                                       label = "Statistical test", 
                                                                       selected = "t.test", 

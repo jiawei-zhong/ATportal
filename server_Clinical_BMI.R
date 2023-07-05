@@ -39,7 +39,7 @@ plotdata_box_BMI <- eventReactive(input$SearchButton_box_BMI, {
   pData <- pData[,colSums(is.na(pData))<nrow(pData)]
   pData$expression <- exprs(eset)[input$gene_BMI,]
   
-  BMI_catelogy <- readRDS("~/zjw/20230309_Portal/clinical_visualization_backup/DEG_BMI/cohort_BMI_list.rds")
+  BMI_catelogy <- readRDS("./data/Clinical/cohort_BMI_list.rds")
   BMI_catelogy <- BMI_catelogy[[input$cohort_box_BMI]]
   
   if ("Obese" %in% BMI_catelogy) {
