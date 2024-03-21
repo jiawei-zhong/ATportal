@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>WAT knowledge portal</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300&display=swap');
+  </style>
+  <!-- basic -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- mobile metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <!-- site metas -->
+  <title>WATkp</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="">
+</head>
+
+<body class="container">
+
+  <header>
+    <nav class="navbar_in">
+      <a href="index.html"><img src="images/logo_navbar.png" alt="adipose tissue knowledge portal logo"
+          class="logo"></a>
+
+      <div class="navbar">
+
+        <a href="index.html">Home</a>
+        <div class="dropdown">
+          <button class="dropbtn">Modules
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="gene_sum.html">Summary</a>
+            <a href="clinical.html">Clinical relationships</a>
+            <a href="depots.html">Depot comparisons</a>
+            <a href="celltype.html">Cell type</a>
+            <a href="sc.html">Single-cell/single-nucleus RNA seq.</a>
+            <a href="spatial.html">Spatial Transcriptomics</a>
+            <a href="pert.html">Perturbation</a>
+            <a href="gene_query.html">Gene finder</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropbtn">About
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="vignettes.html">How to</a>
+            <a href="news.html">News</a>
+            <a href="contact.html">Contact</a>
+            <a href="version_updates.html">Version Updates</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+        <div class="banner_mod">
+      <div class="grid-container_mod">
+        <div class="column-1-mod"><img src="images/module_images_Spatial.png"/></div>
+        <div class="column-2-mod">
+          <div class="mod_intro_text">
+            <p>This module contains spatial transcriptomic data detailing the cytoarchitecture of subcutaneous WAT. In total, data from one cross-sectional study comprising 10 individuals (YY men, XX women), are available.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="separation_mod">
+
+
+    <div class="iframe_pos">
+      <iframe height="800" frameborder="0" src="https://atportal.medh.ki.se/shiny/Module_Spatial/"></iframe>
+    </div>
+
+
+  </main>
+
+
+  <footer id="footer">
+    <div class="footer_col">
+      <div class="grid-container_bot">
+        <div class="grid-child">
+          <h4>Publication</h4>
+          <p> The WATportal manuscript is available via bioRxiv [link to bioRxiv] </p>
+        </div>
+        <div class="grid-child">
+          <h4>Data and code:</h4>
+          <p>The code for this portal is available through <a href="https://github.com/jiawei-zhong/WAT_portal">
+              github</a>.</p>
+        </div>
+        <div class="grid-child">
+          <h4>Contribute</h4>
+          <p>Check the <a href="contact.html">About</a> page to learn how to contribute to the WATportal.</p>
+        </div>
+        <div class="grid-child">
+          <h4>Contact</h4>
+          <p>Contact details are provided on the <a href="contact.html">About</a> page.</p>
+        </div>
+        <div class="grid-child">
+          <h4>Version update</h4>
+          <p>v1.0.0. (updated: 01 Nov. 2023)</p>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
+
+</body>
+
+</html>

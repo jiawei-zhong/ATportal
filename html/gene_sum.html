@@ -1,0 +1,302 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>WAT knowledge portal</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <!--<script src="script.js"></script>-->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300&display=swap');
+  </style>
+  <!-- basic -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- mobile metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <!-- site metas -->
+  <title>WATkp</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+</head>
+
+<body class="container">
+
+  <header>
+    <nav class="navbar_in" id="navbar">
+      <a href="index.html"><img src="images/logo_navbar.png" alt="adipose tissue knowledge portal logo"
+          class="logo"></a>
+
+      <div class="navbar">
+
+        <a href="index.html">Home</a>
+        <div class="dropdown">
+          <button class="dropbtn">Modules
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="gene_sum.html">Summary</a>
+            <a href="clinical.html">Clinical relationships</a>
+            <a href="depots.html">Depot comparisons</a>
+            <a href="celltype.html">Cell type</a>
+            <a href="sc.html">Single-cell/single-nucleus RNA seq.</a>
+            <a href="spatial.html">Spatial Transcriptomics</a>
+            <a href="pert.html">Perturbation</a>
+            <a href="gene_query.html">Gene finder</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropbtn">About
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="vignettes.html">How to</a>
+            <a href="news.html">News</a>
+            <a href="contact.html">Contact</a>
+            <a href="version_updates.html">Version Updates</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <div class="banner_mod">
+      <div class="grid-container_mod">
+        <div class="column-1-mod"><img src="images/module_images_Summary.png" /></div>
+        <div class="column-2-mod">
+          <div class="mod_intro_text">
+            <p>Obtain summarized information from all aspects of the portal.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="separation_mod" id="sticky-hr">
+    </hr>
+
+    <div class="grid-container">
+      <div class="column-1" id="sticky-column">
+        <div class="center-container2">
+          <div class="search-container2">
+            <input type="text" id="userInput" class="search-bar2" placeholder="Search gene">
+            <button onclick="sendToShiny()" class="search-button2">Search</button>
+          </div>
+        </div>
+        <!--<hr class="separation_sum_side">-->
+        <div class="text-container">
+          <p2 id="gene-description"></p2>
+        </div>
+      </div>
+      <div class="column-2">
+        <div class="iframe-group">
+
+          <div class="iframe-title">Clinical correlation</div>
+          <hr class="separator">
+          <iframe id="shinyIframe1" src="https://atportal.medh.ki.se/shiny/Summary_gene_Clinical_Correlation/"
+            height="250" class="collapsible-iframe"></iframe>
+
+          <div class="iframe-title">Sex difference</div>
+          <hr class="separator">
+          <iframe id="shinyIframe2" src="https://atportal.medh.ki.se/shiny/Summary_gene_Clinical_Sex/" height="400"
+            class="collapsible-iframe"></iframe>
+
+          <div class="iframe-title">Obese vs. non-obese</div>
+          <hr class="separator">
+          <iframe id="shinyIframe3" src="https://atportal.medh.ki.se/shiny/Summary_gene_Clinical_Obese/" height="350"
+            class="collapsible-iframe"></iframe>
+
+          <div class="iframe-title">Weight loss</div>
+          <hr class="separator">
+          <iframe id="shinyIframe4" src="https://atportal.medh.ki.se/shiny/Summary_gene_Weightloss/" height="400"
+            class="collapsible-iframe"></iframe>
+            
+          <div class="iframe-title">Depots</div>
+          <hr class="separator">
+          <iframe id="shinyIframe5" src="https://atportal.medh.ki.se/shiny/Summary_gene_Depots/" height="250"
+            class="collapsible-iframe"></iframe>
+
+          <div class="iframe-title">Adipogenesis</div>
+          <hr class="separator">
+          <iframe id="shinyIframe6" src="https://atportal.medh.ki.se/shiny/Summary_gene_Adipogenesis/" height="250"
+            class="collapsible-iframe"></iframe>
+
+	  <div class="iframe-title">Tissue specificity</div>
+          <hr class="separator">
+          <iframe id="shinyIframe7" src="https://atportal.medh.ki.se/shiny/Summary_gene_Tissue/" height="250"
+            class="collapsible-iframe"></iframe>
+
+          <div class="iframe-title">Single cell</div>
+          <hr class="separator">
+          <iframe id="shinyIframe8" src="https://atportal.medh.ki.se/shiny/Summary_gene_Singlecell/" height="420"
+            class="collapsible-iframe"></iframe>
+
+        </div>
+        <div>
+          <button id="download-data" class="btn btn-primary" style="color: black; max-width: 200px;">Download</button>
+          <!-- <button id="download-data" class="btn btn-primary" style="color: black; max-width: 200px;" onclick="downloadPdf()">Download</button> -->
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer id="footer">
+    <div class="footer_col">
+      <div class="grid-container_bot">
+        <div class="grid-child">
+          <h4>Publication</h4>
+          <p> The WATportal manuscript is available via bioRxiv [link to bioRxiv] </p>
+        </div>
+        <div class="grid-child">
+          <h4>Data and code:</h4>
+          <p>The code for this portal is available through <a href="https://github.com/jiawei-zhong/WAT_portal">
+              github</a>.</p>
+        </div>
+        <div class="grid-child">
+          <h4>Contribute</h4>
+          <p>Check the <a href="contact.html">About</a> page to learn how to contribute to the WATportal.</p>
+        </div>
+        <div class="grid-child">
+          <h4>Contact</h4>
+          <p>Contact details are provided on the <a href="contact.html">About</a> page.</p>
+        </div>
+        <div class="grid-child">
+          <h4>Version update</h4>
+          <p>v1.0.0. (updated: 01 Nov. 2023)</p>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    $(document).ready(function () {
+      // 当页面加载时，根据 URL 参数自动填充和搜索
+      var urlParams = new URLSearchParams(window.location.search);
+      var gene = urlParams.get('gene');
+
+      if (gene) {
+        $('#userInput').val(gene);
+        // 注册事件监听器，等待 Shiny 应用发送准备就绪的消息
+        window.addEventListener('message', function (event) {
+          if (event.data === 'Shiny is ready') {
+            sendToShiny(gene); // 使用 URL 参数调用 sendToShiny
+          }
+        });
+      } else {
+        $('#userInput').val(''); // 确保搜索框为空
+        hideIframes(); // 隐藏 iframe
+      }
+    });
+
+    function sendToShiny(geneName) {
+      // 如果没有提供 geneName 参数，则从输入框获取
+      geneName = geneName || $("#userInput").val();
+      
+      // 更新 URL，但不重新加载页面
+      if (geneName) {
+        history.pushState(null, '', '?gene=' + encodeURIComponent(geneName));
+        showIframes(); // 显示 iframe
+        updateIframes(geneName); // 更新 iframe 的内容
+      } else {
+        history.pushState(null, '', 'gene_sum'); // 当搜索框为空时，重置 URL
+        hideIframes(); // 隐藏 iframe
+      }
+    }
+
+    function updateIframes(geneName) {
+      var iframes = [
+        "shinyIframe1", "shinyIframe2", "shinyIframe3", "shinyIframe4",
+        "shinyIframe5", "shinyIframe6", "shinyIframe7", "shinyIframe8"
+      ];
+      var urls = [
+        "https://atportal.medh.ki.se/shiny/Summary_gene_Clinical_Correlation/",
+        "https://atportal.medh.ki.se/shiny/Summary_gene_Clinical_Sex/",
+        "https://atportal.medh.ki.se/shiny/Summary_gene_Clinical_Obese/",
+        "https://atportal.medh.ki.se/shiny/Summary_gene_Weightloss/",
+        "https://atportal.medh.ki.se/shiny/Summary_gene_Depots/",
+        "https://atportal.medh.ki.se/shiny/Summary_gene_Adipogenesis/",
+	"https://atportal.medh.ki.se/shiny/Summary_gene_Tissue/",
+        "https://atportal.medh.ki.se/shiny/Summary_gene_Singlecell/"
+      ];
+
+      // 更新 iframe 的内容
+      iframes.forEach(function(iframeId, index) {
+        var iframeWindow = document.getElementById(iframeId).contentWindow;
+        console.log("Sending message to Shiny:", geneName);
+        iframeWindow.postMessage(geneName, urls[index]);
+      });
+
+      // 获取基因描述
+      fetch(`/get_gene_description?gene=${geneName}`)
+        .then(response => response.text())
+        .then(description => {
+          document.getElementById('gene-description').innerHTML = description;
+        });
+    }
+
+    function hideIframes() {
+      $(".collapsible-iframe").hide(); // 隐藏所有 iframe
+      $("#download-data").hide(); // 同时隐藏下载按钮
+    }
+
+    function showIframes() {
+      $(".collapsible-iframe").show(); // 显示所有 iframe
+      $("#download-data").show(); // 同时显示下载按钮
+    }
+
+    $(function () {
+      $("#userInput").autocomplete({
+        source: function (request, response) {
+          $.ajax({
+            url: "https://atportal.medh.ki.se/autocomplete", // Flask应用程序的URL
+            dataType: "json",
+            data: {
+              term: request.term // 用户在搜索框中输入的内容
+            },
+            success: function (data) {
+              response(data); // 将返回的数据传递给autocomplete
+            }
+          });
+        },
+        minLength: 2, // 最小触发字符数
+        select: function (event, ui) {
+          // 用户选择一个选项后执行的操作
+          var selectedGene = ui.item.value;
+          // 填充搜索栏
+          $("#userInput").val(selectedGene);
+          // 触发搜索按钮的点击事件
+          sendToShiny(selectedGene);
+          return false; // 防止默认行为
+        }
+      });
+    });
+    document.getElementById('download-data').addEventListener('click', function() {
+        var geneName = document.getElementById('userInput').value;
+        if (geneName) {
+            var filename = geneName + '.pdf';
+            window.location.href = '/summarydownload/' + encodeURIComponent(filename);
+        } else {
+            alert('Please enter a gene name to download the summary.');
+        }
+    });
+  </script>
+
+
+
+
+
+</body>
+
+</html>

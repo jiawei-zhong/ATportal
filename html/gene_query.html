@@ -1,0 +1,296 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>WAT knowledge portal</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <link href="dist/css/app.cbc99085.css" rel="stylesheet">
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300&display=swap');
+  </style>
+  <!-- basic -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- mobile metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <!-- site metas -->
+  <title>WATkp</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- 引入DataTables CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+
+  <!-- Buttons extension CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
+
+  <!-- 引入jQuery库 -->
+  <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <!-- 引入DataTables库 -->
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+
+  <!-- Buttons extension JS -->
+  <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+  <!-- <script type="text/javascript" src="js/button.download.js"></script> -->
+</head>
+
+
+
+<body class="container">
+
+  <header>
+    <nav class="navbar_in">
+      <a href="index.html"><img src="images/logo_navbar.png" alt="adipose tissue knowledge portal logo"
+          class="logo"></a>
+
+      <div class="navbar">
+
+        <a href="index.html">Home</a>
+        <div class="dropdown">
+          <button class="dropbtn">Modules
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="gene_sum.html">Summary</a>
+            <a href="clinical.html">Clinical relationships</a>
+            <a href="depots.html">Depot comparisons</a>
+            <a href="celltype.html">Cell type</a>
+            <a href="sc.html">Single-cell/single-nucleus RNA seq.</a>
+            <a href="spatial.html">Spatial Transcriptomics</a>
+            <a href="pert.html">Perturbation</a>
+            <a href="gene_query.html">Gene finder</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropbtn">About
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="vignettes.html">How to</a>
+            <a href="news.html">News</a>
+            <a href="contact.html">Contact</a>
+            <a href="version_updates.html">Version Updates</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <div class="banner_mod">
+      <div class="grid-container_mod">
+        <div class="column-1-mod"><img src="images/module_images_Gene finder.png" /></div>
+        <div class="column-2-mod">
+          <div class="mod_intro_text">
+            <p>This module allows for the identification of genes fulfilling specific criteria. By inputting
+              user-defined thresholds, integrative analyses of the data present in all modules can be investigated.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="separation_mod">
+
+
+
+    <div id="app" style="width: 80%; margin: auto; color: black;">
+      <!-- Vue 应用将在这里渲染 -->
+    </div>
+
+    <br style="width: 80%;">
+
+    <!-- DataTables 表格，初始隐藏但占位 -->
+    <div id="table-container" style="display: none;">
+      <table id="geneFinderTable" class="display" style="width:100%; color: black;">
+        <thead>
+          <tr id="table-headers">
+            <!-- 表头将根据选择的参数动态生成 -->
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <br style="width: 80%;">
+      <div style="width: 80%; margin: auto; color: black;">
+        <button id="download-data" class="btn btn-primary" style="color: black; max-width: 200px;">Download</button>
+      </div>
+      
+    </div>
+
+    
+
+
+  </main>
+
+  <footer id="footer">
+    <div class="footer_col">
+      <div class="grid-container_bot">
+        <div class="grid-child">
+          <h4>Publication</h4>
+          <p> The WATportal manuscript is available via bioRxiv [link to bioRxiv] </p>
+        </div>
+        <div class="grid-child">
+          <h4>Data and code:</h4>
+          <p>The code for this portal is available through <a href="https://github.com/jiawei-zhong/WAT_portal">
+              github</a>.</p>
+        </div>
+        <div class="grid-child">
+          <h4>Contribute</h4>
+          <p>Check the <a href="contact.html">About</a> page to learn how to contribute to the WATportal.</p>
+        </div>
+        <div class="grid-child">
+          <h4>Contact</h4>
+          <p>Contact details are provided on the <a href="contact.html">About</a> page.</p>
+        </div>
+        <div class="grid-child">
+          <h4>Version update</h4>
+          <p>v1.0.0. (updated: 01 Nov. 2023)</p>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script defer="defer" src="dist/js/chunk-vendors.1da3d840.js"></script>
+  <script defer="defer" src="dist/js/app.43ddf6b4.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      var table; // 用于存储 DataTable 实例
+      var csvDownloadUrl; // 用于存储生成的 CSV 文件的下载链接
+      var isCsvReady = false; // 标记 CSV 文件是否准备好
+
+      // 获取请求数据的函数
+      function getRequestData() {
+        var requestData = {};
+
+        // 处理 P-value Cutoffs
+        var pValueCutoff = $('#inputField').val();
+        var cutoffType = $('input[type="radio"]:checked').val();
+        if (pValueCutoff && cutoffType) {
+          requestData.Pvaltype = cutoffType;
+          requestData.PvalCutoff = pValueCutoff;
+        }
+
+        // 处理 Cohorts
+        requestData.cohort = [];
+        $('#list1 input:checked').each(function () {
+          requestData.cohort.push($(this).val());
+        });
+
+        // 从 data-input-fields 属性获取 Traits 和 RangeSliders
+        var inputFieldsDataElement = document.getElementById('inputFieldsData');
+        var inputFieldsData = JSON.parse(inputFieldsDataElement.getAttribute('data-input-fields'));
+        inputFieldsData.forEach(function (field, index) {
+          requestData["trait" + (index + 1)] = field.selectedOption;
+          requestData["range" + (index + 1)] = field.rangeValues.join(',');
+        });
+
+        return requestData;
+      }
+
+      // 初始化表格的函数
+      function initTable() {
+        var requestData = getRequestData();
+        var ajaxUrl = "https://atportal.medh.ki.se/genefinder_DataTables";
+
+        // 如果 table 已经被初始化，先销毁旧的 DataTable 实例
+        if ($.fn.DataTable.isDataTable('#geneFinderTable')) {
+          $('#geneFinderTable').DataTable().destroy();
+          $('#geneFinderTable').empty();
+        }
+
+        // 发送 AJAX 请求并动态更新列配置
+        $.ajax({
+          type: "POST",
+          url: ajaxUrl,
+          contentType: "application/json",
+          data: JSON.stringify(requestData),
+          success: function (json) {
+            // 动态创建列
+            if (json.data.length > 0) {
+              var keys = Object.keys(json.data[0]);
+              var columns = keys.map(function (key) {
+                return {
+                  "data": key,
+                  "title": key
+                };
+              });
+
+              // 初始化 DataTables
+              table = $('#geneFinderTable').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ordering": true,
+                "ajax": {
+                  "type": "POST",
+                  "url": ajaxUrl,
+                  "contentType": "application/json",
+                  "data": function (d) {
+                    return JSON.stringify($.extend({}, d, requestData));
+                  },
+                  "dataSrc": "data"
+                },
+                "columns": columns,
+                "scrollX": true,
+                "initComplete": function (settings, json) {
+                  $('#table-container').show();
+                  this.api().columns.adjust().draw();
+                }
+              });
+            }
+          }
+        });
+      }
+
+      // 生成 CSV 文件的函数
+      function generateCSV(requestData) {
+        isCsvReady = false; // 重置 CSV 文件准备状态
+        $.ajax({
+          type: "POST",
+          url: "https://atportal.medh.ki.se/genefinder_csv",
+          contentType: "application/json",
+          data: JSON.stringify(requestData),
+          success: function (response) {
+            csvDownloadUrl = response.download_url; // 存储 CSV 文件的下载链接
+            isCsvReady = true; // 标记 CSV 文件已准备好
+            $('#download-data').show(); // 显示下载按钮
+          },
+          error: function (error) {
+            console.log("生成 CSV 文件出错", error);
+          }
+        });
+      }
+
+      // 处理提交按钮点击事件
+      $('#submit-filter').on('click', function (event) {
+        event.preventDefault(); // 阻止表单的默认提交行为
+        var requestData = getRequestData();
+        initTable();
+        generateCSV(requestData);
+      });
+
+      // 处理下载按钮点击事件
+      $('#download-data').on('click', function () {
+        if (isCsvReady && csvDownloadUrl) {
+          window.location.href = csvDownloadUrl;
+        } else {
+          alert("The CSV file is not ready yet, please try again later.");
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>

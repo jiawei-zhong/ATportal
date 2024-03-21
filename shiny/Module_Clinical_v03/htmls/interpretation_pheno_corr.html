@@ -1,0 +1,21 @@
+<html>
+
+<head>
+<title>Interpretation Phenotype Correlation</title>
+<link rel="stylesheet" href="style_def.css">
+</head>
+
+<body>
+<br>
+<p class="detail-text">
+Three basic inputs are required for Cohort(s), Trait(s) and Gene(s). Additionally, the correlation method (Pearson or Spearman, default=Spearman) and possible adjustments for partial correlation (default=no adjustment) can be defined.
+Bar charts show the selected correlation on the y-axis and the selected genes (if one trait, multiple genes) or selected traits (if multiple traits, one gene) on the x-axis. P-values (calculated as negative decadic logarithm) are indicated by the color scale. In the case of meta-analysis bar charts across all available cohorts (selected via meta_sc or meta_om), the weighted mean correlation is shown on the y-axis. 
+Heatmaps show the correlation of multiple genes on the y-axis with multiple traits on the x-axis. The color scale indicates the level of correlation and FDR-adjusted  significance is indicated by asterisks (&#42;&#42;&#42; p<sub>FDR</sub>	&#60;0.001, &#42;&#42; p<sub>FDR</sub>	&#60; 0.01, &#42; p<sub>FDR</sub>	&#60; 0.05). In the case of a meta-analysis heatmap after choosing either meta_sc or meta_om under Trait, the weighted mean correlation across all subcutaneous or omental cohorts is depicted.
+Using the portal, it is very easy to generate meta-analysis forest plots, summarizing the correlation of one trait with one gene across all selected cohorts. Forest plots show the selected publications on the left, which is followed by individual correlation results (depending on the selected correlation method) and their 95% confidence interval. These values are also visualized in forest bars/ squares on the right, where lines represent the confidence interval, and the square the correlation value. The size of the squares in defined by the size of the cohort – detailed number can be taken from the Table tab. Both common and random effects models are calculated and shown in the last two lines. The correct method should be chosen based on the heterogeneity test below the plot, and z score and p value statistics for both common and random effects model are indicated.
+
+All tests can be adjusted for any combination of parameters (partial correlation) in the respective Input panel (default= no adjustment).
+
+<br>
+</p> 
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>WAT knowledge portal</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300&display=swap');
+  </style>
+  <!-- basic -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- mobile metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <!-- site metas -->
+  <title>WATkp</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="container">
+
+  <header>
+
+    <nav class="navbar_in">
+      <a href="index.html"><img src="images/logo_navbar.png" alt="adipose tissue knowledge portal logo"
+          class="logo"></a>
+
+      <div class="navbar">
+
+        <a href="index.html">Home</a>
+        <div class="dropdown">
+          <button class="dropbtn">Modules
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="gene_sum.html">Summary</a>
+            <a href="clinical.html">Clinical relationships</a>
+            <a href="depots.html">Depot comparisons</a>
+            <a href="celltype.html">Cell type</a>
+            <a href="sc.html">Single-cell/single-nucleus RNA seq.</a>
+            <a href="spatial.html">Spatial Transcriptomics</a>
+            <a href="pert.html">Perturbation</a>
+            <a href="gene_query.html">Gene finder</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropbtn">About
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="vignettes.html">How to</a>
+            <a href="news.html">News</a>
+            <a href="contact.html">Contact</a>
+            <a href="version_updates.html">Version Updates</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="header_col">
+
+      <div class="banner">
+
+        <div><img src="images/logo_banner_full.png" alt="" class="logo_large" /></div>
+      </div>
+
+      <hr class="separation">
+
+      <div class="intro_text"> Open-access to clinical, transcriptional and protein data down to the single-cell level
+      </div>
+      <form id="myForm" class="search_bar" action="/gene_sum" onsubmit="return modifyAction()" method="get">
+        <div class="center-container">
+          <div class="search-container">
+
+            <div class="search-bar-container">
+              <div class="search-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
+                  <path
+                    d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z">
+                  </path>
+                </svg>
+              </div>
+              <input type="text" id="gene" name="gene" class="search-bar" placeholder="Search gene, eg. LEP">
+            </div>
+
+            <button class="search-button">Search</button>
+
+          </div>
+        </div>
+      </form>
+
+    </div>
+
+
+
+    <div id="main-container">
+
+      <div class="circles">
+
+        <div id="modules1">
+          <div class="grid-container_image">
+            <div class="grid-child">
+              <a class="tooltip" href="gene_sum.html"><img src="images/module_images_Summary.png"
+                  alt="Summary"><span>Discover genes/proteins fulfilling user-defined criteria.</span></a>
+            </div>
+            <div class="grid-child">
+              <a class="tooltip" href="clinical.html">
+                <img src="images/module_images_Clinical.png" alt="Clinical"><span>Identify associations to clinical and
+                  fat cell parameters.</span></a>
+            </div>
+            <div class="grid-child">
+              <a class="tooltip" href="depots.html"><img src="images/module_images_Depots.png"
+                  alt="Depots"><span>Compare subcutaneous, visceral, and perivascular WAT depots.</span></a>
+            </div>
+            <div class="grid-child">
+              <a class="tooltip" href="celltype.html"><img src="images/module_images_Cell type.png"
+                  alt="Cell_type"><span>Define enrichment in multiple cell populations.</span></a>
+            </div>
+          </div>
+        </div>
+
+
+        <div id="modules2">
+          <div class="grid-container_image">
+            <div class="grid-child">
+              <a class="tooltip" href="sc.html"><img src="images/module_images_Single cell.png"
+                  alt="Single_cell"><span>Explore single-cell and single-nucleus RNAseq. results.</span></a>
+            </div>
+            <div class="grid-child">
+              <a class="tooltip" href="spatial.html"><img src="images/module_images_Spatial.png"
+                  alt="Spatial"><span>Investigate spatial transcriptomics data.</span></a>
+            </div>
+            <div class="grid-child">
+              <a class="tooltip" href="pert.html"><img src="images/module_images_Perturbations.png"
+                  alt="Perturbation"><span>Determine the influence of different perturbations.</span></a>
+            </div>
+            <div class="grid-child">
+              <a class="tooltip" href="gene_query.html"><img src="images/module_images_Gene finder.png"
+                  alt="Gene_finder"><span>Obtain summarized information from all aspects of the portal.</span></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+    $(function () {
+      $("#gene").autocomplete({
+        source: function (request, response) {
+          $.ajax({
+            url: "https://atportal.medh.ki.se/autocomplete", // Flask应用程序的URL
+            dataType: "json",
+            data: {
+              term: request.term // 用户在搜索框中输入的内容
+            },
+            success: function (data) {
+              response(data); // 将返回的数据传递给autocomplete
+            }
+          });
+        },
+        minLength: 2, // 最小触发字符数
+        select: function (event, ui) {
+          // 用户选择一个选项后执行的操作
+          var selectedGene = ui.item.value;
+          // 构建目标URL
+          var targetUrl = "https://atportal.medh.ki.se/gene_sum?gene=" + encodeURIComponent(selectedGene);
+          // 跳转到目标URL
+          window.location.href = targetUrl;
+          return false; // 防止默认行为
+        }
+      });
+    });
+  </script>
+
+
+  <footer id="footer">
+    <div class="footer_col">
+      <div class="grid-container_bot">
+        <div class="grid-child">
+          <h4>Publication</h4>
+          <p> The WATportal manuscript is available via bioRxiv [link to bioRxiv] </p>
+        </div>
+        <div class="grid-child">
+          <h4>Data and code:</h4>
+          <p>The code for this portal is available through <a href="https://github.com/jiawei-zhong/WAT_portal">
+              github</a>.</p>
+        </div>
+        <div class="grid-child">
+          <h4>Contribute</h4>
+          <p>Check the <a href="contact.html">About</a> page to learn how to contribute to the WATportal.</p>
+        </div>
+        <div class="grid-child">
+          <h4>Contact</h4>
+          <p>Contact details are provided on the <a href="contact.html">About</a> page.</p>
+        </div>
+        <div class="grid-child">
+          <h4>Version update</h4>
+          <p>v1.0.0. (updated: 01 Nov. 2023)</p>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+
+</html>

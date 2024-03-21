@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>WAT knowledge portal</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300&display=swap');
+  </style>
+  <!-- basic -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- mobile metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <!-- site metas -->
+  <title>WATkp</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="">
+</head>
+
+<body class="container">
+  <header>
+    <nav class="navbar_in">
+      <a href="index.html"><img src="images/logo_navbar.png" alt="adipose tissue knowledge portal logo"
+          class="logo"></a>
+
+      <div class="navbar">
+
+        <a href="index.html">Home</a>
+        <div class="dropdown">
+          <button class="dropbtn">Modules
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="gene_sum.html">Summary</a>
+            <a href="clinical.html">Clinical relationships</a>
+            <a href="depots.html">Depot comparisons</a>
+            <a href="celltype.html">Cell type</a>
+            <a href="sc.html">Single-cell/single-nucleus RNA seq.</a>
+            <a href="spatial.html">Spatial Transcriptomics</a>
+            <a href="pert.html">Perturbation</a>
+            <a href="gene_query.html">Gene finder</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropbtn">About
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="vignettes.html">How to</a>
+            <a href="news.html">News</a>
+            <a href="contact.html">Contact</a>
+            <a href="version_updates.html">Version Updates</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <h1 id="gene-name" style="width: 81%; color: #000000; margin-left: auto; margin-right: auto;"></h1>
+
+    <div style="width: 81%; color: #000000; margin-left: auto; margin-right: auto;" id="gene-description"></div>
+    <br>
+    <br>
+    <details open style="width: 81%; margin-left: auto; margin-right: auto;">
+      <summary style="color: #000000; margin-left: auto; margin-right: auto;">Clinical correlation
+      </summary>
+      <iframe id="shinyIframe1" onload="sendToShiny()"
+        src="http://atportal.medh.ki.se:3838/Summary_gene_Clinical_Correlation/" height="250" frameborder="0"></iframe>
+    </details>
+    <hr class="separation_mod">
+    <details open style="width: 81%; margin-left: auto; margin-right: auto;">
+      <summary style="color: #000000; margin-left: auto; margin-right: auto;">Obese vs. non-obese
+      </summary>
+      <iframe id="shinyIframe2" onload="sendToShiny()"
+        src="http://atportal.medh.ki.se:3838/Summary_gene_Clinical_Obese/" height="400" frameborder="0"></iframe>
+    </details>
+    <hr class="separation_mod">
+    <details open style="width: 81%; margin-left: auto; margin-right: auto;">
+      <summary style="color: #000000; margin-left: auto; margin-right: auto;">Sex difference
+      </summary>
+      <iframe id="shinyIframe3" onload="sendToShiny()" src="http://atportal.medh.ki.se:3838/Summary_gene_Clinical_Sex/"
+        height="400" frameborder="0"></iframe>
+    </details>
+    <hr class="separation_mod">
+    <details open style="width: 81%; margin-left: auto; margin-right: auto;">
+      <summary style="color: #000000; margin-left: auto; margin-right: auto;">Weight loss</summary>
+      <iframe id="shinyIframe4" onload="sendToShiny()" src="http://atportal.medh.ki.se:3838/Summary_gene_Weightloss/"
+        height="400" frameborder="0"></iframe>
+    </details>
+    <hr class="separation_mod">
+    <details open style="width: 81%; margin-left: auto; margin-right: auto;">
+      <summary style="color: #000000; margin-left: auto; margin-right: auto;">Single cell</summary>
+      <iframe id="shinyIframe5" onload="sendToShiny()" src="http://atportal.medh.ki.se:3838/Summary_gene_Singlecell/"
+        height="400" frameborder="0"></iframe>
+    </details>
+
+    <script>
+      function sendToShiny() {
+        // Fetch the gene parameter from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const geneName = urlParams.get('gene');
+
+        if (geneName) {
+          document.getElementById('gene-name').textContent = geneName;
+
+          var iframeWindow1 = document.getElementById("shinyIframe1").contentWindow;
+          var iframeWindow2 = document.getElementById("shinyIframe2").contentWindow;
+          var iframeWindow3 = document.getElementById("shinyIframe3").contentWindow;
+          var iframeWindow4 = document.getElementById("shinyIframe4").contentWindow;
+          var iframeWindow5 = document.getElementById("shinyIframe5").contentWindow;
+
+          iframeWindow1.postMessage(geneName,
+            "http://atportal.medh.ki.se:3838/Summary_gene_Clinical_Correlation/");
+          iframeWindow2.postMessage(geneName,
+            "http://atportal.medh.ki.se:3838/Summary_gene_Clinical_Obese/");
+          iframeWindow3.postMessage(geneName,
+            "http://atportal.medh.ki.se:3838/Summary_gene_Clinical_Sex/");
+          iframeWindow4.postMessage(geneName, "http://atportal.medh.ki.se:3838/Summary_gene_Weightloss/");
+          iframeWindow5.postMessage(geneName, "http://atportal.medh.ki.se:3838/Summary_gene_Singlecell/");
+          // 获取基因描述
+          fetch(`/get_gene_description?gene=${geneName}`)
+            .then(response => response.text())
+            .then(description => {
+              document.getElementById('gene-description').textContent = description;
+            });
+        }
+      }
+
+      window.addEventListener('message', function (event) {
+        if (event.data === 'Shiny is ready') {
+          sendToShiny();
+        }
+      });
+    </script>
+  </main>
+
+  <footer id="footer">
+    <div class="footer_col">
+      <div class="grid-container_bot">
+        <div class="grid-child">
+          <h4>Publication</h4>
+          <p> The WATportal manuscript is available via bioRxiv [link to bioRxiv] </p>
+        </div>
+        <div class="grid-child">
+          <h4>Data and code:</h4>
+          <p>The code for this portal is available through <a href="https://github.com/jiawei-zhong/WAT_portal">
+              github</a>.</p>
+        </div>
+        <div class="grid-child">
+          <h4>Contribute</h4>
+          <p>Check the <a href="contact.html">About</a> page to learn how to contribute to the WATportal.</p>
+        </div>
+        <div class="grid-child">
+          <h4>Contact</h4>
+          <p>Contact details are provided on the <a href="contact.html">About</a> page.</p>
+        </div>
+        <div class="grid-child">
+          <h4>Version update</h4>
+          <p>v1.0.0. (updated: 01 Nov. 2023)</p>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <style>
+    iframe {
+      width: 100%;
+      border: 0px solid #ccc;
+      transition: all 0.3s;
+      /* 添加过渡效果 */
+    }
+  </style>
+
+</body>
+
+</html>
