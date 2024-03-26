@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 .container {
-    max-width: 1400px;
+    max-width: 1200px;
     padding-left: auto;
     padding-right: auto;
     margin-left: auto;
@@ -27,7 +27,14 @@
 	vertical-align: top;
 }
 
+.butt {
+  background-color:  #1a4659; !important
+  color:  #E2C744;!important
+}
 
+input[type=radio]:checked {
+         background-color: #1a4659; !important
+      }
 
 .side {
   color: #140859;
@@ -39,7 +46,7 @@
 }
 
 .sidebar   form.well { 
-background:#C7DDDA;
+background:#EDF2F2;
 border-width: 2px;
 border-color: #1a4659;
 border-radius: 25px;
@@ -48,8 +55,15 @@ transition: 1s ease;
 position: relative;
 }
 
+
+#start {
+  background-color: #E2C744;
+  border-color: #1a4659;
+  color:  #1a4659;
+}
+
 .side-tab {
-  background-color: #C7DDDA ;
+  background-color: #EDF2F2 ;
 }
 
 .main-content {
@@ -63,10 +77,60 @@ position: relative;
    
 }
 
+img {
+  border: 2px solid #1a4659;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+tr:nth-child(even) {
+  background-color: #EDF2F2;
+}
+
+tr {
+  border-bottom: 1px solid #1a4659;
+}
+
+#output_op th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #1a4659;
+  color: white;
+}
+
+#output_op {
+	  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+	border-collapse: collapse;
+}
+
+#output_op td, #output_op th {
+  border: 1px solid ##1a4659;
+  padding: 8px;
+}
+
+.btn-danger{
+  background-color: #1a4659; !important 
+}
+
 .navbar-brand {
    color: #1a4659 !important;
 }
+.tab_head {
+  color: #1a4659 !important;
+}
 
+.tab-content {
+  color:  #1a4659;
+}
 .dropdown-toggle {
    color: #1a4659 !important;
 }
