@@ -743,8 +743,14 @@ p2 {font-size: 0.9rem}
     font-weight: bold;
 	width: 90%;
 	color: #1a4659;
+	background-color: #edf2f2;
+	 padding: 5px;
+	 display: inline-block;
+	 width: calc(100%); /* Set width to fill the container minus padding */
+	box-sizing: border-box; /* Include padding in the width calculation */
 	text-align: left;
-	padding-top: 0.625rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
 }
 
 .separator {
@@ -755,6 +761,8 @@ p2 {font-size: 0.9rem}
 }
 
 .collapsible-iframe {
+	padding-bottom: 0.7rem;
+	padding-top: 0.7rem;
     transition: height 0.3s;
 	width: 100%;
 	border: none;
