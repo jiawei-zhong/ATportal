@@ -747,6 +747,7 @@ p2 {font-size: 0.9rem}
 	 padding: 5px;
 	 display: inline-block;
 	 width: calc(100%); /* Set width to fill the container minus padding */
+	border-radius: 0.5rem;
 	box-sizing: border-box; /* Include padding in the width calculation */
 	text-align: left;
 	padding-top: 0.5rem;
