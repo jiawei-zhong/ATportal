@@ -360,6 +360,8 @@ body {
 
 .circles{
 	width: 80%;
+	max-width: 1400px;
+	min-width: 500px;
 	padding-top: ;
 	margin: auto;
 	text-align: center;
