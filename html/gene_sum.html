@@ -112,10 +112,10 @@
                 </path>
               </svg>
             </div>
-            <input type="text" id="gene" name="gene" class="search-bar" placeholder="Search gene, eg. LEP">
+            <input type="text" id="userInput" name="gene" class="search-bar" placeholder="Search gene, eg. LEP">
           </div>
 
-          <button class="search-button">Search</button>
+          <button onclick="sendToShiny()" class="search-button">Search</button>
 
         </div>
       </div>
@@ -124,15 +124,19 @@
 
     <div class="grid-container">
       <div class="column-1" id="sticky-column">
-        <div class="center-container2">
-         <!-- <div class="search-container2">
-            <input type="text" id="userInput" class="search-bar2" placeholder="Search gene">
-            <button onclick="sendToShiny()" class="search-button2">Search</button>
-          </div> -->
-        </div>
+        <!-- <div class="center-container2"> -->
+         <!-- <div class="search-container2"> -->
+            <!-- <input type="text" id="userInput" class="search-bar2" placeholder="Search gene"> -->
+            <!-- <button onclick="sendToShiny()" class="search-button2">Search</button> -->
+          <!-- </div> -->
+        <!-- </div> -->
         <!--<hr class="separation_sum_side">-->
         <div class="text-container">
           <p2 id="gene-description"></p2>
+        </div>
+        <div class="download-container">
+          <button id="download-data" class="download-button2" style="color: black; max-width: 200px;">Download</button>
+          <!-- <button id="download-data" class="btn btn-primary" style="color: black; max-width: 200px;" onclick="downloadPdf()">Download</button> -->
         </div>
       </div>
 
@@ -145,7 +149,7 @@
             </a>
           </div>
           <iframe id="shinyIframe1" src="https://atportal.medh.ki.se/shiny/Summary_gene_Clinical_Correlation/"
-            height="250" class="collapsible-iframe"></iframe>
+            height="380" class="collapsible-iframe"></iframe>
 
           <div class="iframe-title">Sex difference
             <a href="clinical.html" target="_blank">
@@ -160,7 +164,7 @@
               <ion-icon name="caret-forward-circle" class="arrow-icon"></ion-icon>
             </a>
           </div>
-          <iframe id="shinyIframe3" src="https://atportal.medh.ki.se/shiny/Summary_gene_Clinical_Obese/" height="350"
+          <iframe id="shinyIframe3" src="https://atportal.medh.ki.se/shiny/Summary_gene_Clinical_Obese/" height="400"
             class="collapsible-iframe"></iframe>
 
           <div class="iframe-title">Weight loss
@@ -204,10 +208,7 @@
             class="collapsible-iframe"></iframe>
 
         </div>
-        <div>
-          <button id="download-data" class="btn btn-primary" style="color: black; max-width: 200px;">Download</button>
-          <!-- <button id="download-data" class="btn btn-primary" style="color: black; max-width: 200px;" onclick="downloadPdf()">Download</button> -->
-        </div>
+
       </div>
     </div>
 
