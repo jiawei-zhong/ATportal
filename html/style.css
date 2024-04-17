@@ -54,6 +54,8 @@ body {
 
 .header_col {
 	background-color: #1a4659;
+    width: auto;
+    min-width: 500px;
 }
 
 
@@ -152,7 +154,7 @@ body {
 }
 
 .search-button:hover {
-    background-color: #1a4659;
+    background-color: rgba(237, 242, 242, 0.8);
 }
 
 ::placeholder {
@@ -621,8 +623,6 @@ iframe {
 .module_summary_text {
     width: 81%;
     padding-left: 1.25rem;
-    padding-top: ;
-    padding-bottom: ;
     padding-right: 1.25rem;
 	color: #1a4659;
 	text-align: justify;
@@ -630,8 +630,6 @@ iframe {
 
 .separation_mod_sum {
     width: 81%;
-	margin-top: ;
-	margin-bottom: ;
 	border: 0.01rem solid rgba(26,70,89,1.00);
 }
 
@@ -640,9 +638,8 @@ iframe {
 	padding-top: 2%;
     margin: auto;
     display: flex;
-	overflow: hidden;
-	position: relative;
 	width: 81%;
+    height: 100%;
     grid-template-columns: min-content 1fr;
     grid-gap: 1px;
 }
@@ -659,7 +656,6 @@ iframe {
     padding: 1rem;
 	border:0.15rem solid rgba(26,70,89,1.00);
 	border-radius: 2rem;
-	overflow-y: ; /* Enable vertical scrolling */
 	transition: transform 0.005s ease;
 }
 
