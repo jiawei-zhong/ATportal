@@ -637,7 +637,8 @@ iframe {
 
 
 .grid-container {
-	margin: auto;
+	padding-top: 2%;
+    margin: auto;
     display: flex;
 	overflow: hidden;
 	position: relative;
