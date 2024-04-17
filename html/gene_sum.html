@@ -26,6 +26,9 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+  <!-- custom icons -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
 <body class="container">
@@ -71,7 +74,7 @@
 
   <main>
 
-    <div class="banner_mod">
+    <!-- <div class="banner_mod">
       <div class="grid-container_mod">
         <div class="column-1-mod"><img src="images/module_images_Summary.png" /></div>
         <div class="column-2-mod">
@@ -84,16 +87,50 @@
     </div>
     <hr class="separation_mod" id="sticky-hr">
     </hr>
+  -->
+  <div class="header_col">
+
+    <div class="banner">
+
+      <div><img src="images/logo_banner_full.png" alt="" class="logo_large" /></div>
+    </div>
+
+    <hr class="separation"> 
+     
+    <div class="intro_text"> Gene Summary  |  Obtain summarized information from all aspects of the portal
+    </div> 
+     
+    <form id="myForm" class="search_bar" action="/gene_sum" onsubmit="return modifyAction()" method="get">
+      <div class="center-container">
+        <div class="search-container">
+
+          <div class="search-bar-container">
+            <div class="search-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
+                <path
+                  d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z">
+                </path>
+              </svg>
+            </div>
+            <input type="text" id="gene" name="gene" class="search-bar" placeholder="Search gene, eg. LEP">
+          </div>
+
+          <button class="search-button">Search</button>
+
+        </div>
+      </div>
+    </form>
+</div>
 
     <div class="grid-container">
       <div class="column-1" id="sticky-column">
         <div class="center-container2">
-          <div class="search-container2">
+         <!-- <div class="search-container2">
             <input type="text" id="userInput" class="search-bar2" placeholder="Search gene">
             <button onclick="sendToShiny()" class="search-button2">Search</button>
           </div>
         </div>
-        <!--<hr class="separation_sum_side">-->
+        <hr class="separation_sum_side">-->
         <div class="text-container">
           <p2 id="gene-description"></p2>
         </div>
@@ -101,35 +138,67 @@
       <div class="column-2">
         <div class="iframe-group">
 
-          <div class="iframe-title">Clinical correlation</div>
+          <div class="iframe-title">Clinical correlation
+            <a href="clinical.html" target="_blank">
+              <ion-icon name="caret-forward-circle" class="arrow-icon"></ion-icon>
+            </a>
+          </div>
           <iframe id="shinyIframe1" src="https://atportal.medh.ki.se/shiny/Summary_gene_Clinical_Correlation/"
             height="250" class="collapsible-iframe"></iframe>
 
-          <div class="iframe-title">Sex difference</div>
+          <div class="iframe-title">Sex difference
+            <a href="clinical.html" target="_blank">
+              <ion-icon name="caret-forward-circle" class="arrow-icon"></ion-icon>
+            </a>
+          </div>
           <iframe id="shinyIframe2" src="https://atportal.medh.ki.se/shiny/Summary_gene_Clinical_Sex/" height="400"
             class="collapsible-iframe"></iframe>
 
-          <div class="iframe-title">Obese vs. non-obese</div>
+          <div class="iframe-title">Obese vs. non-obese
+            <a href="clinical.html" target="_blank">
+              <ion-icon name="caret-forward-circle" class="arrow-icon"></ion-icon>
+            </a>
+          </div>
           <iframe id="shinyIframe3" src="https://atportal.medh.ki.se/shiny/Summary_gene_Clinical_Obese/" height="350"
             class="collapsible-iframe"></iframe>
 
-          <div class="iframe-title">Weight loss</div>
+          <div class="iframe-title">Weight loss
+            <a href="clinical.html" target="_blank">
+              <ion-icon name="caret-forward-circle" class="arrow-icon"></ion-icon>
+            </a>
+          </div>
           <iframe id="shinyIframe4" src="https://atportal.medh.ki.se/shiny/Summary_gene_Weightloss/" height="400"
             class="collapsible-iframe"></iframe>
             
-          <div class="iframe-title">Depots</div>
+          <div class="iframe-title">Depots
+            <a href="depots.html" target="_blank">
+              <ion-icon name="caret-forward-circle" class="arrow-icon"></ion-icon>
+            </a>
+          </div>
           <iframe id="shinyIframe5" src="https://atportal.medh.ki.se/shiny/Summary_gene_Depots/" height="250"
             class="collapsible-iframe"></iframe>
 
-          <div class="iframe-title">Adipogenesis</div>
+          <div class="iframe-title">Adipogenesis
+            <a href="celltype.html" target="_blank">
+              <ion-icon name="caret-forward-circle" class="arrow-icon"></ion-icon>
+            </a>
+          </div>
           <iframe id="shinyIframe6" src="https://atportal.medh.ki.se/shiny/Summary_gene_Adipogenesis/" height="250"
             class="collapsible-iframe"></iframe>
 
-	  <div class="iframe-title">Tissue specificity</div>
+	       <div class="iframe-title">Tissue specificity
+             <a href="spatial.html" target="_blank">
+             <ion-icon name="caret-forward-circle" class="arrow-icon"></ion-icon>
+              </a>
+          </div>
           <iframe id="shinyIframe7" src="https://atportal.medh.ki.se/shiny/Summary_gene_Tissue/" height="250"
             class="collapsible-iframe"></iframe>
 
-          <div class="iframe-title">Single cell</div>
+          <div class="iframe-title">Single cell
+            <a href="sc.html" target="_blank">
+              <ion-icon name="caret-forward-circle" class="arrow-icon"></ion-icon>
+            </a>
+          </div>
           <iframe id="shinyIframe8" src="https://atportal.medh.ki.se/shiny/Summary_gene_Singlecell/" height="420"
             class="collapsible-iframe"></iframe>
 
