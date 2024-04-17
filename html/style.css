@@ -602,7 +602,7 @@ display: block;
 .arrow-icon {
     color: #1a4659;
     vertical-align: middle;
-   }   
+}   
 
 iframe {
 	width: 81%;
@@ -635,9 +635,12 @@ iframe {
 
 
 .grid-container {
-	padding-top: 2%;
+    padding-top: 2%;
     margin: auto;
     display: flex;
+	/* overflow: hidden; */
+	/* position: relative; */
+    /* justify-content: space-between; */
 	width: 81%;
     height: 100%;
     grid-template-columns: min-content 1fr;
@@ -647,15 +650,19 @@ iframe {
 
 .column-1 {
 	flex: 1;
-	position: -webkit-sticky;
-    position: sticky;
+    flex-direction: column;
+	position: sticky;
+	top: 0; /* Make the sidebar stick to the top of the viewport */
     display: grid;
-	max-height: 40rem;;
+	/* max-height: 40rem; */
+    height:100%;
     grid-template-rows: auto 1fr;
     background-color: #edf2f2;
     padding: 1rem;
 	border:0.15rem solid rgba(26,70,89,1.00);
 	border-radius: 2rem;
+	/* overflow-y: auto;  */
+    overflow: auto;
 	transition: transform 0.005s ease;
 }
 
@@ -722,10 +729,40 @@ iframe {
 
 p2 {font-size: 0.9rem}
 
+.download-container2 {
+    display: flex;
+	align-items: center;
+	text-align: center;
+    padding: 0rem;
+	width: 90%;
+	margin: auto;
+}
+
+.download-button2 {
+    background-color: #e2c744;
+	width: 80px;
+    color: #edf2f2; !important; /* 强制应用颜色 */
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    padding: 0.6rem;
+    margin-left: 0.5rem;
+}
+
+
+.download-button2 &::placeholder {
+  color: #c7d0d3;
+  text-align: justify;
+}
+
+
+
 .column-2 {
 	flex: 3;
+    flex-direction: column;
     padding-left: 2rem;
 	padding-top: 0rem;
+    height: 100%;
 }
 
 /*
@@ -764,7 +801,7 @@ p2 {font-size: 0.9rem}
 }
 
 .collapsible-iframe {
-	padding-bottom: 0.7rem;
+    padding-bottom: 0.7rem;
 	padding-top: 0.7rem;
     transition: height 0.3s;
 	width: 100%;
@@ -772,7 +809,7 @@ p2 {font-size: 0.9rem}
 }
 
 .dataTables_wrapper {
-    width: 80%;
+    /* width: 80%; */
     margin: auto; /* 可选，用于居中对齐 */
   }
 
