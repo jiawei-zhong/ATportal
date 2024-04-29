@@ -7,18 +7,18 @@ header {
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  transform: scale(1.0);
-   transform-origin: 0 0;	
+    display: flex;
+    flex-direction: column;
+    transform: scale(1.0);
+    transform-origin: 0 0;    
 }
 
 #footer {
-  margin-top: auto;
-  bottom: 0;
-  width: 100%;
-  position:;
-  bottom:0;
+    margin-top: auto;
+    bottom: 0;
+    width: 100%;
+    position:;
+    bottom:0;
 }
 
 .container {
@@ -27,20 +27,20 @@ body {
     padding-right: auto;
     margin-left: auto;
     margin-right: auto;
-	link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300&display=swap";
-	font-family: "Red Hat Display";
-	color: #edf2f2;
+    link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300&display=swap";
+    font-family: "Red Hat Display";
+    color: #edf2f2;
 }
 .logo {
     padding-left: 1.875rem;
     padding-top: 0.625rem;
     padding-bottom: 0.625rem;
     padding-right: 1.18rem;
-	width: 35%;
+    width: 35%;
     text-align: left;
 }
 .logo_large {
-	width: 32rem;
+    width: 32rem;
     right: auto;
     left: auto;
 }
@@ -53,7 +53,7 @@ body {
 }
 
 .header_col {
-	background-color: #1a4659;
+    background-color: #1a4659;
     width: auto;
     min-width: 500px;
 }
@@ -76,14 +76,14 @@ body {
     padding-right: auto;
     margin-left: px;
     margin-right: auto;
-	margin-top: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 .intro_text{
-	margin: auto;
-	text-align: center;
-	font-size: 124%;
-	padding-bottom: 0.5rem;
+    margin: auto;
+    text-align: center;
+    font-size: 124%;
+    padding-bottom: 0.5rem;
 }
 
 .module_detail *{
@@ -103,7 +103,7 @@ body {
 
 .search-container {
     display: flex;
-	align-items: center;
+    align-items: center;
     border: px solid #ccc;
     border-radius: 5px;
     padding: 1%;
@@ -114,9 +114,9 @@ body {
     display: flex;
     align-items: center;
     flex: 1;
-	 border: 0.01rem solid #edf2f2;
+    border: 0.01rem solid #edf2f2;
     border-radius: 3rem;
-	background: rgba(237, 242,242, 0.1);
+    background: rgba(237, 242,242, 0.1);
 }
 
 .search-bar {
@@ -124,8 +124,8 @@ body {
     width: 100%;
     padding: 1%;
     outline: none;
-	background: transparent;
-	color: #edf2f2;
+    background: transparent;
+    color: #edf2f2;
 }
 
 .search-icon {
@@ -142,13 +142,13 @@ body {
 
 .search-button {
     background-color: #e2c744;
-	font: "Red Hat Display";
-	font-weight: 300;
+    font: "Red Hat Display";
+    font-weight: 300;
     color: #edf2f2;
     border: none;
     border-radius: 3rem;
     cursor: pointer;
-	width: 12%;
+    width: 12%;
     padding: 1.2%;
     margin-left: 1.2%;
 }
@@ -158,23 +158,23 @@ body {
 }
 
 ::placeholder {
-  color: white;
-  text-align: justify;
+    color: white;
+    text-align: justify;
 }
 
 
-.banner	{
-	padding-top: rem;
-	text-align: center;
-	background-color: transparent;
+.banner    {
+    padding-top: rem;
+    text-align: center;
+    background-color: transparent;
 }
 
 .banner_text {
     width: 26.25rem;
     margin-top: 1.875rem;
     padding-left: 0.625rem;
-	text-align: left;
-	font-size: 2rem;
+    text-align: left;
+    font-size: 2rem;
 }
 
 
@@ -186,90 +186,90 @@ body {
     background-color: #1a4659;
     font-family: "Red Hat Display";
     float: right;
-	padding-top: 0.875rem;
-	vertical-align: bottom;
-	padding-right: 1.875rem;
+    padding-top: 0.875rem;
+    vertical-align: bottom;
+    padding-right: 1.875rem;
 }
 
 /*
 .summaries {
-	margin: auto;
-	align-content: center;
-	vertical-align: center;
+    margin: auto;
+    align-content: center;
+    vertical-align: center;
     text-align: center;
-	font-size: 1.23rem;
+    font-size: 1.23rem;
 }
 */
 .separation {
     width: 43.7rem;
-	margin-top: 1.25rem;
-	margin-bottom: 1.25rem;
-	border: 0.01rem solid rgba(226,199,68,1.00);
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 0.01rem solid rgba(226,199,68,1.00);
 }
 
 
 
 /* Links inside the navbar */
 .navbar a {
-  float: left;
-  font-size: 15px;
-  color: white;
-  text-align: center;
-  padding: 0.875rem 1rem;
-  text-decoration: none;
+    float: left;
+    font-size: 15px;
+    color: white;
+    text-align: center;
+    padding: 0.875rem 1rem;
+    text-decoration: none;
 }
 
 
 /* The dropdown container */
 .dropdown {
-  float: left;
-  overflow: hidden;
+    float: left;
+    overflow: hidden;
 }
 
 /* Dropdown button */
 .dropdown .dropbtn {
-  font-size: 0.875rem; 
-  border: none;
-  outline: none;
-  color: white;
-  padding: 0.875rem 1rem;
-  background-color: inherit;
-  font-family: inherit; /* Important for vertical align on mobile phones */
-  margin: 0; /* Important for vertical align on mobile phones */
+    font-size: 0.875rem; 
+    border: none;
+    outline: none;
+    color: white;
+    padding: 0.875rem 1rem;
+    background-color: inherit;
+    font-family: inherit; /* Important for vertical align on mobile phones */
+    margin: 0; /* Important for vertical align on mobile phones */
 }
 
 /* Add a  background color to navbar links on hover */
 .navbar a:hover, .dropdown:hover .dropbtn {
-  color: #e2c744;
+     color: #e2c744;
 }
 
 /* Dropdown content (hidden by default) */
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #edf2f2;
-  max-width: 10rem;
-  box-shadow: 0rem 0.5rem 0.875rem 0rem rgba(0,0,0,0.2);
-  z-index: 1;
+    display: none;
+    position: absolute;
+    background-color: #edf2f2;
+    max-width: 10rem;
+    box-shadow: 0rem 0.5rem 0.875rem 0rem rgba(0,0,0,0.2);
+    z-index: 1;
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
-  float:left;
-  color: #1a4659;
-  padding: 0.75rem 1rem;
-  display: block;
-  text-align: left;
+    float:left;
+    color: #1a4659;
+    padding: 0.75rem 1rem;
+    display: block;
+    text-align: left;
 }
 
 /* Add a grey background color to dropdown links on hover */
 .dropdown-content a:hover {
-  min-width: inherit;
+     min-width: inherit;
 }
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
-  display: block;
+     display: block;
 } 
 
 .module_intro {
@@ -279,9 +279,9 @@ body {
     padding-right: auto;
     margin-left: auto;
     margin-right: auto;
-	margin-bottom: 1.875rem;
-	margin-top: 1.25rem;
-	font-size: 0.875rem;
+    margin-bottom: 1.875rem;
+    margin-top: 1.25rem;
+    font-size: 0.875rem;
 }
 
 .search_example {
@@ -291,9 +291,9 @@ body {
     padding-right: auto;
     margin-left: auto;
     margin-right: auto;
-	padding-top: rem;
-	padding-bottom: 0.5rem;
-	font-size: 0.9rem;
+    padding-top: rem;
+    padding-bottom: 0.5rem;
+    font-size: 0.9rem;
 }
 
 #main-container {
@@ -301,29 +301,29 @@ body {
     width: 100%;
     height: 100%;
     margin-top: 1rem;
-	text-align: center;
+    text-align: center;
 }
 
 #sidebar {
-	display: table-cell;
-	width: 25%;
-	vertical-align: top;
-	color: #adbec4;
-	padding-top: 1.25rem;
+    display: table-cell;
+    width: 25%;
+    vertical-align: top;
+    color: #adbec4;
+    padding-top: 1.25rem;
 }
 
 #content {
-	display: table-cell;
-	width: 75%;
-	vertical-align: top;
+    display: table-cell;
+    width: 75%;
+    vertical-align: top;
 }
 
 .sidebar_st {
-  border-radius: 1.563rem;
-  background: #edf2f2;
-  padding: 0;
-  width: 100%;
-  height: 12.5rem;
+    border-radius: 1.563rem;
+    background: #edf2f2;
+    padding: 0;
+    width: 100%;
+    height: 12.5rem;
 }
 .text_sidebar {
     text-align: justify;
@@ -332,19 +332,19 @@ body {
     padding-top: 0.938rem;
     padding-bottom: 1.25rem;
     color: #1a4659;
-	font-family: "Red Hat Display";
-        font-size: 1rem;
-	
+    font-family: "Red Hat Display";
+    font-size: 1rem;
+    
 }
 
 .summaries_sum {grid
-	align-content: center;
+    align-content: center;
     text-align: center;
-	font-size: 0.875rem;
-	background-image: url("");
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
+    font-size: 0.875rem;
+    background-image: url("");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .module_text {
@@ -354,129 +354,129 @@ body {
     padding-bottom: 1.25rem;
     padding-right: 1.25rem;
     margin-top: 0;
-	color: #1a4659;
+    color: #1a4659;
 }
 .module_img {
     max-width: 20%;
 }
 
 .circles{
-	width: 80%;
-	max-width: 1400px;
-	min-width: 500px;
-	padding-top: ;
-	margin: auto;
-	text-align: center;
-	align-self: center;
+    width: 80%;
+    max-width: 1400px;
+    min-width: 500px;
+    padding-top: ;
+    margin: auto;
+    text-align: center;
+    align-self: center;
 }
 
 .grid-container_image {
-	width: 100%;
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 0px;
-	margin: auto;
-	padding-left: 0px;
-	padding-right: 0px;
+    margin: auto;
+    padding-left: 0px;
+    padding-right: 0px;
     position: relative;
     text-align: center;
 }
 
 .grid-child a img {
-	width: 80%;
-	max-width: 480px;
+    width: 80%;
+    max-width: 480px;
 }
 
 .grid-child a text {
-	width: 70%;
-	max-width: 480px;
+    width: 70%;
+    max-width: 480px;
 }
 
 a.tooltip {
-  border-bottom: px;
-  text-decoration: none;
+    border-bottom: px;
+    text-decoration: none;
 }
 a.tooltip:hover {
-  cursor: help;
-  position:inherit;
+    cursor: help;
+    position:inherit;
 }
 a.tooltip span {
-  display: none;
+    display: none;
 }
 a.tooltip:hover span {
-  border: #1a4659 0.125rem;
-	border-radius: 1.125rem;
-  padding: 1% 1% 1% 1%;
-  display: block;
-	transition: transform 250ms ease-in-out;
-  z-index: ;
-  background: #edf2f2;
-  margin: 0rem;
-  width: 25%;
-  position: absolute;
-  top: 50%;
-  text-decoration: none;
+    border: #1a4659 0.125rem;
+    border-radius: 1.125rem;
+    padding: 1% 1% 1% 1%;
+    display: block;
+    transition: transform 250ms ease-in-out;
+    z-index: ;
+    background: #edf2f2;
+    margin: 0rem;
+    width: 25%;
+    position: absolute;
+    top: 50%;
+    text-decoration: none;
 }
 
 /* Centered text module */
 .txt_module {
-  font-family: "Red Hat Display";
-	font-size: 0.875rem;
-  color: #1a4659;
-  position: relative;
-  text-align: justify;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    font-family: "Red Hat Display";
+    font-size: 0.875rem;
+    color: #1a4659;
+    position: relative;
+    text-align: justify;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 
 .footer_col {
-	background-color: #ADBEC4;
-	padding-left: 1.875rem;
-	padding-top: 3.125rem;
-	padding-bottom: 0.938rem;
-	margin-top: 0.75rem;
-	position: inherit; 
+    background-color: #ADBEC4;
+    padding-left: 1.875rem;
+    padding-top: 3.125rem;
+    padding-bottom: 0.938rem;
+    margin-top: 0.75rem;
+    position: inherit; 
     bottom: 0;
 }
 
 .grid-container_bot {
-	width: 60%;
+    width: 60%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 0.938rem;
-	padding-left: 0.938rem;
-	padding-right: 0;
-	font-family: "Red Hat Display";
-	font-size: 0.75rem;
-	color: #1a4659;
+    padding-left: 0.938rem;
+    padding-right: 0;
+    font-family: "Red Hat Display";
+    font-size: 0.75rem;
+    color: #1a4659;
     position: relative;
     text-align: left;
 }
 
-.banner_mod	{
-	padding-top: 0px;
-	vertical-align: middle;
-	text-align: center;
-	background-color: transparent;
-	margin-top: 20px;
+.banner_mod    {
+    padding-top: 0px;
+    vertical-align: middle;
+    text-align: center;
+    background-color: transparent;
+    margin-top: 20px;
 }
 
 .banner_mod * {
-	align-content: center;
+    align-content: center;
 }
 
 
 .grid-container_mod {
-	width: 81%%;
+    width: 81%%;
     display: grid;
-	vertical-align: middle;
+    vertical-align: middle;
     grid-template-columns: 15% 85%;;
     grid-gap: 0rem;
-	font-family: "Red Hat Display";
-	font-size: 0.875rem;
-	color: #1a4659;
+    font-family: "Red Hat Display";
+    font-size: 0.875rem;
+    color: #1a4659;
     position: relative;
     text-align: center;
 }
@@ -491,22 +491,22 @@ a.tooltip:hover span {
 .column-1-mod img {
     max-width: 75%;
     max-height: 75%;
-	padding-left: 12rem;
+    padding-left: 12rem;
 }
 
 
 .mod_intro_text {
-	width: 100%;
+    width: 100%;
     padding-left: 2rem;
-	padding-right: 8rem;
-	padding-top: 0.625rem;
-	font-size: 0.875rem;
-	color: #1a4659;
-	text-align: justify;
+    padding-right: 8rem;
+    padding-top: 0.625rem;
+    font-size: 0.875rem;
+    color: #1a4659;
+    text-align: justify;
 }
 
 .text_format{
-	color: #1a4659;
+    color: #1a4659;
 }
 
 a { color: #1a4659;
@@ -515,88 +515,88 @@ a { color: #1a4659;
 
 .separation_mod {
     width: 81%;
-	margin-top: rem;
-	margin-bottom: 3rem;
-	border: 0.019rem solid rgba(26,70,89,1.00);
+    margin-top: rem;
+    margin-bottom: 3rem;
+    border: 0.019rem solid rgba(26,70,89,1.00);
 }
 
 .contact_text {
     width: 1200px;
     padding-left: 40px;
-	padding-top: 0px;
-	font-size: 14px;
-	color: #1a4659;
-	text-align: justify;
+    padding-top: 0px;
+    font-size: 14px;
+    color: #1a4659;
+    text-align: justify;
     vertical-align: top;
 }
 
 .separation_cont {
     max-width: 200px;
-	float: left;
-	border: 0.5px solid rgba(26,70,89,1.00);
+    float: left;
+    border: 0.5px solid rgba(26,70,89,1.00);
 }
 
 #main{
-	padding-top: 30px;
-	padding-left: 20px;
-	padding-right: 20px;
-	text-align: center;
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
 }
 
 .sidebar {
-position: static;
-height: 200px;
-width: 150px;
-top: 0px;
-float: right;
-margin-top: 100px;
-padding-top: 40px;
-padding-left: 20px;
-background-color: lightblue;
+    position: static;
+    height: 200px;
+    width: 150px;
+    top: 0px;
+    float: right;
+    margin-top: 100px;
+    padding-top: 40px;
+    padding-left: 20px;
+    background-color: lightblue;
 }
 
 .sidebar div {
-padding: 8px;
-font-size: 24px;
-display: block;
+    padding: 8px;
+    font-size: 24px;
+    display: block;
 }
 
 .vign_articles{
-	margin-right: 150px;
-	max-width: 70%;
+    margin-right: 150px;
+    max-width: 70%;
     padding-left: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-right: 20px;
     margin-top: 0px;
-	color: #1a4659;
+    color: #1a4659;
 }
 
 .separation_vign {
     max-width: 1210px;
-	float: inherit;
-	border: 1px solid rgba(226,198,68,1.00);
-	margin-left: 40px;
-	margin-top: -15px;
-	border-radius: 2px;
+    float: inherit;
+    border: 1px solid rgba(226,198,68,1.00);
+    margin-left: 40px;
+    margin-top: -15px;
+    border-radius: 2px;
 }
 
 .container_cont {
-	max-width: auto;
-	padding-top: 20px;
-	padding-left: 40px;
-	vertical-align: center;
-	text-align: center;
-	align-content: center;
+    max-width: auto;
+    padding-top: 20px;
+    padding-left: 40px;
+    vertical-align: center;
+    text-align: center;
+    align-content: center;
 }
 
 .separation_cont {
     max-width: 1210px;
-	float: inherit;
-	border: 1px solid rgba(226,198,68,1.00);
-	margin-left: 40px;
-	margin-top: -15px;
-	border-radius: 2px;
+    float: inherit;
+    border: 1px solid rgba(226,198,68,1.00);
+    margin-left: 40px;
+    margin-top: -15px;
+    border-radius: 2px;
 }
 
 .arrow-icon {
@@ -605,14 +605,14 @@ display: block;
 }   
 
 iframe {
-	width: 81%;
-	display: block;
-	margin: auto;
+    width: 81%;
+    display: block;
+    margin: auto;
 }
 
 .summary_entry_page {
-	 background-color: transparent;
-	color: #edf2f2;
+    background-color: transparent;
+    color: #edf2f2;
     vertical-align: middle;
     padding-left: auto;
     padding-right: auto;
@@ -624,13 +624,13 @@ iframe {
     width: 81%;
     padding-left: 1.25rem;
     padding-right: 1.25rem;
-	color: #1a4659;
-	text-align: justify;
-	}
+    color: #1a4659;
+    text-align: justify;
+}
 
 .separation_mod_sum {
     width: 81%;
-	border: 0.01rem solid rgba(26,70,89,1.00);
+    border: 0.01rem solid rgba(26,70,89,1.00);
 }
 
 
@@ -638,10 +638,10 @@ iframe {
     padding-top: 2%;
     margin: auto;
     display: flex;
-	/* overflow: hidden; */
-	/* position: relative; */
+    /* overflow: hidden; */
+    /* position: relative; */
     /* justify-content: space-between; */
-	width: 81%;
+    width: 81%;
     height: 100%;
     grid-template-columns: min-content 1fr;
     grid-gap: 1px;
@@ -649,21 +649,21 @@ iframe {
 
 
 .column-1 {
-	flex: 1;
+    flex: 1;
     flex-direction: column;
-	position: sticky;
-	top: 0; /* Make the sidebar stick to the top of the viewport */
+    position: sticky;
+    top: 0; /* Make the sidebar stick to the top of the viewport */
     display: grid;
-	/* max-height: 40rem; */
+    /* max-height: 40rem; */
     height:100%;
     grid-template-rows: auto 1fr;
     background-color: #edf2f2;
     padding: 1rem;
-	border:0.15rem solid rgba(26,70,89,1.00);
-	border-radius: 2rem;
-	/* overflow-y: auto;  */
+    border:0.15rem solid rgba(26,70,89,1.00);
+    border-radius: 2rem;
+    /* overflow-y: auto;  */
     overflow: auto;
-	transition: transform 0.005s ease;
+    transition: transform 0.005s ease;
 }
 
 .center-container2 {
@@ -671,31 +671,31 @@ iframe {
     justify-content: center;
     align-items: center;
     padding-bottom: 0.9rem;
-	padding-top: 0.5rem;
+    padding-top: 0.5rem;
 }
 
 .search-container2 {
     display: flex;
-	align-items: center;
-	text-align: center;
+    align-items: center;
+    text-align: center;
     padding: 0rem;
-	width: 90%;
-	margin: auto;
+    width: 90%;
+    margin: auto;
 }
 
 .search-bar2 {
     background: rgba(26, 70, 89, 0.8);
-	color: #edf2f2;
-	width: 120%;
-	border: 0.03rem solid rgba(26,70,89,1.00);
-	border-radius: 2rem;
+    color: #edf2f2;
+    width: 120%;
+    border: 0.03rem solid rgba(26,70,89,1.00);
+    border-radius: 2rem;
     padding: 0.6rem;
     outline: none;
 }
 
 .search-button2 {
     background-color: #e2c744;
-	width: 25%;
+    width: 25%;
     color: #edf2f2;
     border: none;
     border-radius: 2rem;
@@ -706,41 +706,41 @@ iframe {
 
 
 .search-button2 &::placeholder {
-  color: #1a4659;
-  text-align: justify;
+    color: #1a4659;
+    text-align: justify;
 }
 
 .separation_sum_side{
-	width: 90%;
-	max-height: 0.5px;
-	background-color: #1a4659;
-	border: 0.01rem solid rgba(26,70,89,1.00);
+    width: 90%;
+    max-height: 0.5px;
+    background-color: #1a4659;
+    border: 0.01rem solid rgba(26,70,89,1.00);
 }
 
 .text-container {
     width: 90%;
-	height: auto;
-	padding-left: 0.6rem;
-	padding-right: 0.6rem;
-	text-align: justify-all;
-	color: #1a4659;
-	font-size: 1rem;
+    height: auto;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    text-align: justify-all;
+    color: #1a4659;
+    font-size: 1rem;
 }
 
 p2 {font-size: 0.9rem}
 
 .download-container2 {
     display: flex;
-	align-items: center;
-	text-align: center;
+    align-items: center;
+    text-align: center;
     padding: 0rem;
-	width: 90%;
-	margin: auto;
+    width: 90%;
+    margin: auto;
 }
 
 .download-button2 {
     background-color: #e2c744;
-	width: 80px;
+    width: 80px;
     color: #edf2f2; !important; /* 强制应用颜色 */
     border: none;
     border-radius: 2rem;
@@ -751,17 +751,18 @@ p2 {font-size: 0.9rem}
 
 
 .download-button2 &::placeholder {
-  color: #c7d0d3;
-  text-align: justify;
+    color: #c7d0d3;
+    text-align: justify;
 }
 
 
 
 .column-2 {
-	flex: 3;
+    flex: 3;
+    overflow-x: auto;  /* 当内容宽度超出时显示水平滚动条 */
     flex-direction: column;
     padding-left: 2rem;
-	padding-top: 0rem;
+    padding-top: 0rem;
     height: 100%;
 }
 
@@ -775,37 +776,37 @@ p2 {font-size: 0.9rem}
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 0.1rem;
-	width: 100%;
+    width: 100%;
 }
 
 .iframe-title {
     font-weight: bold;
-	width: 90%;
-	color: #1a4659;
-	background-color: #edf2f2;
-	 padding: 5px;
-	 display: inline-block;
-	 width: calc(100%); /* Set width to fill the container minus padding */
-	border-radius: 0.5rem;
-	box-sizing: border-box; /* Include padding in the width calculation */
-	text-align: left;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
+    width: 90%;
+    color: #1a4659;
+    background-color: #edf2f2;
+    padding: 5px;
+    display: inline-block;
+    width: calc(100%); /* Set width to fill the container minus padding */
+    border-radius: 0.5rem;
+    box-sizing: border-box; /* Include padding in the width calculation */
+    text-align: left;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .separator {
     width: 100%;
-	margin-top: rem;
-	margin-bottom: 0.625rem;
-	border: 0.01rem solid rgba(26,70,89,1.00);
+    margin-top: rem;
+    margin-bottom: 0.625rem;
+    border: 0.01rem solid rgba(26,70,89,1.00);
 }
 
 .collapsible-iframe {
     padding-bottom: 0.7rem;
-	padding-top: 0.7rem;
+    padding-top: 0.7rem;
     transition: height 0.3s;
-	width: 100%;
-	border: none;
+    width: 100%;
+    border: none;
 }
 
 .dataTables_wrapper {
@@ -815,16 +816,17 @@ p2 {font-size: 0.9rem}
 
 
 .ui-autocomplete {
-  max-height: 200px; /* 设置最大高度 */
-  overflow-y: auto; /* 当内容超过最大高度时显示垂直滚动条 */
-  overflow-x: hidden; /* 隐藏水平滚动条 */
+    max-height: 200px; /* 设置最大高度 */
+    overflow-y: auto; /* 当内容超过最大高度时显示垂直滚动条 */
+    overflow-x: hidden; /* 隐藏水平滚动条 */
 }
 
 .ui-menu .ui-menu-item-wrapper:hover {
-  background-color: #e2c744; /* 您想要的悬停背景颜色 */
-  color: #1a4659; /* 悬停时的文本颜色 */
-  border-color: #e2c744; /* 您选择的边框颜色 */
+    background-color: #e2c744; /* 您想要的悬停背景颜色 */
+    color: #1a4659; /* 悬停时的文本颜色 */
+    border-color: #e2c744; /* 您选择的边框颜色 */
 }
+
 
 /* 只针对 DataTables 表格中的超链接移除下划线 */
 #geneFinderTable a {
