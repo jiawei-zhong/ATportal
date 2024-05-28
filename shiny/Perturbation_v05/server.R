@@ -227,7 +227,7 @@ shinyServer(function(input, output) {
  #insulin SGBS AND NIGA
  #heatmap
  observe({
-   if (input$cell_line == "hMADS") {
+   if (input$cell_line2 == "in vivo") {
       if (!is.null(v$ins)) {
          if (input$mode == "normalized") {
            if (nrow(data_ins_heat[rownames(data_ins_heat) %in% v$ins$genes,]) == 1) {
@@ -294,7 +294,7 @@ shinyServer(function(input, output) {
  
  #Volcano
  observe({
-   if(input$cell_line == "hMADS"){
+   if(input$cell_line2 == "in vivo"){
      if(!is.null(v$ins)){
        v$volcano_ins <- ggplot(data = data_ins, aes(x=log2FoldChange, y=-log10(padj), label=genes)) +
          geom_point(color="#EEF2F2") + geom_point(data = v$ins, aes(x=log2FoldChange, y=-log10(padj)), color="#E2C744") +
@@ -1174,10 +1174,7 @@ shinyServer(function(input, output) {
    # if specific knock out line selected
    if(input$ko_gene == "GLS") {
      # return normal output with correct description etc. for GLS
-     return(list(              includeHTML("htmls/description_novo.html"),
-                               #div(actionButton("toggle_table2", HTML("&dtrif;"), style="font-size:16px; padding: 0px;"), "Show available output options", class="highlight"),
-                               #div(id = "gene_table2", style = "display:none;",includeHTML("htmls/outputs_FACS.html")), 
-                               #using class = "gene_table" for everything broke the code somehow
+     return(list(              includeHTML("htmls/description_gls.html"),
                                br(),
                                tabsetPanel(
                                  tabPanel("Heatmap",
@@ -1198,133 +1195,116 @@ shinyServer(function(input, output) {
                                           br(),
                                           DT::dataTableOutput("dt_gls")),
                                  tabPanel("Details",
-                                          includeHTML("htmls/details_novo.html")
+                                          includeHTML("htmls/details_gls.html")
                                  ),
                                  tabPanel("Interpretation",
-                                          includeHTML("htmls/interpretation_novo.html")
+                                          includeHTML("htmls/interpretation_gls.html")
                                  )),
                                tags$br(),
                                tags$hr(),
-                               "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/29116032/", "Acosta et al.; PMID: 29116032"),  "(data) and Zhong et al. (portal).",
-                               br(),
-                               "Raw data for this data set can be downloaded from the GEO database:", tags$a(href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE100795", "GSE100795")
+                               includeHTML("htmls/reference_gls.html") 
      )
      )
    }
    if(input$ko_gene == "AQP7") {
      # return normal output with correct description etc. for AQP7
-     return(list(              includeHTML("htmls/description_novo.html"),
-                               #div(actionButton("toggle_table2", HTML("&dtrif;"), style="font-size:16px; padding: 0px;"), "Show available output options", class="highlight"),
-                               #div(id = "gene_table2", style = "display:none;",includeHTML("htmls/outputs_FACS.html")), 
-                               #using class = "gene_table" for everything broke the code somehow
+     return(list(              includeHTML("htmls/description_aqp7.html"),
                                br(),
                                tabsetPanel(
                                  tabPanel("Heatmap",
                                           br(),
                                           plotOutput(outputId = "heatmap_aqp7"),
                                           br(),
-                                          downloadButton(outputId = "download_pdf_AQP7", label = "Download PDF", class = "butt"), 
-                                          downloadButton(outputId = "download_gg_AQP7", label = "Download ggplot2", class = "butt"),
+                                          downloadButton(outputId = "download_pdf_aqp71", label = "Download PDF", class = "butt"), 
+                                          downloadButton(outputId = "download_gg_aqp71", label = "Download ggplot2", class = "butt"),
                                           tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                  tabPanel("Volcano",
                                           br(),
                                           shinycustomloader::withLoader(plotOutput(outputId = "volcano_aqp7"), type="html", loader="dnaspin"),
                                           br(),
-                                          downloadButton(outputId = "download_pdf_AQP72", label = "Download PDF", class = "butt"),
-                                          downloadButton(outputId = "download_gg_AQP72", label = "Download ggplot2", class = "butt"),
+                                          downloadButton(outputId = "download_pdf_aqp72", label = "Download PDF", class = "butt"),
+                                          downloadButton(outputId = "download_gg_aqp72", label = "Download ggplot2", class = "butt"),
                                           tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))),
                                  tabPanel("Table",
                                           br(),
                                           DT::dataTableOutput("dt_aqp7")),
                                  tabPanel("Details",
-                                          includeHTML("htmls/details_novo.html")
+                                          includeHTML("htmls/details_aqp7.html")
                                  ),
                                  tabPanel("Interpretation",
-                                          includeHTML("htmls/interpretation_novo.html")
+                                          includeHTML("htmls/interpretation_aqp7.html")
                                  )),
                                tags$br(),
                                tags$hr(),
-                               "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/29116032/", "Acosta et al.; PMID: 29116032"),  "(data) and Zhong et al. (portal).",
-                               br(),
-                               "Raw data for this data set can be downloaded from the GEO database:", tags$a(href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE100795", "GSE100795")
+                               includeHTML("htmls/reference_aqp7.html") 
      )
      )
    }
       if(input$ko_gene == "CD248") {
      # return normal output with correct description etc. for CD248
-     return(list(              includeHTML("htmls/description_novo.html"),
-                               #div(actionButton("toggle_table2", HTML("&dtrif;"), style="font-size:16px; padding: 0px;"), "Show available output options", class="highlight"),
-                               #div(id = "gene_table2", style = "display:none;",includeHTML("htmls/outputs_FACS.html")), 
-                               #using class = "gene_table" for everything broke the code somehow
+     return(list(              includeHTML("htmls/description_cd248.html"),
                                br(),
                                tabsetPanel(
                                  tabPanel("Heatmap",
                                           br(),
                                           plotOutput(outputId = "heatmap_cd248"),
                                           br(),
-                                          downloadButton(outputId = "download_pdf_CD248", label = "Download PDF", class = "butt"), 
-                                          downloadButton(outputId = "download_gg_CD248", label = "Download ggplot2", class = "butt"),
+                                          downloadButton(outputId = "download_pdf_cd2481", label = "Download PDF", class = "butt"), 
+                                          downloadButton(outputId = "download_gg_cd2481", label = "Download ggplot2", class = "butt"),
                                           tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                  tabPanel("Volcano",
                                           br(),
                                           shinycustomloader::withLoader(plotOutput(outputId = "volcano_cd248"), type="html", loader="dnaspin"),
                                           br(),
-                                          downloadButton(outputId = "download_pdf_CD2482", label = "Download PDF", class = "butt"),
-                                          downloadButton(outputId = "download_gg_CD2482", label = "Download ggplot2", class = "butt"),
+                                          downloadButton(outputId = "download_pdf_cd2482", label = "Download PDF", class = "butt"),
+                                          downloadButton(outputId = "download_gg_cd2482", label = "Download ggplot2", class = "butt"),
                                           tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))),
                                  tabPanel("Table",
                                           br(),
                                           DT::dataTableOutput("dt_cd248")),
                                  tabPanel("Details",
-                                          includeHTML("htmls/details_novo.html")
+                                          includeHTML("htmls/details_cd248.html")
                                  ),
                                  tabPanel("Interpretation",
-                                          includeHTML("htmls/interpretation_novo.html")
+                                          includeHTML("htmls/interpretation_cd248.html")
                                  )),
                                tags$br(),
                                tags$hr(),
-                               "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/29116032/", "Acosta et al.; PMID: 29116032"),  "(data) and Zhong et al. (portal).",
-                               br(),
-                               "Raw data for this data set can be downloaded from the GEO database:", tags$a(href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE100795", "GSE100795")
+                               includeHTML("htmls/reference_cd248.html") 
      )
      )
    }
    if(input$ko_gene == "C14orf180") {
      # return normal output with correct description etc. for C14orf180
-     return(list(              includeHTML("htmls/description_novo.html"),
-                               #div(actionButton("toggle_table2", HTML("&dtrif;"), style="font-size:16px; padding: 0px;"), "Show available output options", class="highlight"),
-                               #div(id = "gene_table2", style = "display:none;",includeHTML("htmls/outputs_FACS.html")), 
-                               #using class = "gene_table" for everything broke the code somehow
+     return(list(              includeHTML("htmls/description_C14.html"),
                                br(),
                                tabsetPanel(
                                  tabPanel("Heatmap",
                                           br(),
                                           plotOutput(outputId = "heatmap_c14"),
                                           br(),
-                                          downloadButton(outputId = "download_pdf_C14", label = "Download PDF", class = "butt"), 
-                                          downloadButton(outputId = "download_gg_C14", label = "Download ggplot2", class = "butt"),
+                                          downloadButton(outputId = "download_pdf_c141", label = "Download PDF", class = "butt"), 
+                                          downloadButton(outputId = "download_gg_c141", label = "Download ggplot2", class = "butt"),
                                           tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                  tabPanel("Volcano",
                                           br(),
                                           shinycustomloader::withLoader(plotOutput(outputId = "volcano_c14"), type="html", loader="dnaspin"),
                                           br(),
-                                          downloadButton(outputId = "download_pdf_C142", label = "Download PDF", class = "butt"),
-                                          downloadButton(outputId = "download_gg_C142", label = "Download ggplot2", class = "butt"),
+                                          downloadButton(outputId = "download_pdf_c142", label = "Download PDF", class = "butt"),
+                                          downloadButton(outputId = "download_gg_c142", label = "Download ggplot2", class = "butt"),
                                           tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))),
                                  tabPanel("Table",
                                           br(),
                                           DT::dataTableOutput("dt_c14")),
                                  tabPanel("Details",
-                                          includeHTML("htmls/details_novo.html")
+                                          includeHTML("htmls/details_C14.html")
                                  ),
                                  tabPanel("Interpretation",
-                                          includeHTML("htmls/interpretation_novo.html")
+                                          includeHTML("htmls/interpretation_C14.html")
                                  )),
                                tags$br(),
                                tags$hr(),
-                               "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/29116032/", "Acosta et al.; PMID: 29116032"),  "(data) and Zhong et al. (portal).",
-                               br(),
-                               "Raw data for this data set can be downloaded from the GEO database:", tags$a(href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE100795", "GSE100795")
+                               includeHTML("htmls/reference_C14.html") 
      )
      )
    } 
@@ -2066,65 +2046,591 @@ shinyServer(function(input, output) {
     }
   })
       
-  # Download handlers for plots
-#   output$download_pdf1 <- downloadHandler(
-#     filename = function() { paste('timecourse', Sys.Date(), '.pdf', sep='') },
-#     content = function(file) { ggsave(file, plot = v$plot, device = "pdf") }
-#   )
-#   
-#   output$download_pdf2 <- downloadHandler(
-#     filename = function() { paste('timecourse_heat', Sys.Date(), '.pdf', sep='') },
-#     content = function(file) { ggsave(file, plot = v$heatmap, device = "pdf") }
-#   )
-#   
-#   output$download_pdf3 <- downloadHandler(
-#     filename = function() { paste('SVF_line_', Sys.Date(), '.pdf', sep='') },
-#     content = function(file) { ggsave(file, plot = v$plot2, device = "pdf") }
-#   )
-#   
-#   output$download_pdf4 <- downloadHandler(
-#     filename = function() { paste('SVF_heat_', Sys.Date(), '.pdf', sep='') },
-#     content = function(file) { ggsave(file, plot = v$heatmap2, device = "pdf") }
-#   )
-#   
-#   output$download_pdf7 <- downloadHandler(
-#     filename = function() { paste('WAT_fractionation_', Sys.Date(), '.pdf', sep='') },
-#     content = function(file) { ggsave(file, plot = v$heatmap_novo, device = "pdf") }
-#   )
-#   
-#   output$download_pdf8 <- downloadHandler(
-#     filename = function() { paste('tissue_FANTOM_', Sys.Date(), '.pdf', sep='') },
-#     content = function(file) { ggsave(file, plot = v$heatmap_fantom, device = "pdf") }
-#   )
-#   
-#   # Download handlers for RDS objects
-#   output$download_gg1 <- downloadHandler(
-#     filename = function() { paste('timecourse', Sys.Date(), '.rds', sep='') },
-#     content = function(file) { saveRDS(v$plot, file) }
-#   )
-#   
-#   output$download_gg2 <- downloadHandler(
-#     filename = function() { paste('timecourse_heat', Sys.Date(), '.rds', sep='') },
-#     content = function(file) { saveRDS(v$heatmap, file) }
-#   )
-#   
-#   output$download_gg3 <- downloadHandler(
-#     filename = function() { paste('SVF_line_', Sys.Date(), '.rds', sep='') },
-#     content = function(file) { saveRDS(v$plot2, file) }
-#   )
-#   
-#   output$download_gg4 <- downloadHandler(
-#     filename = function() { paste('SVF_heat_', Sys.Date(), '.rds', sep='') },
-#     content = function(file) { saveRDS(v$heatmap2, file) }
-#   )
-#   
-#   output$download_gg7 <- downloadHandler(
-#     filename = function() { paste('WAT_fractionation_', Sys.Date(), '.rds', sep='') },
-#     content = function(file) { saveRDS(v$heatmap_novo, file) }
-#   )
-#   
-#   output$download_gg8 <- downloadHandler(
-#     filename = function() { paste('tissue_FANTOM_', Sys.Date(), '.rds', sep='') },
-#     content = function(file) { saveRDS(v$heatmap_fantom, file) }
-#   )
+#Download handlers for plots
+  output$download_pdf_hyp1 <- downloadHandler(
+    filename = function() { paste('Hypoxia_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_hyp, device = "pdf") }
+  )
+
+  output$download_pdf_hyp2 <- downloadHandler(
+    filename = function() { paste('Hypoxia_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_hyp, device = "pdf") }
+  )
+  
+# Download handlers for RDS objects
+  output$download_gg_hyp1 <- downloadHandler(
+      filename = function() { paste('Hypoxia_Heat_', Sys.Date(), '.rds', sep='') },
+      content = function(file) { saveRDS(v$heatmap_hyp, file) }
+    )
+
+  output$download_gg_hyp2 <- downloadHandler(
+      filename = function() { paste('Hypoxia_Volcano_', Sys.Date(), '.rds', sep='') },
+      content = function(file) { saveRDS(v$volcano_hyp, file) }
+    )
+
+#Download handlers for plots
+  output$download_pdf_hyp1 <- downloadHandler(
+    filename = function() { paste('Hypoxia_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_hyp, device = "pdf") }
+  )
+
+  output$download_pdf_hyp2 <- downloadHandler(
+    filename = function() { paste('Hypoxia_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_hyp, device = "pdf") }
+  )
+  
+# Download handlers for RDS objects
+  output$download_gg_hyp1 <- downloadHandler(
+      filename = function() { paste('Hypoxia_Heat_', Sys.Date(), '.rds', sep='') },
+      content = function(file) { saveRDS(v$heatmap_hyp, file) }
+    )
+
+  output$download_gg_hyp2 <- downloadHandler(
+      filename = function() { paste('Hypoxia_Volcano_', Sys.Date(), '.rds', sep='') },
+      content = function(file) { saveRDS(v$volcano_hyp, file) }
+    )
+  
+  #Download handlers for plots
+  output$download_pdf_tnf1 <- downloadHandler(
+    filename = function() { paste('tnf_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_tnf, device = "pdf") }
+  )
+  
+  output$download_pdf_tnf2 <- downloadHandler(
+    filename = function() { paste('tnf_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_tnf, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_tnf1 <- downloadHandler(
+    filename = function() { paste('tnf_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_tnf, file) }
+  )
+  
+  output$download_gg_tnf2 <- downloadHandler(
+    filename = function() { paste('tnf_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_tnf, file) }
+  )
+  
+  #Download handlers for plots
+  output$download_pdf_il61 <- downloadHandler(
+    filename = function() { paste('il6_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_il6, device = "pdf") }
+  )
+  
+  output$download_pdf_il62 <- downloadHandler(
+    filename = function() { paste('il6_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_il6, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_il61 <- downloadHandler(
+    filename = function() { paste('il6_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_il6, file) }
+  )
+  
+  output$download_gg_il62 <- downloadHandler(
+    filename = function() { paste('il6_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_il6, file) }
+  ) 
+
+  #Download handlers for plots
+  output$download_pdf_tgf1 <- downloadHandler(
+    filename = function() { paste('tgf_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_tgf, device = "pdf") }
+  )
+  
+  output$download_pdf_tgf2 <- downloadHandler(
+    filename = function() { paste('tgf_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_tgf, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_tgf1 <- downloadHandler(
+    filename = function() { paste('tgf_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_tgf, file) }
+  )
+  
+  output$download_gg_tgf2 <- downloadHandler(
+    filename = function() { paste('tgf_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_tgf, file) }
+  )  
+  
+  #Download handlers for plots
+  output$download_pdf_inflAT1 <- downloadHandler(
+    filename = function() { paste('inflAT_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_inflAT, device = "pdf") }
+  )
+  
+  output$download_pdf_inflAT2 <- downloadHandler(
+    filename = function() { paste('inflAT_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_inflAT, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_inflAT1 <- downloadHandler(
+    filename = function() { paste('inflAT_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_inflAT, file) }
+  )
+  
+  output$download_gg_inflAT2 <- downloadHandler(
+    filename = function() { paste('inflAT_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_inflAT, file) }
+  )
+  
+  #Download handlers for plots
+  output$download_pdf_ins1 <- downloadHandler(
+    filename = function() { paste('ins_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_ins, device = "pdf") }
+  )
+  
+  output$download_pdf_ins2 <- downloadHandler(
+    filename = function() { paste('ins_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_ins, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_ins1 <- downloadHandler(
+    filename = function() { paste('ins_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_ins, file) }
+  )
+  
+  output$download_gg_ins2 <- downloadHandler(
+    filename = function() { paste('ins_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_ins, file) }
+  )  
+  
+  #Download handlers for plots
+  output$download_pdf_igf1 <- downloadHandler(
+    filename = function() { paste('igf_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_igf, device = "pdf") }
+  )
+  
+  output$download_pdf_igf2 <- downloadHandler(
+    filename = function() { paste('igf_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_igf, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_igf1 <- downloadHandler(
+    filename = function() { paste('igf_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_igf, file) }
+  )
+  
+  output$download_gg_igf2 <- downloadHandler(
+    filename = function() { paste('igf_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_igf, file) }
+  )
+  #Download handlers for plots
+  output$download_pdf_adipo1 <- downloadHandler(
+    filename = function() { paste('adipo_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_adipo, device = "pdf") }
+  )
+  
+  output$download_pdf_adipo2 <- downloadHandler(
+    filename = function() { paste('adipo_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_adipo, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_adipo1 <- downloadHandler(
+    filename = function() { paste('adipo_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_adipo, file) }
+  )
+  
+  output$download_gg_adipo2 <- downloadHandler(
+    filename = function() { paste('adipo_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_adipo, file) }
+  )
+  #Download handlers for plots
+  output$download_pdf_lep1 <- downloadHandler(
+    filename = function() { paste('lep_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_lep, device = "pdf") }
+  )
+  
+  output$download_pdf_lep2 <- downloadHandler(
+    filename = function() { paste('lep_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_lep, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_lep1 <- downloadHandler(
+    filename = function() { paste('lep_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_lep, file) }
+  )
+  
+  output$download_gg_lep2 <- downloadHandler(
+    filename = function() { paste('lep_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_lep, file) }
+  )      
+  #Download handlers for plots
+  output$download_pdf_rosi1 <- downloadHandler(
+    filename = function() { paste('rosi_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_rosi, device = "pdf") }
+  )
+  
+  output$download_pdf_rosi2 <- downloadHandler(
+    filename = function() { paste('rosi_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_rosi, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_rosi1 <- downloadHandler(
+    filename = function() { paste('rosi_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_rosi, file) }
+  )
+  
+  output$download_gg_rosi2 <- downloadHandler(
+    filename = function() { paste('rosi_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_rosi, file) }
+  )
+  
+  #Download handlers for plots
+  output$download_pdf_dexa1 <- downloadHandler(
+    filename = function() { paste('dexa_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_dexa, device = "pdf") }
+  )
+  
+  output$download_pdf_dexa2 <- downloadHandler(
+    filename = function() { paste('dexa_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_dexa, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_dexa1 <- downloadHandler(
+    filename = function() { paste('dexa_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_dexa, file) }
+  )
+  
+  output$download_gg_dexa2 <- downloadHandler(
+    filename = function() { paste('dexa_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_dexa, file) }
+  )  
+  
+  #Download handlers for plots
+  output$download_pdf_iso1 <- downloadHandler(
+    filename = function() { paste('iso_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_iso, device = "pdf") }
+  )
+  
+  output$download_pdf_iso2 <- downloadHandler(
+    filename = function() { paste('iso_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_iso, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_iso1 <- downloadHandler(
+    filename = function() { paste('iso_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_iso, file) }
+  )
+  
+  output$download_gg_iso2 <- downloadHandler(
+    filename = function() { paste('iso_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_iso, file) }
+  )  
+
+  #Download handlers for plots
+  output$download_pdf_ibmx1 <- downloadHandler(
+    filename = function() { paste('ibmx_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_ibmx, device = "pdf") }
+  )
+  
+  output$download_pdf_ibmx2 <- downloadHandler(
+    filename = function() { paste('ibmx_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_ibmx, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_ibmx1 <- downloadHandler(
+    filename = function() { paste('ibmx_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_ibmx, file) }
+  )
+  
+  output$download_gg_ibmx2 <- downloadHandler(
+    filename = function() { paste('ibmx_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_ibmx, file) }
+  )   
+  #Download handlers for plots
+  output$download_pdf_met1 <- downloadHandler(
+    filename = function() { paste('met_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_met, device = "pdf") }
+  )
+  
+  output$download_pdf_met2 <- downloadHandler(
+    filename = function() { paste('met_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_met, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_met1 <- downloadHandler(
+    filename = function() { paste('met_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_met, file) }
+  )
+  
+  output$download_gg_met2 <- downloadHandler(
+    filename = function() { paste('met_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_met, file) }
+  )
+
+  #Download handlers for plots
+  output$download_pdf_atorva1 <- downloadHandler(
+    filename = function() { paste('atorva_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_atorva, device = "pdf") }
+  )
+  
+  output$download_pdf_atorva2 <- downloadHandler(
+    filename = function() { paste('atorva_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_atorva, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_atorva1 <- downloadHandler(
+    filename = function() { paste('atorva_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_atorva, file) }
+  )
+  
+  output$download_gg_atorva2 <- downloadHandler(
+    filename = function() { paste('atorva_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_atorva, file) }
+  )  
+  #Download handlers for plots
+  output$download_pdf_sb1 <- downloadHandler(
+    filename = function() { paste('sb_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_sb, device = "pdf") }
+  )
+  
+  output$download_pdf_sb2 <- downloadHandler(
+    filename = function() { paste('sb_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_sb, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_sb1 <- downloadHandler(
+    filename = function() { paste('sb_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_sb, file) }
+  )
+  
+  output$download_gg_sb2 <- downloadHandler(
+    filename = function() { paste('sb_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_sb, file) }
+  )  
+  #Download handlers for plots
+  output$download_pdf_sp1 <- downloadHandler(
+    filename = function() { paste('sp_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_sp, device = "pdf") }
+  )
+  
+  output$download_pdf_sp2 <- downloadHandler(
+    filename = function() { paste('sp_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_sp, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_sp1 <- downloadHandler(
+    filename = function() { paste('sp_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_sp, file) }
+  )
+  
+  output$download_gg_sp2 <- downloadHandler(
+    filename = function() { paste('sp_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_sp, file) }
+  ) 
+  
+  #Download handlers for plots
+  output$download_pdf_uo1 <- downloadHandler(
+    filename = function() { paste('uo_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_uo, device = "pdf") }
+  )
+  
+  output$download_pdf_uo2 <- downloadHandler(
+    filename = function() { paste('uo_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_uo, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_uo1 <- downloadHandler(
+    filename = function() { paste('uo_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_uo, file) }
+  )
+  
+  output$download_gg_uo2 <- downloadHandler(
+    filename = function() { paste('uo_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_uo, file) }
+  )  
+  
+  #Download handlers for plots
+  output$download_pdf_glucose1 <- downloadHandler(
+    filename = function() { paste('glucose_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_glucose, device = "pdf") }
+  )
+  
+  output$download_pdf_glucose2 <- downloadHandler(
+    filename = function() { paste('glucose_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_glucose, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_glucose1 <- downloadHandler(
+    filename = function() { paste('glucose_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_glucose, file) }
+  )
+  
+  output$download_gg_glucose2 <- downloadHandler(
+    filename = function() { paste('glucose_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_glucose, file) }
+  )  
+
+  #Download handlers for plots
+  output$download_pdf_ra1 <- downloadHandler(
+    filename = function() { paste('ra_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_ra, device = "pdf") }
+  )
+  
+  output$download_pdf_ra2 <- downloadHandler(
+    filename = function() { paste('ra_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_ra, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_ra1 <- downloadHandler(
+    filename = function() { paste('ra_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_ra, file) }
+  )
+  
+  output$download_gg_ra2 <- downloadHandler(
+    filename = function() { paste('ra_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_ra, file) }
+  )  
+  
+  #Download handlers for plots
+  output$download_pdf_lauro1 <- downloadHandler(
+    filename = function() { paste('lauro_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_lauro, device = "pdf") }
+  )
+  
+  output$download_pdf_lauro2 <- downloadHandler(
+    filename = function() { paste('lauro_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_lauro, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_lauro1 <- downloadHandler(
+    filename = function() { paste('lauro_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_lauro, file) }
+  )
+  
+  output$download_gg_lauro2 <- downloadHandler(
+    filename = function() { paste('lauro_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_lauro, file) }
+  )  
+  
+  #Download handlers for plots
+  output$download_pdf_decano1 <- downloadHandler(
+    filename = function() { paste('decano_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_decano, device = "pdf") }
+  )
+  
+  output$download_pdf_decano2 <- downloadHandler(
+    filename = function() { paste('decano_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_decano, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_decano1 <- downloadHandler(
+    filename = function() { paste('decano_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_decano, file) }
+  )
+  
+  output$download_gg_decano2 <- downloadHandler(
+    filename = function() { paste('decano_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_decano, file) }
+  )
+  
+  #Download handlers for plots
+  output$download_pdf_gls1 <- downloadHandler(
+    filename = function() { paste('gls_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_gls, device = "pdf") }
+  )
+  
+  output$download_pdf_gls2 <- downloadHandler(
+    filename = function() { paste('gls_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_gls, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_gls1 <- downloadHandler(
+    filename = function() { paste('gls_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_gls, file) }
+  )
+  
+  output$download_gg_gls2 <- downloadHandler(
+    filename = function() { paste('gls_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_gls, file) }
+  )    
+  
+  #Download handlers for plots
+  output$download_pdf_aqp71 <- downloadHandler(
+    filename = function() { paste('aqp7_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_aqp7, device = "pdf") }
+  )
+  
+  output$download_pdf_aqp72 <- downloadHandler(
+    filename = function() { paste('aqp7_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_aqp7, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_aqp71 <- downloadHandler(
+    filename = function() { paste('aqp7_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_aqp7, file) }
+  )
+  
+  output$download_gg_aqp72 <- downloadHandler(
+    filename = function() { paste('aqp7_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_aqp7, file) }
+  )   
+  
+  #Download handlers for plots
+  output$download_pdf_c141 <- downloadHandler(
+    filename = function() { paste('c14_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_c14, device = "pdf") }
+  )
+  
+  output$download_pdf_c142 <- downloadHandler(
+    filename = function() { paste('c14_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_c14, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_c141 <- downloadHandler(
+    filename = function() { paste('c14_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_c14, file) }
+  )
+  
+  output$download_gg_c142 <- downloadHandler(
+    filename = function() { paste('c14_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_c14, file) }
+  ) 
+  
+  #Download handlers for plots
+  output$download_pdf_cd2481 <- downloadHandler(
+    filename = function() { paste('cd248_Heat_', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$heatmap_cd248, device = "pdf") }
+  )
+  
+  output$download_pdf_cd2482 <- downloadHandler(
+    filename = function() { paste('cd248_Volcano', Sys.Date(), '.pdf', sep='') },
+    content = function(file) { ggsave(file, plot = v$volcano_cd248, device = "pdf") }
+  )
+  
+  # Download handlers for RDS objects
+  output$download_gg_cd2481 <- downloadHandler(
+    filename = function() { paste('cd248_Heat_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$heatmap_cd248, file) }
+  )
+  
+  output$download_gg_cd2482 <- downloadHandler(
+    filename = function() { paste('cd248_Volcano_', Sys.Date(), '.rds', sep='') },
+    content = function(file) { saveRDS(v$volcano_cd248, file) }
+  )    
  })
