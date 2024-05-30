@@ -21,7 +21,6 @@ shinyUI(fluidPage(
   div(class="container" ,
   br(), 
   br(),
-  #titlePanel("Module III: Characterization"),
   sidebarLayout(
     div(class="sidebar",
     sidebarPanel(
@@ -39,8 +38,12 @@ shinyUI(fluidPage(
           pickerInput(inputId= "ko_gene", label="Select knock out/ knock down cell line", choices = ko_inputs, multiple=FALSE),
         ),
       conditionalPanel(
-        condition = "input.perturbation === 'insulin' || input.perturbation === 'tnf'",
+        condition = "input.perturbation === 'tnf'",
         pickerInput(inputId= "cell_line", label="Select cell line", choices = c("hMADS","SGBS"), multiple=FALSE),
+      ),
+      conditionalPanel(
+        condition = "input.perturbation === 'insulin'",
+        pickerInput(inputId= "cell_line2", label="Select in vivo or cell line", choices = c("in vivo","SGBS"), multiple=FALSE),
       ),
       conditionalPanel(
         condition = "input.perturbation === 'inflamedAT'",
@@ -83,86 +86,75 @@ shinyUI(fluidPage(
       navbarPage("Perturbation", id ="perturbation",
                  navbarMenu("Cell stress",
                             tabPanel("Hypoxia", value="hypoxia",
-                                     div("adipose tissue derived stem cells", class="highlight"),
-                                     includeHTML("htmls/description_ADSCs.html"), 
-                                     # div(actionButton("toggle_table3", HTML("&dtrif;"), style="font-size:16px; padding: 0px;"), "Show available output options", class="highlight"),
-                                     # div(id= "gene_table3", style = "display:none;",includeHTML("htmls/outputs_hADSC.html")),
+                                     includeHTML("htmls/description_hypoxia.html"), 
                                      tabsetPanel(
                                        
                                        tabPanel("Heatmap",
                                                 br(),
                                                 plotOutput(outputId = "heatmap_hyp"),
                                                 br(),
-                                                downloadButton(outputId = "download_pdf1", label = "Download PDF", class = "butt"),
-                                                downloadButton(outputId = "download_gg1", label = "Download ggplot2", class = "butt"),
+                                                downloadButton(outputId = "download_pdf_hyp1", label = "Download PDF", class = "butt"),
+                                                downloadButton(outputId = "download_gg_hyp1", label = "Download ggplot2", class = "butt"),
                                                 tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                        tabPanel("Volcano",
                                                 br(),
                                                 shinycustomloader::withLoader(plotOutput(outputId = "volcano_hyp"), type="html", loader="dnaspin"),
                                                 br(),
-                                                downloadButton(outputId = "download_pdf2", label = "Download PDF", class = "butt"), 
-                                                downloadButton(outputId = "download_gg2", label = "Download ggplot2", class = "butt"),
+                                                downloadButton(outputId = "download_pdf_hyp2", label = "Download PDF", class = "butt"), 
+                                                downloadButton(outputId = "download_gg_hyp2", label = "Download ggplot2", class = "butt"),
                                                 tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                        tabPanel("Table",
                                                 br(),
                                                 DT::dataTableOutput(outputId = "dt_hyp", width = "100%"),
                                                 br()),
                                        tabPanel("Details",
-                                                includeHTML("htmls/details_ADSCs.html")
+                                                includeHTML("htmls/details_hypoxia.html")
                                        ),
                                        tabPanel("Interpretation",
-                                                includeHTML("htmls/interpretation_ADSCs.html")
+                                                includeHTML("htmls/interpretation_hypoxia.html")
                                        )),
                                      tags$br(),
                                      tags$hr(),
-                                     "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/27803022/", "Ehrlund et al.; PMID: 27803022") ,  "(data) and Zhong et al. (portal).",
-                                     br(),
-                                     "Raw data for this data set can be downloaded from the DNA Data Bank of Japan under accession numbers", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA000991", "DRA000991"),",", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002711", "DRA002711"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002747", "DRA002747"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002748", "DRA002748"), 
+                                     includeHTML("htmls/reference_hypoxia.html") 
                             ),
                             tabPanel("TNF", value="tnf",
-                                     div("Ex vivo stroma vascular fraction", class="highlight"),
-                                     includeHTML("htmls/description_SVF.html"),
-                                     # div(actionButton("toggle_table4", HTML("&dtrif;"), style="font-size:16px; padding: 0px;"), "Show available output options", class="highlight"),
-                                     # div(id = "gene_table4", style = "display:none;",includeHTML("htmls/outputs_SVF.html")),
+                                     includeHTML("htmls/description_tnf.html"),
                                      tabsetPanel(
                                        tabPanel("Heatmap",
                                                 br(),
                                                 plotOutput(outputId = "heatmap_tnf"), br(),
-                                                downloadButton(outputId = "download_pdf3", label = "Download PDF", class = "butt"),
-                                                downloadButton(outputId = "download_gg3", label = "Download ggplot2", class = "butt"),
+                                                downloadButton(outputId = "download_pdf_tnf1", label = "Download PDF", class = "butt"),
+                                                downloadButton(outputId = "download__tnf1", label = "Download ggplot2", class = "butt"),
                                                 tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                        tabPanel("Volcano",
                                                 br(),
                                                 shinycustomloader::withLoader(plotOutput(outputId = "volcano_tnf"), type="html", loader="dnaspin"),
                                                 br(),
-                                                downloadButton(outputId = "download_pdf4", label = "Download PDF", class = "butt"),
-                                                downloadButton(outputId = "download_gg4", label = "Download ggplot2", class = "butt"),
+                                                downloadButton(outputId = "download_pdf_tnf2", label = "Download PDF", class = "butt"),
+                                                downloadButton(outputId = "download__tnf2", label = "Download ggplot2", class = "butt"),
                                                 tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                        tabPanel("Table",
                                                 br(),
                                                 DT::dataTableOutput(outputId = "dt_tnf", width = "100%"),
                                                 br()),
                                        tabPanel("Details",
-                                                includeHTML("htmls/details_SVF.html")
+                                                includeHTML("htmls/details_tnf.html")
                                        ),
                                        tabPanel("Interpretation",
-                                                includeHTML("htmls/interpretation_SVF.html")
+                                                includeHTML("htmls/interpretation_tnf.html")
                                        )),
                                      tags$br(),
-                                     tags$hr(),
-                                     "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/27803022/", "Ehrlund et al.; PMID: 27803022"),  "(data) and Zhong et al. (portal).",
-                                     br(),
-                                     "Raw data for this data set can be downloaded from the DNA Data Bank of Japan under accession numbers", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA000991", "DRA000991"),",", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002711", "DRA002711"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002747", "DRA002747"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002748", "DRA002748") 
-                            ),
+                                     tags$hr(), 
+                                     includeHTML("htmls/reference_tnf.html") 
+                                     ),
                             tabPanel("IL6", value="il6",
-                                     div("IL6 treatment of SGBS cells", class="highlight"),
-                                     #includeHTML("htmls/description_SVF.html"),
+                                     includeHTML("htmls/description_il6.html"),
                                      tabsetPanel(
                                        tabPanel("Heatmap",
                                                 br(),
                                                 plotOutput(outputId = "heatmap_il6"), br(),
-                                                downloadButton(outputId = "download_pdf_il6", label = "Download PDF", class = "butt"),
-                                                downloadButton(outputId = "download_gg_il6", label = "Download ggplot2", class = "butt"),
+                                                downloadButton(outputId = "download_pdf_il61", label = "Download PDF", class = "butt"),
+                                                downloadButton(outputId = "download_gg_il61", label = "Download ggplot2", class = "butt"),
                                                 tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                        tabPanel("Volcano",
                                                 br(),
@@ -176,26 +168,23 @@ shinyUI(fluidPage(
                                                 DT::dataTableOutput(outputId = "dt_il6", width = "100%"),
                                                 br()),
                                        tabPanel("Details",
-                                                includeHTML("htmls/details_SVF.html")
+                                                includeHTML("htmls/details_il6.html")
                                        ),
                                        tabPanel("Interpretation",
-                                                includeHTML("htmls/interpretation_SVF.html")
+                                                includeHTML("htmls/interpretation_il6.html")
                                        )),
                                      tags$br(),
                                      tags$hr(),
-                                     "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/27803022/", "Ehrlund et al.; PMID: 27803022"),  "(data) and Zhong et al. (portal).",
-                                     br(),
-                                     "Raw data for this data set can be downloaded from the DNA Data Bank of Japan under accession numbers", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA000991", "DRA000991"),",", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002711", "DRA002711"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002747", "DRA002747"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002748", "DRA002748")
+                                     includeHTML("htmls/reference_il6.html") 
                                      ),
                             tabPanel("TGFB1", value="tgfb1",
-                                     div("TGFB1 treatment of SGBS cells", class="highlight"),
-                                     #includeHTML("htmls/description_SVF.html"),
+                                     includeHTML("htmls/description_tgfb.html"),
                                      tabsetPanel(
                                        tabPanel("Heatmap",
                                                 br(),
                                                 plotOutput(outputId = "heatmap_tgf"), br(),
-                                                downloadButton(outputId = "download_pdf_tgf", label = "Download PDF", class = "butt"),
-                                                downloadButton(outputId = "download_gg_tgf", label = "Download ggplot2", class = "butt"),
+                                                downloadButton(outputId = "download_pdf_tgf1", label = "Download PDF", class = "butt"),
+                                                downloadButton(outputId = "download_gg_tgf1", label = "Download ggplot2", class = "butt"),
                                                 tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                        tabPanel("Volcano",
                                                 br(),
@@ -209,26 +198,23 @@ shinyUI(fluidPage(
                                                 DT::dataTableOutput(outputId = "dt_tgf", width = "100%"),
                                                 br()),
                                        tabPanel("Details",
-                                                includeHTML("htmls/details_SVF.html")
+                                                includeHTML("htmls/details_tgfb.html")
                                        ),
                                        tabPanel("Interpretation",
-                                                includeHTML("htmls/interpretation_SVF.html")
+                                                includeHTML("htmls/interpretation_tgfb.html")
                                        )),
                                      tags$br(),
                                      tags$hr(),
-                                     "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/27803022/", "Ehrlund et al.; PMID: 27803022"),  "(data) and Zhong et al. (portal).",
-                                     br(),
-                                     "Raw data for this data set can be downloaded from the DNA Data Bank of Japan under accession numbers", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA000991", "DRA000991"),",", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002711", "DRA002711"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002747", "DRA002747"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002748", "DRA002748")
+                                     includeHTML("htmls/reference_tgfb.html") 
                                      ),
                             tabPanel("inflamed AT", value = "inflamedAT",
-                                     div("SGBS cells treated with conditioned media from inflamed WAT", class="highlight"),
-                                     #includeHTML("htmls/description_SVF.html"),
+                                     includeHTML("htmls/description_inflat.html"),
                                      tabsetPanel(
                                        tabPanel("Heatmap",
                                                 br(),
                                                 plotOutput(outputId = "heatmap_inflAT"), br(),
-                                                downloadButton(outputId = "download_pdf_inflAT", label = "Download PDF", class = "butt"),
-                                                downloadButton(outputId = "download_gg_inflAT", label = "Download ggplot2", class = "butt"),
+                                                downloadButton(outputId = "download_pdf_inflAT1", label = "Download PDF", class = "butt"),
+                                                downloadButton(outputId = "download_gg_inflAT1", label = "Download ggplot2", class = "butt"),
                                                 tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                        tabPanel("Volcano",
                                                 br(),
@@ -242,31 +228,27 @@ shinyUI(fluidPage(
                                                 DT::dataTableOutput(outputId = "dt_inflAT", width = "100%"),
                                                 br()),
                                        tabPanel("Details",
-                                                includeHTML("htmls/details_SVF.html")
+                                                includeHTML("htmls/details_inflat.html")
                                        ),
                                        tabPanel("Interpretation",
-                                                includeHTML("htmls/interpretation_SVF.html")
+                                                includeHTML("htmls/interpretation_inflat.html")
                                        )),
                                      tags$br(),
                                      tags$hr(),
-                                     "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/27803022/", "Ehrlund et al.; PMID: 27803022"),  "(data) and Zhong et al. (portal).",
-                                     br(),
-                                     "Raw data for this data set can be downloaded from the DNA Data Bank of Japan under accession numbers", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA000991", "DRA000991"),",", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002711", "DRA002711"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002747", "DRA002747"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002748", "DRA002748")
+                                     includeHTML("htmls/reference_inflat.html") 
                             )
                             ),
                  navbarMenu("Hormonal",
-                            tabPanel("Insulin",value="insulin",
-                          includeHTML("htmls/description_tissue.html"),
-                          # div(actionButton("toggle_table", HTML("&dtrif;"), style="font-size:16px; padding: 0px;"), "Show available output options", class="highlight"),
-                          # div(id= "gene_table", style = "display:none;",includeHTML("htmls/outputs_tissue.html")),   
-                                     br(),
+                            tabPanel("Insulin", value = "insulin",
+                              includeHTML("htmls/description_insulin.html"),  
+                            
                                      tabsetPanel(
                                        tabPanel("Heatmap",
                                                 br(),
                                                 plotOutput(outputId = "heatmap_ins"),
                                                 br(),
-                                                downloadButton(outputId = "download_pdf8", label = "Download PDF", class = "butt"), 
-                                                downloadButton(outputId = "download_gg8", label = "Download ggplot2", class = "butt"),
+                                                downloadButton(outputId = "download_pdf_ins1", label = "Download PDF", class = "butt"), 
+                                                downloadButton(outputId = "download_gg_ins1", label = "Download ggplot2", class = "butt"),
                                                 tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                        tabPanel("Table",
                                                 br(),
@@ -275,30 +257,26 @@ shinyUI(fluidPage(
                                                 br(),
                                                 shinycustomloader::withLoader(plotOutput(outputId = "volcano_ins"), type="html", loader="dnaspin"),
                                                 br(),
-                                                downloadButton(outputId = "download_pdf9", label = "Download PDF", class = "butt"),
-                                                downloadButton(outputId = "download_gg9", label = "Download ggplot2", class = "butt"),
+                                                downloadButton(outputId = "download_pdf_ins2", label = "Download PDF", class = "butt"),
+                                                downloadButton(outputId = "download_gg_ins2", label = "Download ggplot2", class = "butt"),
                                                 tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))),
                                        tabPanel("Details",
-                                                includeHTML("htmls/details_tissue.html")
+                                                includeHTML("htmls/details_insulin.html")
                                        ),
                                        tabPanel("Interpretation",
-                                                includeHTML("htmls/interpretation_tissue.html"))),
+                                                includeHTML("htmls/interpretation_insulin.html"))),
                                      tags$br(),
                                      tags$hr(),
-                                     "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/27803022/", "Ehrlund et al.; PMID: 27803022"),  "(data) and Zhong et al. (portal).",
-                                     br(),
-                                     "Raw data for this data set can be downloaded fromthe DNA Data Bank of Japan under accession numbers", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA000991", "DRA000991"),",", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002711", "DRA002711"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002747", "DRA002747"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002748", "DRA002748"), 
-                                     
+                              includeHTML("htmls/reference_insulin.html")
                             ),
                           tabPanel("IGF1", value="igf1",
-                                   div("IGF1 treatment of SGBS cells", class="highlight"),
-                                   #includeHTML("htmls/description_SVF.html"),
+                                   includeHTML("htmls/description_igf.html"),
                                    tabsetPanel(
                                      tabPanel("Heatmap",
                                               br(),
                                               plotOutput(outputId = "heatmap_igf"), br(),
-                                              downloadButton(outputId = "download_pdf_igf", label = "Download PDF", class = "butt"),
-                                              downloadButton(outputId = "download_gg_igf", label = "Download ggplot2", class = "butt"),
+                                              downloadButton(outputId = "download_pdf_igf1", label = "Download PDF", class = "butt"),
+                                              downloadButton(outputId = "download_gg_igf1", label = "Download ggplot2", class = "butt"),
                                               tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                      tabPanel("Volcano",
                                               br(),
@@ -312,26 +290,23 @@ shinyUI(fluidPage(
                                               DT::dataTableOutput(outputId = "dt_igf", width = "100%"),
                                               br()),
                                      tabPanel("Details",
-                                              includeHTML("htmls/details_SVF.html")
+                                              includeHTML("htmls/details_igf.html")
                                      ),
                                      tabPanel("Interpretation",
-                                              includeHTML("htmls/interpretation_SVF.html")
+                                              includeHTML("htmls/interpretation_igf.html")
                                      )),
                                    tags$br(),
                                    tags$hr(),
-                                   "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/27803022/", "Ehrlund et al.; PMID: 27803022"),  "(data) and Zhong et al. (portal).",
-                                   br(),
-                                   "Raw data for this data set can be downloaded from the DNA Data Bank of Japan under accession numbers", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA000991", "DRA000991"),",", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002711", "DRA002711"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002747", "DRA002747"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002748", "DRA002748")
+                                   includeHTML("htmls/reference_igf.html")
                           ),
                           tabPanel("Adiponectin", value = "adipo",
-                                   div("Adiponectin treatment of SGBS cells", class="highlight"),
-                                   #includeHTML("htmls/description_SVF.html"),
+                                   includeHTML("htmls/description_adipo.html"),
                                    tabsetPanel(
                                      tabPanel("Heatmap",
                                               br(),
                                               plotOutput(outputId = "heatmap_adipo"), br(),
-                                              downloadButton(outputId = "download_pdf_adipo", label = "Download PDF", class = "butt"),
-                                              downloadButton(outputId = "download_gg_adipo", label = "Download ggplot2", class = "butt"),
+                                              downloadButton(outputId = "download_pdf_adipo1", label = "Download PDF", class = "butt"),
+                                              downloadButton(outputId = "download_gg_adipo1", label = "Download ggplot2", class = "butt"),
                                               tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                      tabPanel("Volcano",
                                               br(),
@@ -345,26 +320,23 @@ shinyUI(fluidPage(
                                               DT::dataTableOutput(outputId = "dt_adipo", width = "100%"),
                                               br()),
                                      tabPanel("Details",
-                                              includeHTML("htmls/details_SVF.html")
+                                              includeHTML("htmls/details_adipo.html")
                                      ),
                                      tabPanel("Interpretation",
-                                              includeHTML("htmls/interpretation_SVF.html")
+                                              includeHTML("htmls/interpretation_adipo.html")
                                      )),
                                    tags$br(),
                                    tags$hr(),
-                                   "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/27803022/", "Ehrlund et al.; PMID: 27803022"),  "(data) and Zhong et al. (portal).",
-                                   br(),
-                                   "Raw data for this data set can be downloaded from the DNA Data Bank of Japan under accession numbers", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA000991", "DRA000991"),",", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002711", "DRA002711"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002747", "DRA002747"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002748", "DRA002748")
+                                   includeHTML("htmls/reference_adipo.html")
                           ),
                           tabPanel("Leptin" , value = "leptin",
-                                   div("Leptin treatment of SGBS cells", class="highlight"),
-                                   #includeHTML("htmls/description_SVF.html"),
+                                   includeHTML("htmls/description_leptin.html"),
                                    tabsetPanel(
                                      tabPanel("Heatmap",
                                               br(),
                                               plotOutput(outputId = "heatmap_lep"), br(),
-                                              downloadButton(outputId = "download_pdf_lep", label = "Download PDF", class = "butt"),
-                                              downloadButton(outputId = "download_gg_lep", label = "Download ggplot2", class = "butt"),
+                                              downloadButton(outputId = "download_pdf_lep1", label = "Download PDF", class = "butt"),
+                                              downloadButton(outputId = "download_gg_lep1", label = "Download ggplot2", class = "butt"),
                                               tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                      tabPanel("Volcano",
                                               br(),
@@ -378,28 +350,25 @@ shinyUI(fluidPage(
                                               DT::dataTableOutput(outputId = "dt_lep", width = "100%"),
                                               br()),
                                      tabPanel("Details",
-                                              includeHTML("htmls/details_SVF.html")
+                                              includeHTML("htmls/details_leptin.html")
                                      ),
                                      tabPanel("Interpretation",
-                                              includeHTML("htmls/interpretation_SVF.html")
+                                              includeHTML("htmls/interpretation_leptin.html")
                                      )),
                                    tags$br(),
                                    tags$hr(),
-                                   "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/27803022/", "Ehrlund et al.; PMID: 27803022"),  "(data) and Zhong et al. (portal).",
-                                   br(),
-                                   "Raw data for this data set can be downloaded from the DNA Data Bank of Japan under accession numbers", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA000991", "DRA000991"),",", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002711", "DRA002711"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002747", "DRA002747"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002748", "DRA002748")
+                                   includeHTML("htmls/reference_leptin.html")
                           )
                           ),
                  navbarMenu("Pharmacologic",
                             tabPanel("Rosiglitazone", value="rosi",
-                                     div("Rosiglitazone treatment of SGBS cells", class="highlight"),
-                                     #includeHTML("htmls/description_SVF.html"),
+                                     includeHTML("htmls/description_rosi.html"),
                                      tabsetPanel(
                                        tabPanel("Heatmap",
                                                 br(),
                                                 plotOutput(outputId = "heatmap_rosi"), br(),
-                                                downloadButton(outputId = "download_pdf_rosi", label = "Download PDF", class = "butt"),
-                                                downloadButton(outputId = "download_gg_rosi", label = "Download ggplot2", class = "butt"),
+                                                downloadButton(outputId = "download_pdf_rosi1", label = "Download PDF", class = "butt"),
+                                                downloadButton(outputId = "download_gg_rosi1", label = "Download ggplot2", class = "butt"),
                                                 tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                        tabPanel("Volcano",
                                                 br(),
@@ -413,26 +382,23 @@ shinyUI(fluidPage(
                                                 DT::dataTableOutput(outputId = "dt_rosi", width = "100%"),
                                                 br()),
                                        tabPanel("Details",
-                                                includeHTML("htmls/details_SVF.html")
+                                                includeHTML("htmls/details_rosi.html")
                                        ),
                                        tabPanel("Interpretation",
-                                                includeHTML("htmls/interpretation_SVF.html")
+                                                includeHTML("htmls/interpretation_rosi.html")
                                        )),
                                      tags$br(),
                                      tags$hr(),
-                                     "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/27803022/", "Ehrlund et al.; PMID: 27803022"),  "(data) and Zhong et al. (portal).",
-                                     br(),
-                                     "Raw data for this data set can be downloaded from the DNA Data Bank of Japan under accession numbers", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA000991", "DRA000991"),",", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002711", "DRA002711"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002747", "DRA002747"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002748", "DRA002748")
+                                     includeHTML("htmls/reference_rosi.html")
                             ),
                             tabPanel("Dexamethasone", value = "dexa",
-                                     div("Dexamethasone treatment of SGBS cells", class="highlight"),
-                                     #includeHTML("htmls/description_SVF.html"),
+                                     includeHTML("htmls/description_dexa.html"),
                                      tabsetPanel(
                                        tabPanel("Heatmap",
                                                 br(),
                                                 plotOutput(outputId = "heatmap_dexa"), br(),
-                                                downloadButton(outputId = "download_pdf_dexa", label = "Download PDF", class = "butt"),
-                                                downloadButton(outputId = "download_gg_dexa", label = "Download ggplot2", class = "butt"),
+                                                downloadButton(outputId = "download_pdf_dexa1", label = "Download PDF", class = "butt"),
+                                                downloadButton(outputId = "download_gg_dexa1", label = "Download ggplot2", class = "butt"),
                                                 tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                        tabPanel("Volcano",
                                                 br(),
@@ -446,26 +412,23 @@ shinyUI(fluidPage(
                                                 DT::dataTableOutput(outputId = "dt_dexa", width = "100%"),
                                                 br()),
                                        tabPanel("Details",
-                                                includeHTML("htmls/details_SVF.html")
+                                                includeHTML("htmls/details_dexa.html")
                                        ),
                                        tabPanel("Interpretation",
-                                                includeHTML("htmls/interpretation_SVF.html")
+                                                includeHTML("htmls/interpretation_dexa.html")
                                        )),
                                      tags$br(),
                                      tags$hr(),
-                                     "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/27803022/", "Ehrlund et al.; PMID: 27803022"),  "(data) and Zhong et al. (portal).",
-                                     br(),
-                                     "Raw data for this data set can be downloaded from the DNA Data Bank of Japan under accession numbers", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA000991", "DRA000991"),",", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002711", "DRA002711"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002747", "DRA002747"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002748", "DRA002748")
+                                     includeHTML("htmls/reference_dexa.html")
                             ),
                             tabPanel("Isoprenaline", value = "iso",
-                                     div("Isoprenaline treatment of SGBS cells", class="highlight"),
-                                     #includeHTML("htmls/description_SVF.html"),
+                                     includeHTML("htmls/description_iso.html"),
                                      tabsetPanel(
                                        tabPanel("Heatmap",
                                                 br(),
                                                 plotOutput(outputId = "heatmap_iso"), br(),
-                                                downloadButton(outputId = "download_pdf_iso", label = "Download PDF", class = "butt"),
-                                                downloadButton(outputId = "download_gg_iso", label = "Download ggplot2", class = "butt"),
+                                                downloadButton(outputId = "download_pdf_iso1", label = "Download PDF", class = "butt"),
+                                                downloadButton(outputId = "download_gg_iso1", label = "Download ggplot2", class = "butt"),
                                                 tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                        tabPanel("Volcano",
                                                 br(),
@@ -479,26 +442,23 @@ shinyUI(fluidPage(
                                                 DT::dataTableOutput(outputId = "dt_iso", width = "100%"),
                                                 br()),
                                        tabPanel("Details",
-                                                includeHTML("htmls/details_SVF.html")
+                                                includeHTML("htmls/details_iso.html")
                                        ),
                                        tabPanel("Interpretation",
-                                                includeHTML("htmls/interpretation_SVF.html")
+                                                includeHTML("htmls/interpretation_iso.html")
                                        )),
                                      tags$br(),
                                      tags$hr(),
-                                     "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/27803022/", "Ehrlund et al.; PMID: 27803022"),  "(data) and Zhong et al. (portal).",
-                                     br(),
-                                     "Raw data for this data set can be downloaded from the DNA Data Bank of Japan under accession numbers", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA000991", "DRA000991"),",", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002711", "DRA002711"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002747", "DRA002747"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002748", "DRA002748")
+                                     includeHTML("htmls/reference_iso.html")
                             ),
                             tabPanel("IBMX", value = "ibmx",
-                                     div("IBMX treatment of SGBS cells", class="highlight"),
-                                     #includeHTML("htmls/description_SVF.html"),
+                                     includeHTML("htmls/description_ibmx.html"),
                                      tabsetPanel(
                                        tabPanel("Heatmap",
                                                 br(),
                                                 plotOutput(outputId = "heatmap_ibmx"), br(),
-                                                downloadButton(outputId = "download_pdf_ibmx", label = "Download PDF", class = "butt"),
-                                                downloadButton(outputId = "download_gg_ibmx", label = "Download ggplot2", class = "butt"),
+                                                downloadButton(outputId = "download_pdf_ibmx1", label = "Download PDF", class = "butt"),
+                                                downloadButton(outputId = "download_gg_ibmx1", label = "Download ggplot2", class = "butt"),
                                                 tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                        tabPanel("Volcano",
                                                 br(),
@@ -512,26 +472,23 @@ shinyUI(fluidPage(
                                                 DT::dataTableOutput(outputId = "dt_ibmx", width = "100%"),
                                                 br()),
                                        tabPanel("Details",
-                                                includeHTML("htmls/details_SVF.html")
+                                                includeHTML("htmls/details_ibmx.html")
                                        ),
                                        tabPanel("Interpretation",
-                                                includeHTML("htmls/interpretation_SVF.html")
+                                                includeHTML("htmls/interpretation_ibmx.html")
                                        )),
                                      tags$br(),
                                      tags$hr(),
-                                     "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/27803022/", "Ehrlund et al.; PMID: 27803022"),  "(data) and Zhong et al. (portal).",
-                                     br(),
-                                     "Raw data for this data set can be downloaded from the DNA Data Bank of Japan under accession numbers", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA000991", "DRA000991"),",", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002711", "DRA002711"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002747", "DRA002747"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002748", "DRA002748")
+                                     includeHTML("htmls/reference_ibmx.html")
                             ),
                             tabPanel("Metformin", value = "metformin",
-                                     div("Metformin treatment of SGBS cells", class="highlight"),
-                                     #includeHTML("htmls/description_SVF.html"),
+                                     includeHTML("htmls/description_met.html"),
                                      tabsetPanel(
                                        tabPanel("Heatmap",
                                                 br(),
                                                 plotOutput(outputId = "heatmap_met"), br(),
-                                                downloadButton(outputId = "download_pdf_met", label = "Download PDF", class = "butt"),
-                                                downloadButton(outputId = "download_gg_met", label = "Download ggplot2", class = "butt"),
+                                                downloadButton(outputId = "download_pdf_met1", label = "Download PDF", class = "butt"),
+                                                downloadButton(outputId = "download_gg_met1", label = "Download ggplot2", class = "butt"),
                                                 tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                        tabPanel("Volcano",
                                                 br(),
@@ -545,26 +502,23 @@ shinyUI(fluidPage(
                                                 DT::dataTableOutput(outputId = "dt_met", width = "100%"),
                                                 br()),
                                        tabPanel("Details",
-                                                includeHTML("htmls/details_SVF.html")
+                                                includeHTML("htmls/details_met.html")
                                        ),
                                        tabPanel("Interpretation",
-                                                includeHTML("htmls/interpretation_SVF.html")
+                                                includeHTML("htmls/interpretation_met.html")
                                        )),
                                      tags$br(),
                                      tags$hr(),
-                                     "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/27803022/", "Ehrlund et al.; PMID: 27803022"),  "(data) and Zhong et al. (portal).",
-                                     br(),
-                                     "Raw data for this data set can be downloaded from the DNA Data Bank of Japan under accession numbers", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA000991", "DRA000991"),",", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002711", "DRA002711"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002747", "DRA002747"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002748", "DRA002748")
+                                     includeHTML("htmls/reference_met.html")
                             ),
                             tabPanel("Atorvastatin", value = "atorva",
-                                     div("Atorvastatin treatment of SGBS cells", class="highlight"),
-                                     #includeHTML("htmls/description_SVF.html"),
+                                     includeHTML("htmls/description_atorva.html"),
                                      tabsetPanel(
                                        tabPanel("Heatmap",
                                                 br(),
                                                 plotOutput(outputId = "heatmap_atorva"), br(),
-                                                downloadButton(outputId = "download_pdf_atorva", label = "Download PDF", class = "butt"),
-                                                downloadButton(outputId = "download_gg_atorva", label = "Download ggplot2", class = "butt"),
+                                                downloadButton(outputId = "download_pdf_atorva1", label = "Download PDF", class = "butt"),
+                                                downloadButton(outputId = "download_gg_atorva1", label = "Download ggplot2", class = "butt"),
                                                 tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                        tabPanel("Volcano",
                                                 br(),
@@ -578,26 +532,23 @@ shinyUI(fluidPage(
                                                 DT::dataTableOutput(outputId = "dt_atorva", width = "100%"),
                                                 br()),
                                        tabPanel("Details",
-                                                includeHTML("htmls/details_SVF.html")
+                                                includeHTML("htmls/details_atorva.html")
                                        ),
                                        tabPanel("Interpretation",
-                                                includeHTML("htmls/interpretation_SVF.html")
+                                                includeHTML("htmls/interpretation_atorva.html")
                                        )),
                                      tags$br(),
                                      tags$hr(),
-                                     "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/27803022/", "Ehrlund et al.; PMID: 27803022"),  "(data) and Zhong et al. (portal).",
-                                     br(),
-                                     "Raw data for this data set can be downloaded from the DNA Data Bank of Japan under accession numbers", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA000991", "DRA000991"),",", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002711", "DRA002711"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002747", "DRA002747"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002748", "DRA002748")
+                                     includeHTML("htmls/reference_atorva.html")
                             ),
                             tabPanel("SB203580", value ="SB203580",
-                                     div("SB203580 treatment of SGBS cells", class="highlight"),
-                                     #includeHTML("htmls/description_SVF.html"),
+                                     includeHTML("htmls/description_sb.html"),
                                      tabsetPanel(
                                        tabPanel("Heatmap",
                                                 br(),
                                                 plotOutput(outputId = "heatmap_sb"), br(),
-                                                downloadButton(outputId = "download_pdf_sb", label = "Download PDF", class = "butt"),
-                                                downloadButton(outputId = "download_gg_sb", label = "Download ggplot2", class = "butt"),
+                                                downloadButton(outputId = "download_pdf_sb1", label = "Download PDF", class = "butt"),
+                                                downloadButton(outputId = "download_gg_sb1", label = "Download ggplot2", class = "butt"),
                                                 tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                        tabPanel("Volcano",
                                                 br(),
@@ -611,26 +562,23 @@ shinyUI(fluidPage(
                                                 DT::dataTableOutput(outputId = "dt_sb", width = "100%"),
                                                 br()),
                                        tabPanel("Details",
-                                                includeHTML("htmls/details_SVF.html")
+                                                includeHTML("htmls/details_sb.html")
                                        ),
                                        tabPanel("Interpretation",
-                                                includeHTML("htmls/interpretation_SVF.html")
+                                                includeHTML("htmls/interpretation_sb.html")
                                        )),
                                      tags$br(),
                                      tags$hr(),
-                                     "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/27803022/", "Ehrlund et al.; PMID: 27803022"),  "(data) and Zhong et al. (portal).",
-                                     br(),
-                                     "Raw data for this data set can be downloaded from the DNA Data Bank of Japan under accession numbers", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA000991", "DRA000991"),",", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002711", "DRA002711"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002747", "DRA002747"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002748", "DRA002748")
+                                     includeHTML("htmls/reference_sb.html")
                             ),
                             tabPanel("SP600125" , value = "SP600125",
-                                     div("SP600125 treatment of SGBS cells", class="highlight"),
-                                     #includeHTML("htmls/description_SVF.html"),
+                                     includeHTML("htmls/description_sp.html"),
                                      tabsetPanel(
                                        tabPanel("Heatmap",
                                                 br(),
                                                 plotOutput(outputId = "heatmap_sp"), br(),
-                                                downloadButton(outputId = "download_pdf_sp", label = "Download PDF", class = "butt"),
-                                                downloadButton(outputId = "download_gg_sp", label = "Download ggplot2", class = "butt"),
+                                                downloadButton(outputId = "download_pdf_sp1", label = "Download PDF", class = "butt"),
+                                                downloadButton(outputId = "download_gg_sp1", label = "Download ggplot2", class = "butt"),
                                                 tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                        tabPanel("Volcano",
                                                 br(),
@@ -644,26 +592,23 @@ shinyUI(fluidPage(
                                                 DT::dataTableOutput(outputId = "dt_sp", width = "100%"),
                                                 br()),
                                        tabPanel("Details",
-                                                includeHTML("htmls/details_SVF.html")
+                                                includeHTML("htmls/details_sp.html")
                                        ),
                                        tabPanel("Interpretation",
-                                                includeHTML("htmls/interpretation_SVF.html")
+                                                includeHTML("htmls/interpretation_sp.html")
                                        )),
                                      tags$br(),
                                      tags$hr(),
-                                     "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/27803022/", "Ehrlund et al.; PMID: 27803022"),  "(data) and Zhong et al. (portal).",
-                                     br(),
-                                     "Raw data for this data set can be downloaded from the DNA Data Bank of Japan under accession numbers", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA000991", "DRA000991"),",", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002711", "DRA002711"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002747", "DRA002747"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002748", "DRA002748")
+                                     includeHTML("htmls/reference_sp.html")
                             ),
                             tabPanel("UO126", value="UO126",
-                                     div("UO126 treatment of SGBS cells", class="highlight"),
-                                     #includeHTML("htmls/description_SVF.html"),
+                                     includeHTML("htmls/description_uo.html"),
                                      tabsetPanel(
                                        tabPanel("Heatmap",
                                                 br(),
                                                 plotOutput(outputId = "heatmap_uo"), br(),
-                                                downloadButton(outputId = "download_pdf_uo", label = "Download PDF", class = "butt"),
-                                                downloadButton(outputId = "download_gg_uo", label = "Download ggplot2", class = "butt"),
+                                                downloadButton(outputId = "download_pdf_uo1", label = "Download PDF", class = "butt"),
+                                                downloadButton(outputId = "download_gg_uo1", label = "Download ggplot2", class = "butt"),
                                                 tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                        tabPanel("Volcano",
                                                 br(),
@@ -677,29 +622,26 @@ shinyUI(fluidPage(
                                                 DT::dataTableOutput(outputId = "dt_uo", width = "100%"),
                                                 br()),
                                        tabPanel("Details",
-                                                includeHTML("htmls/details_SVF.html")
+                                                includeHTML("htmls/details_uo.html")
                                        ),
                                        tabPanel("Interpretation",
-                                                includeHTML("htmls/interpretation_SVF.html")
+                                                includeHTML("htmls/interpretation_uo.html")
                                        )),
                                      tags$br(),
                                      tags$hr(),
-                                     "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/27803022/", "Ehrlund et al.; PMID: 27803022"),  "(data) and Zhong et al. (portal).",
-                                     br(),
-                                     "Raw data for this data set can be downloaded from the DNA Data Bank of Japan under accession numbers", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA000991", "DRA000991"),",", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002711", "DRA002711"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002747", "DRA002747"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002748", "DRA002748")
+                                     includeHTML("htmls/reference_uo.html")
                             )
                             ),
                 
                  navbarMenu("Metabolic",
                             tabPanel("Glucose",value="glucose",
-                                     div("Glucose treatment of SGBS cells", class="highlight"),
-                                     #includeHTML("htmls/description_SVF.html"),
+                                     includeHTML("htmls/description_glucose.html"),
                                      tabsetPanel(
                                        tabPanel("Heatmap",
                                                 br(),
                                                 plotOutput(outputId = "heatmap_glucose"), br(),
-                                                downloadButton(outputId = "download_pdf_glucose", label = "Download PDF", class = "butt"),
-                                                downloadButton(outputId = "download_gg_glucose", label = "Download ggplot2", class = "butt"),
+                                                downloadButton(outputId = "download_pdf_glucose1", label = "Download PDF", class = "butt"),
+                                                downloadButton(outputId = "download_gg_glucose1", label = "Download ggplot2", class = "butt"),
                                                 tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                        tabPanel("Volcano",
                                                 br(),
@@ -713,26 +655,23 @@ shinyUI(fluidPage(
                                                 DT::dataTableOutput(outputId = "dt_glucose", width = "100%"),
                                                 br()),
                                        tabPanel("Details",
-                                                includeHTML("htmls/details_SVF.html")
+                                                includeHTML("htmls/details_glucose.html")
                                        ),
                                        tabPanel("Interpretation",
-                                                includeHTML("htmls/interpretation_SVF.html")
+                                                includeHTML("htmls/interpretation_glucose.html")
                                        )),
                                      tags$br(),
                                      tags$hr(),
-                                     "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/27803022/", "Ehrlund et al.; PMID: 27803022"),  "(data) and Zhong et al. (portal).",
-                                     br(),
-                                     "Raw data for this data set can be downloaded from the DNA Data Bank of Japan under accession numbers", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA000991", "DRA000991"),",", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002711", "DRA002711"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002747", "DRA002747"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002748", "DRA002748")
+                                     includeHTML("htmls/reference_glucose.html")
                             ),
                             tabPanel("Retinoic Acid", value = "retinoic",
-                                     div("Retinoic Acid treatment of SGBS cells", class="highlight"),
-                                     #includeHTML("htmls/description_SVF.html"),
+                                     includeHTML("htmls/description_ra.html"),
                                      tabsetPanel(
                                        tabPanel("Heatmap",
                                                 br(),
                                                 plotOutput(outputId = "heatmap_ra"), br(),
-                                                downloadButton(outputId = "download_pdf_ra", label = "Download PDF", class = "butt"),
-                                                downloadButton(outputId = "download_gg_ra", label = "Download ggplot2", class = "butt"),
+                                                downloadButton(outputId = "download_pdf_ra1", label = "Download PDF", class = "butt"),
+                                                downloadButton(outputId = "download_gg_ra1", label = "Download ggplot2", class = "butt"),
                                                 tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                        tabPanel("Volcano",
                                                 br(),
@@ -746,26 +685,23 @@ shinyUI(fluidPage(
                                                 DT::dataTableOutput(outputId = "dt_ra", width = "100%"),
                                                 br()),
                                        tabPanel("Details",
-                                                includeHTML("htmls/details_SVF.html")
+                                                includeHTML("htmls/details_ra.html")
                                        ),
                                        tabPanel("Interpretation",
-                                                includeHTML("htmls/interpretation_SVF.html")
+                                                includeHTML("htmls/interpretation_ra.html")
                                        )),
                                      tags$br(),
                                      tags$hr(),
-                                     "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/27803022/", "Ehrlund et al.; PMID: 27803022"),  "(data) and Zhong et al. (portal).",
-                                     br(),
-                                     "Raw data for this data set can be downloaded from the DNA Data Bank of Japan under accession numbers", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA000991", "DRA000991"),",", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002711", "DRA002711"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002747", "DRA002747"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002748", "DRA002748")
+                                     includeHTML("htmls/reference_insulin.html")
                             ),
                             tabPanel("Lauroyl L Carnithine", value = "lauroyl",
-                                     div("Lauroyl L Carnithine treatment of SGBS cells", class="highlight"),
-                                     #includeHTML("htmls/description_SVF.html"),
+                                     includeHTML("htmls/description_lauro.html"),
                                      tabsetPanel(
                                        tabPanel("Heatmap",
                                                 br(),
                                                 plotOutput(outputId = "heatmap_lauro"), br(),
-                                                downloadButton(outputId = "download_pdf_lauro", label = "Download PDF", class = "butt"),
-                                                downloadButton(outputId = "download_gg_lauro", label = "Download ggplot2", class = "butt"),
+                                                downloadButton(outputId = "download_pdf_lauro1", label = "Download PDF", class = "butt"),
+                                                downloadButton(outputId = "download_gg_lauro1", label = "Download ggplot2", class = "butt"),
                                                 tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                        tabPanel("Volcano",
                                                 br(),
@@ -779,26 +715,23 @@ shinyUI(fluidPage(
                                                 DT::dataTableOutput(outputId = "dt_lauro", width = "100%"),
                                                 br()),
                                        tabPanel("Details",
-                                                includeHTML("htmls/details_SVF.html")
+                                                includeHTML("htmls/details_lauro.html")
                                        ),
                                        tabPanel("Interpretation",
-                                                includeHTML("htmls/interpretation_SVF.html")
+                                                includeHTML("htmls/interpretation_lauro.html")
                                        )),
                                      tags$br(),
                                      tags$hr(),
-                                     "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/27803022/", "Ehrlund et al.; PMID: 27803022"),  "(data) and Zhong et al. (portal).",
-                                     br(),
-                                     "Raw data for this data set can be downloaded from the DNA Data Bank of Japan under accession numbers", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA000991", "DRA000991"),",", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002711", "DRA002711"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002747", "DRA002747"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002748", "DRA002748")
+                                     includeHTML("htmls/reference_lauro.html")
                             ),
                             tabPanel("Decanoyl L Carnithine", value = "decanoyl",
-                                     div("Decanoyl L Carnithine treatment of SGBS cells", class="highlight"),
-                                     #includeHTML("htmls/description_SVF.html"),
+                                     includeHTML("htmls/description_decano.html"),
                                      tabsetPanel(
                                        tabPanel("Heatmap",
                                                 br(),
                                                 plotOutput(outputId = "heatmap_decano"), br(),
-                                                downloadButton(outputId = "download_pdf_decano", label = "Download PDF", class = "butt"),
-                                                downloadButton(outputId = "download_gg_decano", label = "Download ggplot2", class = "butt"),
+                                                downloadButton(outputId = "download_pdf_decano1", label = "Download PDF", class = "butt"),
+                                                downloadButton(outputId = "download_gg_decano1", label = "Download ggplot2", class = "butt"),
                                                 tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
                                        tabPanel("Volcano",
                                                 br(),
@@ -812,16 +745,14 @@ shinyUI(fluidPage(
                                                 DT::dataTableOutput(outputId = "dt_decano", width = "100%"),
                                                 br()),
                                        tabPanel("Details",
-                                                includeHTML("htmls/details_SVF.html")
+                                                includeHTML("htmls/details_decano.html")
                                        ),
                                        tabPanel("Interpretation",
-                                                includeHTML("htmls/interpretation_SVF.html")
+                                                includeHTML("htmls/interpretation_decano.html")
                                        )),
                                      tags$br(),
                                      tags$hr(),
-                                     "If you want to use this figure in your publication, please cite:", tags$a(href="https://pubmed.ncbi.nlm.nih.gov/27803022/", "Ehrlund et al.; PMID: 27803022"),  "(data) and Zhong et al. (portal).",
-                                     br(),
-                                     "Raw data for this data set can be downloaded from the DNA Data Bank of Japan under accession numbers", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA000991", "DRA000991"),",", tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002711", "DRA002711"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002747", "DRA002747"),",",tags$a(href="https://ddbj.nig.ac.jp/resource/sra-submission/DRA002748", "DRA002748")
+                                     includeHTML("htmls/reference_decano.html")
                             )),
                  navbarMenu("Genetic", 
                             tabPanel("knock out/down",value="ko",
