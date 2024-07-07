@@ -1,0 +1,111 @@
+
+
+/* the following css is for the module pages*/
+.banner_mod    {
+    padding-top: 0px;
+    vertical-align: middle;
+    text-align: center;
+    background-color: transparent;
+    margin-top: 20px;
+}
+
+.banner_mod * {
+    align-content: center;
+}
+
+
+.grid-container_mod {
+    width: 81%;
+    display: grid;
+    vertical-align: middle;
+    grid-template-columns: 15% 85%;
+    grid-gap: 0rem;
+    font-family: "Red Hat Display";
+    font-size: 0.875rem;
+    color: #1a4659;
+    position: relative;
+    text-align: center;
+}
+
+.column-1-mod, .column-2-mod {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.25rem;
+}
+
+.column-1-mod img {
+    max-width: 75%;
+    max-height: 75%;
+    padding-left: 12rem;
+}
+
+
+.mod_intro_text {
+    width: 100%;
+    padding-left: 2rem;
+    padding-right: 8rem;
+    padding-top: 0.625rem;
+    font-size: 0.875rem;
+    color: #1a4659;
+    text-align: justify;
+}
+
+.text_format{
+    color: #1a4659;
+}
+
+a { color: #1a4659;
+}
+
+
+.separation_mod {
+    width: 81%;
+    margin-top: rem;
+    margin-bottom: 3rem;
+    border: 0.019rem solid rgba(26,70,89,1.00);
+}
+
+
+iframe {
+    width: 81%;
+    display: block;
+    margin: auto;
+}
+
+.iframe-group {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 0.1rem;
+    width: 100%;
+}
+
+.iframe-title {
+    font-weight: bold;
+    width: 90%;
+    color: #1a4659;
+    background-color: #edf2f2;
+    padding: 5px;
+    display: inline-block;
+    width: calc(100%); /* Set width to fill the container minus padding */
+    border-radius: 0.5rem;
+    box-sizing: border-box; /* Include padding in the width calculation */
+    text-align: left;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.separator {
+    width: 100%;
+    margin-top: rem;
+    margin-bottom: 0.625rem;
+    border: 0.01rem solid rgba(26,70,89,1.00);
+}
+
+.collapsible-iframe {
+    padding-bottom: 0.7rem;
+    padding-top: 0.7rem;
+    transition: height 0.3s;
+    width: 100%;
+    border: none;
+}
