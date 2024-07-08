@@ -7,8 +7,14 @@
       <div class="text_sidebar">
           <div><p>Introduction</p></div>
              <div><p>How to</p></div>
-             <div><p>Clinical cohorts</p></div>
-             <div><p>Cell type datasets</p></div>
+             <div><p>Data set vignettes</p>
+              <div class="sub-item"><p>Clinical cohorts</p></div>
+              <div class="sub-item"><p>Depot cohorts</p></div>
+              <div class="sub-item"><p>Cell type datasets</p></div>
+              <div class="sub-item"><p>Single cell cohorts</p></div>
+              <div class="sub-item"><p>Spatial cohorts</p></div>
+              <div class="sub-item"><p>Perturbation datasets</p></div>
+          </div>
       </div>
     </div>
 </div>
@@ -257,7 +263,6 @@
     background: #edf2f2;
     padding: 0;
     width: 100%;
-    height: 12.5rem;
 }
 .text_sidebar {
     text-align: justify;
@@ -270,6 +275,11 @@
     font-size: 1rem;
     
 }
+
+.text_sidebar .sub-item {
+    margin-left: 20px; /* Adjust the value to control the indentation */
+}
+
 .contact_text {
     width: 1200px;
     padding-left: 40px;
@@ -295,7 +305,7 @@
 
 .sidebar {
     position: static;
-    height: 200px;
+    /* height: 200px;*/
     width: 150px;
     top: 0px;
     float: right;
