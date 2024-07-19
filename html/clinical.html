@@ -31,6 +31,8 @@
   <meta name="keywords" content="">
   <meta name="description" content="">
   <meta name="author" content="">
+  <!-- iframe-resizer -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.1/iframeResizer.min.js"></script>
 </head>
 
 <body class="container">
@@ -39,7 +41,7 @@
 
 
     <nav class="navbar_in">
-      <a href="index.html"><img src="images/logo_navbar.png" alt="adipose tissue knowledge portal logo"
+      <a href="index.html"><img src="images/logo_navbar_2.png" alt="adipose tissue knowledge portal logo"
           class="logo"></a>
 
       <div class="navbar">
@@ -101,7 +103,7 @@
 
 
     <div class="iframe_pos">
-      <iframe height="1000" frameborder="0" src="https://atportal.medh.ki.se/shiny/Module_Clinical_v03/"></iframe>
+      <iframe id="module-iframe" height="1000" frameborder="0" src="/shiny/Module_Clinical_v03/"></iframe>
     </div>
 
   </main>
@@ -134,6 +136,22 @@
 
     </div>
   </footer>
+
+  <script>
+    iFrameResize({ log: true }, '#module-iframe');
+
+    window.addEventListener("scroll", function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      var iframes = document.getElementById('module-iframe');
+      iframes.contentWindow.postMessage({ type: 'scroll', scrollTop: scrollTop }, '*');
+    });
+
+    window.addEventListener("resize", function() {
+        var height = window.innerHeight;
+        var iframes = document.getElementById('module-iframe');
+        iframes.contentWindow.postMessage({ type: 'resize', height: height }, '*');
+    });
+  </script>
 
 
 </body>

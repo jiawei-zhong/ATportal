@@ -32,13 +32,15 @@
   <meta name="keywords" content="">
   <meta name="description" content="">
   <meta name="author" content="">
+  <!-- iframe-resizer -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.1/iframeResizer.min.js"></script>
 </head>
 
 <body class="container">
 
   <header>
     <nav class="navbar_in">
-      <a href="index.html"><img src="images/logo_navbar.png" alt="adipose tissue knowledge portal logo"
+      <a href="index.html"><img src="images/logo_navbar_2.png" alt="adipose tissue knowledge portal logo"
           class="logo"></a>
 
       <div class="navbar">
@@ -94,7 +96,7 @@
 
 
     <div class="iframe_pos">
-      <iframe height="800" frameborder="0" src="https://atportal.medh.ki.se/shiny/Module_Singlecell/"></iframe>
+      <iframe id="module-iframe" height="800" frameborder="0" src="/shiny/Module_Singlecell/"></iframe>
     </div>
 
 
@@ -127,6 +129,10 @@
 
     </div>
   </footer>
+
+  <script>
+    iFrameResize({ log: true }, '#module-iframe');
+  </script>
 
 
 </body>

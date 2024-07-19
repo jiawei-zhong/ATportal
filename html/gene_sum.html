@@ -33,6 +33,8 @@
   <meta name="keywords" content="">
   <meta name="description" content="">
   <meta name="author" content="">
+  <!-- iframe-resizer -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.1/iframeResizer.min.js"></script>
   <!-- jquery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
@@ -40,13 +42,14 @@
   <!-- custom icons -->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  
 </head>
 
 <body class="container">
 
   <header>
     <nav class="navbar_in" id="navbar">
-      <a href="index.html"><img src="images/logo_navbar.png" alt="adipose tissue knowledge portal logo"
+      <a href="index.html"><img src="images/logo_navbar_2.png" alt="adipose tissue knowledge portal logo"
           class="logo"></a>
 
       <div class="navbar">
@@ -103,7 +106,7 @@
 
     <div class="banner">
 
-      <div><img src="images/logo_banner_full.png" alt="" class="logo_large" /></div>
+      <div><img src="images/logo_banner_full_2.png" alt="" class="logo_large" /></div>
     </div>
 
     <hr class="separation"> 
@@ -159,15 +162,15 @@
               <ion-icon name="caret-forward-circle" class="arrow-icon"></ion-icon>
             </a>
           </div>
-          <iframe id="shinyIframe1" src="https://atportal.medh.ki.se/shiny/Summary_gene_Clinical_Correlation/"
-            height="380" class="collapsible-iframe"></iframe>
+          <iframe id="shinyIframe1" src="https://www.adiposetissue.org/shiny/Summary_gene_Clinical_Correlation/" height="0" 
+            class="collapsible-iframe"></iframe>
 
           <div class="iframe-title">Sex difference
             <a href="clinical.html" target="_blank">
               <ion-icon name="caret-forward-circle" class="arrow-icon"></ion-icon>
             </a>
           </div>
-          <iframe id="shinyIframe2" src="https://atportal.medh.ki.se/shiny/Summary_gene_Clinical_Sex/" height="400"
+          <iframe id="shinyIframe2" src="https://www.adiposetissue.org/shiny/Summary_gene_Clinical_Sex/" height="0"
             class="collapsible-iframe"></iframe>
 
           <div class="iframe-title">Obese vs. non-obese
@@ -175,7 +178,7 @@
               <ion-icon name="caret-forward-circle" class="arrow-icon"></ion-icon>
             </a>
           </div>
-          <iframe id="shinyIframe3" src="https://atportal.medh.ki.se/shiny/Summary_gene_Clinical_Obese/" height="400"
+          <iframe id="shinyIframe3" src="https://www.adiposetissue.org/shiny/Summary_gene_Clinical_Obese/" height="0"
             class="collapsible-iframe"></iframe>
 
           <div class="iframe-title">Weight loss
@@ -183,7 +186,7 @@
               <ion-icon name="caret-forward-circle" class="arrow-icon"></ion-icon>
             </a>
           </div>
-          <iframe id="shinyIframe4" src="https://atportal.medh.ki.se/shiny/Summary_gene_Weightloss/" height="400"
+          <iframe id="shinyIframe4" src="https://www.adiposetissue.org/shiny/Summary_gene_Weightloss/" height="0"
             class="collapsible-iframe"></iframe>
             
           <div class="iframe-title">Depots
@@ -191,7 +194,7 @@
               <ion-icon name="caret-forward-circle" class="arrow-icon"></ion-icon>
             </a>
           </div>
-          <iframe id="shinyIframe5" src="https://atportal.medh.ki.se/shiny/Summary_gene_Depots/" height="250"
+          <iframe id="shinyIframe5" src="https://www.adiposetissue.org/shiny/Summary_gene_Depots/" height="0"
             class="collapsible-iframe"></iframe>
 
           <div class="iframe-title">Adipogenesis
@@ -199,15 +202,15 @@
               <ion-icon name="caret-forward-circle" class="arrow-icon"></ion-icon>
             </a>
           </div>
-          <iframe id="shinyIframe6" src="https://atportal.medh.ki.se/shiny/Summary_gene_Adipogenesis/" height="250"
+          <iframe id="shinyIframe6" src="https://www.adiposetissue.org/shiny/Summary_gene_Adipogenesis/" height="0"
             class="collapsible-iframe"></iframe>
 
 	       <div class="iframe-title">Tissue specificity
-             <a href="spatial.html" target="_blank">
+             <a href="celltype.html" target="_blank">
              <ion-icon name="caret-forward-circle" class="arrow-icon"></ion-icon>
               </a>
           </div>
-          <iframe id="shinyIframe7" src="https://atportal.medh.ki.se/shiny/Summary_gene_Tissue/" height="250"
+          <iframe id="shinyIframe7" src="https://www.adiposetissue.org/shiny/Summary_gene_Tissue/" height="0"
             class="collapsible-iframe"></iframe>
 
           <div class="iframe-title">Single cell
@@ -215,7 +218,7 @@
               <ion-icon name="caret-forward-circle" class="arrow-icon"></ion-icon>
             </a>
           </div>
-          <iframe id="shinyIframe8" src="https://atportal.medh.ki.se/shiny/Summary_gene_Singlecell/" height="420"
+          <iframe id="shinyIframe8" src="https://www.adiposetissue.org/shiny/Summary_gene_Singlecell/" height="0"
             class="collapsible-iframe"></iframe>
 
         </div>
@@ -256,116 +259,124 @@
 
   <script>
     $(document).ready(function () {
+      // 应用 iframe-resizer 到 shinyIframe
+      iFrameResize({ log: true, checkOrigin: false }, '#shinyIframe1');
+      iFrameResize({ log: true, checkOrigin: false }, '#shinyIframe2');
+      iFrameResize({ log: true, checkOrigin: false }, '#shinyIframe3');
+      iFrameResize({ log: true, checkOrigin: false }, '#shinyIframe4');
+      iFrameResize({ log: true, checkOrigin: false }, '#shinyIframe5');
+      iFrameResize({ log: true, checkOrigin: false }, '#shinyIframe6');
+      iFrameResize({ log: true, checkOrigin: false }, '#shinyIframe7');
+      iFrameResize({ log: true, checkOrigin: false }, '#shinyIframe8');
+    
       // 当页面加载时，根据 URL 参数自动填充和搜索
       var urlParams = new URLSearchParams(window.location.search);
       var gene = urlParams.get('gene');
-
+    
       if (gene) {
         $('#userInput').val(gene);
-        // 注册事件监听器，等待 Shiny 应用发送准备就绪的消息
         window.addEventListener('message', function (event) {
           if (event.data === 'Shiny is ready') {
             sendToShiny(gene); // 使用 URL 参数调用 sendToShiny
           }
         });
       } else {
-        $('#userInput').val(''); // 确保搜索框为空
-        hideIframes(); // 隐藏 iframe
+        $('#userInput').val('');
+        hideIframes();
       }
     });
-
+    
     function sendToShiny(geneName) {
-      // 如果没有提供 geneName 参数，则从输入框获取
       geneName = geneName || $("#userInput").val();
-      
-      // 更新 URL，但不重新加载页面
+      var formattedGene = "gene:" + geneName; // 格式化 geneName 为 "gene:geneName"
+    
       if (geneName) {
         history.pushState(null, '', '?gene=' + encodeURIComponent(geneName));
-        showIframes(); // 显示 iframe
-        updateIframes(geneName); // 更新 iframe 的内容
+        showIframes();
+        updateIframes(formattedGene); // 传递新的格式化字符串
+        fetchGeneDescription(geneName); // 用原始的 geneName 请求基因描述
       } else {
-        history.pushState(null, '', 'gene_sum'); // 当搜索框为空时，重置 URL
-        hideIframes(); // 隐藏 iframe
+        history.pushState(null, '', 'gene_sum');
+        hideIframes();
       }
     }
-
+    
     function updateIframes(geneName) {
       var iframes = [
         "shinyIframe1", "shinyIframe2", "shinyIframe3", "shinyIframe4",
         "shinyIframe5", "shinyIframe6", "shinyIframe7", "shinyIframe8"
       ];
       var urls = [
-        "https://atportal.medh.ki.se/shiny/Summary_gene_Clinical_Correlation/",
-        "https://atportal.medh.ki.se/shiny/Summary_gene_Clinical_Sex/",
-        "https://atportal.medh.ki.se/shiny/Summary_gene_Clinical_Obese/",
-        "https://atportal.medh.ki.se/shiny/Summary_gene_Weightloss/",
-        "https://atportal.medh.ki.se/shiny/Summary_gene_Depots/",
-        "https://atportal.medh.ki.se/shiny/Summary_gene_Adipogenesis/",
-	      "https://atportal.medh.ki.se/shiny/Summary_gene_Tissue/",
-        "https://atportal.medh.ki.se/shiny/Summary_gene_Singlecell/"
+        "https://www.adiposetissue.org/shiny/Summary_gene_Clinical_Correlation/",
+        "https://www.adiposetissue.org/shiny/Summary_gene_Clinical_Sex/",
+        "https://www.adiposetissue.org/shiny/Summary_gene_Clinical_Obese/",
+        "https://www.adiposetissue.org/shiny/Summary_gene_Weightloss/",
+        "https://www.adiposetissue.org/shiny/Summary_gene_Depots/",
+        "https://www.adiposetissue.org/shiny/Summary_gene_Adipogenesis/",
+        "https://www.adiposetissue.org/shiny/Summary_gene_Tissue/",
+        "https://www.adiposetissue.org/shiny/Summary_gene_Singlecell/"
       ];
-
-      // 更新 iframe 的内容
+    
       iframes.forEach(function(iframeId, index) {
         var iframeWindow = document.getElementById(iframeId).contentWindow;
-        console.log("Sending message to Shiny:", geneName);
         iframeWindow.postMessage(geneName, urls[index]);
       });
-
-      // 获取基因描述
+    }
+    
+    function fetchGeneDescription(geneName) {
       fetch(`/get_gene_description?gene=${geneName}`)
         .then(response => response.text())
         .then(description => {
           document.getElementById('gene-description').innerHTML = description;
         });
     }
-
+    
     function hideIframes() {
-      $(".collapsible-iframe").hide(); // 隐藏所有 iframe
-      $("#download-data").hide(); // 同时隐藏下载按钮
+      $(".collapsible-iframe").hide();
+      $("#download-data").hide();
     }
-
+    
     function showIframes() {
-      $(".collapsible-iframe").show(); // 显示所有 iframe
-      $("#download-data").show(); // 同时显示下载按钮
+      $(".collapsible-iframe").show();
+      $("#download-data").show();
     }
-
+    
     $(function () {
       $("#userInput").autocomplete({
         source: function (request, response) {
           $.ajax({
-            url: "https://atportal.medh.ki.se/autocomplete", // Flask应用程序的URL
+            url: "https://www.adiposetissue.org/autocomplete",
             dataType: "json",
             data: {
-              term: request.term // 用户在搜索框中输入的内容
+              term: request.term
             },
             success: function (data) {
-              response(data); // 将返回的数据传递给autocomplete
+              response(data);
             }
           });
         },
-        minLength: 2, // 最小触发字符数
+        minLength: 2,
         select: function (event, ui) {
-          // 用户选择一个选项后执行的操作
           var selectedGene = ui.item.value;
-          // 填充搜索栏
           $("#userInput").val(selectedGene);
-          // 触发搜索按钮的点击事件
           sendToShiny(selectedGene);
-          return false; // 防止默认行为
+          return false;
         }
       });
     });
+    
     document.getElementById('download-data').addEventListener('click', function() {
-        var geneName = document.getElementById('userInput').value;
-        if (geneName) {
-            var filename = geneName + '.pdf';
-            window.location.href = '/summarydownload/' + encodeURIComponent(filename);
-        } else {
-            alert('Please enter a gene name to download the summary.');
-        }
+      var geneName = document.getElementById('userInput').value;
+      if (geneName) {
+        var filename = geneName + '.pdf';
+        window.location.href = '/summarydownload/' + encodeURIComponent(filename);
+      } else {
+        alert('Please enter a gene name to download the summary.');
+      }
     });
   </script>
+    
+    
 
 
 
