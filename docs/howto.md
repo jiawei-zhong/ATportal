@@ -8,6 +8,7 @@ The easiest way to use the AT portal, is to enter a gene name into the search ba
   <img src="./../img/SearchBar.PNG">
 </p>
 <img align="left" src="./../img/SummarySide.PNG">
+
 The sidebar on the left side displays key information for the queried gene.
 
 | Section | Description |
@@ -17,7 +18,7 @@ The sidebar on the left side displays key information for the queried gene.
 | Source | Links to the HGNC |
 | Known as | Gene aliases |
 | Description | Gene description from NCBI Gene |
-| External Resources | Links to * Human Protein Atlas * T2D Knowledge Portal * LD Knowledge Portal |
+| External Resources | Links to <ul><li>Human Protein Atlas</li><li>T2D Knowledge Portal</li><li>LD Knowledge Portal</li></ul> |
 | Download | Download All Summay Files as PDF |
 
 
