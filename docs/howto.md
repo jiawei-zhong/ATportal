@@ -5,9 +5,9 @@
 The easiest way to use the AT portal, is to enter a gene name into the search bar on the [starting page](adiposetissue.org). This will open the Gene Summary Module (which has the same search bar), and provide a comprehensive overview across all available modules. 
 
 <p align="center">
-  <img src="./../img/SearchBar.PNG">
+  <img src="https://github.com/jiawei-zhong/ATportal/blob/main/img/SearchBar.PNG">
 </p>
-<img align="left" src="./../img/SummarySide.PNG">
+<img align="left" src="https://github.com/jiawei-zhong/ATportal/blob/main/img/SummarySide.PNG">
 
 The sidebar on the left side displays key information for the queried gene.
 
