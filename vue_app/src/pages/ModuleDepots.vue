@@ -4,7 +4,7 @@
       <main>
         <div class="iframe-container">
           <!-- Add a 'ref' attribute to the iframe for easy reference in Vue -->
-          <iframe ref="myIframe" height="1000" frameborder="0" src="https://atportal.medh.ki.se/shiny/Module_Depots_v03/"></iframe>
+          <iframe ref="myIframe" height="1000" frameborder="0" src="https://atportal.medh.ki.se/shiny/Module_Depots_v04/"></iframe>
         </div>
       </main>
     </div>
