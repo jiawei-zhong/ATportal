@@ -4,12 +4,12 @@
 | Imbert, A. (2022)          | 2022  | 34415992  | GSE141221                                                       | Clinical      |
 | Armenise, C. (2017)        | 2017  | 28793995  | GSE95640                                                        | Clinical      |
 | Arner, P. (2016)           | 2016  | 27535281  | GSE76399                                                        | Clinical      |
-| Krieg, L. (2021)           | 2021  | 34598978  | c.w.a.                                                          | Clinical      |
-| Keller, M. (2017)          | 2017  | 28123940  | c.w.a.                                                          | Clinical      |
+| Krieg, L. (2021)           | 2021  | 34598978  | communication with author                                       | Clinical      |
+| Keller, M. (2017)          | 2017  | 28123940  | communication with author                                       | Clinical      |
 | Petrus, P. (2018)          | 2018  | 30332637  | GSE59034                                                        | Clinical      |
 | Arner, E. (2012)           | 2012  | 22688341  | GSE25402                                                        | Clinical      |
 | Arner, P. (2018)           | 2018  | 29861390  | GSE113080                                                       | Clinical      |
-| Nono Nankam, PA. (2020)    | 2020  | 32581226  | c.w.a.                                                          | Clinical      |
+| Nono Nankam, PA. (2020)    | 2020  | 32581226  | communication with author                                       | Clinical      |
 | Civelek, M. (2017)         | 2017  | 28257690  | GSE70353                                                        | Clinical      |
 | Raulerson, C. (2019)       | 2019  | 31564431  | GSE135134                                                       | Clinical      |
 | Stančáková, A. (2012)      | 2012  | 22553379  | GSE32512                                                        | Clinical      |
@@ -41,9 +41,9 @@
 | Rey, F. (2021)             | 2021  | 33671464  | GSE166047                                                       | Clinical      |
 | Diamanti, K. (2022)        | 2022  | 36198307  | PXD027597                                                       | Clinical      |
 | Arner, P. (2016)           | 2016  | 27535281  | GSE76399                                                        | Depot         |
-| Krieg, L. (2021)           | 2021  | 34598978  | c.w.a.                                                          | Depot         |
-| Keller, M. (2017)          | 2017  | 28123940  | c.w.a.                                                          | Depot         |
-| Schleinitz, D. (2020)      | 2020  | 32661330  | c.w.a.                                                          | Depot         |
+| Krieg, L. (2021)           | 2021  | 34598978  | communication with author                                       | Depot         |
+| Keller, M. (2017)          | 2017  | 28123940  | communication with author                                       | Depot         |
+| Schleinitz, D. (2020)      | 2020  | 32661330  | communication with author                                       | Depot         |
 | Mazaki-Tovi, S. (2016)     | 2016  | 26994472  | GSE73439                                                        | Depot         |
 | Hoggard, N. (2012)         | 2012  | 22286531  | GSE29410                                                        | Depot         |
 | MacLaren, RE. (2010)       | 2010  | 20105310  | GSE15524                                                        | Depot         |
@@ -60,7 +60,7 @@
 | Massier, L. (2023)         | 2023  | 36922516  | GSE225700                                                       | Single cell   |
 | Sun, W. (2020)             | 2020  | 33116305  | E-MTAB-9199                                                     | Single cell   |
 | Vijay, J. (2020)           | 2020  | 32066997  | GSE136230                                                       | Single cell   |
-| Acosta, J. (2017)          | 2017  | 29116032  | c.w.a.                                                          | Single cell   |
+| Acosta, J. (2017)          | 2017  | 29116032  | communication with author                                       | Single cell   |
 | Merrick, D. (2019)         | 2019  | 31023895  | GSE128889                                                       | Single cell   |
 | Karunakaran, D. (2020)     | 2020  | 32989316  | GSE151889                                                       | Single cell   |
 | Emont, M. (2022)           | 2022  | 35296864  | E-MTAB-6677; GSE135134; GSE128889                               | Single cell   |
@@ -72,4 +72,4 @@
 | Lecoutre, S. (2024)        | 2024  | 39009762  | GSE267800                                                       | Perturbation  |
 | Wentworth, JM. (2017)      | 2017  | 28769120  | GSE75710                                                        | Perturbation  |
 | Mileti, E. (2021)          | 2021  | 33863803  | https://gitlab.com/daub-lab/adipose_insulin_response_in_humans  | Perturbation  |
-| Kerr, AG. (2019)           | 2019  | 31031182  | c.w.a.                                                          | Perturbation  |
+| Kerr, AG. (2019)           | 2019  | 31031182  | communication with author                                       | Perturbation  |
