@@ -26,7 +26,7 @@ The sidebar on the left side displays key information for the queried gene.
 Next, the **Tissue specificity** section summarizes data from the FANTOM consortium, to compare expression in adipose tissue compared to other human organs and tissues. As the focus here is on adipose tissue, data from whole adipose tissue ("adipose") and isolated mature adipocytes ("adipocytes") is highlighted. The portal also contains a growing variety of **perturbation** data sets. For the summary, fold changes and FDR adjusted p-values across all pertubations (different cell lines and modalities) are shown in one volcano plot to facilitate further explorations in the detailed module. The last section summarizes **Single Cell** data. In the left panels, 2 UMAPs indicate major cell lineages and where the gene of interest is expressed. The information is also summarized in violin charts on the right. The single cell module allows further analysis.  </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jiawei-zhong/ATportal/main/img/Summary.gif">
+  <img src="https://raw.githubusercontent.com/jiawei-zhong/ATportal/main/img/Summary.gif" width=800>
 </p>
 ---
 
@@ -34,5 +34,5 @@ Next, the **Tissue specificity** section summarizes data from the FANTOM consort
 
 The following image give a general overview about the structure of the modules. 
 
- <img src="https://raw.githubusercontent.com/jiawei-zhong/ATportal/main/img/Layout_PDF.png" width=600>
+ <img src="https://raw.githubusercontent.com/jiawei-zhong/ATportal/main/img/Layout_PDF.png" width=800>
 
