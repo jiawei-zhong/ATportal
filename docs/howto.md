@@ -33,5 +33,5 @@ Next, the **Tissue specificity** section summarizes data from the FANTOM consort
 ## Clinical Relationships
 
 The following image give a general overview about the structure of the modules. 
- <img src="https://raw.githubusercontent.com/jiawei-zhong/ATportal/main/img/Layout_PDF.png" width=100%>
+ <img src="https://raw.githubusercontent.com/jiawei-zhong/ATportal/main/img/Layout_PDF.png" width=600px>
 
