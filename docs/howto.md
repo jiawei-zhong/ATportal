@@ -7,7 +7,7 @@ The easiest way to use the AT portal, is to enter a gene name into the search ba
 <p align="center">
   <img src="https://raw.githubusercontent.com/jiawei-zhong/ATportal/main/img/SearchBar.PNG">
 </p>
-<img align="left" src="https://github.com/jiawei-zhong/ATportal/blob/main/img/SummarySide.PNG">
+<img align="left" src="https://raw.githubusercontent.com/jiawei-zhong/ATportal/main/img/SummarySide.PNG">
 
 The sidebar on the left side displays key information for the queried gene.
 
@@ -26,10 +26,10 @@ All results in the summary section are weighted analysis across all available co
 Next, the **Tissue specificity** section summarizes data from the FANTOM consortium, to compare expression in adipose tissue compared to other human organs and tissues. As the focus here is on adipose tissue, data from whole adipose tissue ("adipose") and isolated mature adipocytes ("adipocytes") is highlighted. The portal also contains a growing variety of **perturbation** data sets. For the summary, fold changes and FDR adjusted p-values across all pertubations (different cell lines and modalities) are shown in one volcano plot to facilitate further explorations in the detailed module. The last section summarizes **Single Cell** data. In the left panels, 2 UMAPs indicate major cell lineages and where the gene of interest is expressed. The information is also summarized in violin charts on the right. The single cell module allows further analysis.  
 
 <p align="center">
-  <img src="./../img/Summary.gif">
+  <img src="https://raw.githubusercontent.com/jiawei-zhong/ATportal/main/img/Summary.gif">
 </p>
 ---
 
 ## Clinical Relationships
+ <img src="https://raw.githubusercontent.com/jiawei-zhong/ATportal/main/img/Layout_PDF.png">
 
-![Module Layout](./../img/Layout_PDF.png)
