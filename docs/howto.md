@@ -28,7 +28,6 @@ Next, the **Tissue specificity** section summarizes data from the FANTOM consort
 <p align="center">
   <img src="https://raw.githubusercontent.com/jiawei-zhong/ATportal/main/img/Summary.gif" width=800>
 </p>
----
 
 ## Clinical Relationships
 
