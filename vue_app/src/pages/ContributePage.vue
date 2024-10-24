@@ -36,8 +36,8 @@ advisory board of the ATportal project. Recommendations for inclusion will be
   Please reach out to us via GitHub or the contact form below.
                </p> 
               </div>
-              <div class="intro-image">
-                <img src="@/assets/images/logo_navbar_2.png" alt="Introduction Image">
+              <div class="contribute_img">
+                <img src="@/assets/images/Logo_Contribute.png" alt="Introduction Image">
               </div>
             </div>
           </div>
@@ -137,9 +137,9 @@ The ATportal paper is currently available on bioRxiv.
         <td class="team-category">Project directors</td>
         <td>
           <ul class="team-list">
-            <li><a href="#">Mikael Rydén</a></li>
-            <li><a href="#">Niklas Mejhert</a></li>
-            <li><a href="#">Lucas Massier</a></li>
+            <li><a href="https://ki.se/en/people/mikael-ryden">Mikael Rydén</a></li>
+            <li><a href="https://ki.se/en/people/niklas-mejhert">Niklas Mejhert</a></li>
+            <li><a href="https://www.helmholtz-munich.de/en/hi-mag">Lucas Massier</a></li>
           </ul>
         </td>
       </tr>
@@ -147,9 +147,9 @@ The ATportal paper is currently available on bioRxiv.
         <td class="team-category">Scientific Advisory Board</td>
         <td>
           <ul class="team-list">
-            <li>Matthias Blueher, Helmholtz Research Center, Munich, Germany</li>
-            <li>Person 2</li>
-            <li>Person 3</li>
+            <li><a href="https://www.helmholtz-munich.de/en/hi-mag/pi/matthias-blueher">Matthias Blueher</a>, Helmholtz Research Center, Munich, Germany</li>
+            <li><a href="https://hest.ethz.ch/en/research/professorships/person-detail.MTM5NzQ1.TGlzdC85MiwtNzMwNjY5NDYy.html">Christian Wolfrum</a>, ETH Zuerich, Switzerland</li>
+            <li><a href="https://www.i2mc.inserm.fr/en/equipe-langin/">Dominique Langin</a>, I2MC Inserm, Toulouse, France</li>
           </ul>
         </td>
       </tr>

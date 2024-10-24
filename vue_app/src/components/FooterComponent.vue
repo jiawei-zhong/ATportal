@@ -4,11 +4,11 @@
         <div class="grid-container_bot">
           <div class="grid-child">
             <h4>Publication</h4>
-            <p>The WATportal manuscript is available via bioRxiv [link to bioRxiv]</p>
+            <p>The ATportal manuscript is available via [...]. If used, please cite as:</p>
           </div>
           <div class="grid-child">
             <h4>Data and Code:</h4>
-            <p>The code for this portal is available through <a href="https://github.com/jiawei-zhong/WAT_portal">GitHub</a>.</p>
+            <p>The code for this portal is available through <a href="https://github.com/jiawei-zhong/AT_portal">GitHub</a>.</p>
           </div>
           <div class="grid-child">
             <h4>Get started</h4>

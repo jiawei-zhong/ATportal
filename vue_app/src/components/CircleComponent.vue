@@ -17,7 +17,7 @@
       <div class="grid-child">
         <router-link class="tooltip" to="/depots">
             <img src="@/assets/images/module_images_Depots.png"
-            alt="Depots"><span>Compare subcutaneous, visceral, and perivascular WAT depots.</span></router-link>
+            alt="Depots"><span>Compare subcutaneous and visceral WAT depots.</span></router-link>
       </div>
       <div class="grid-child">
         <router-link class="tooltip" to="/celltype">

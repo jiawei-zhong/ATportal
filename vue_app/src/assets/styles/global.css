@@ -182,7 +182,7 @@ iframe {
 }
 
 .contact_text {
-    width: 1200px;
+    max-width: 800px;
     padding-left: 40px;
     padding-top: 0px;
     font-size: 14px;
@@ -242,6 +242,21 @@ iframe {
   border-radius: 0.5rem;
   background-color: #1a4659;
 }
+
+.getstarted_img img {
+    max-width: 300px;
+    height: auto;
+    border-radius: 0.5rem;
+    background-color: white;
+}
+
+.contribute_img img {
+    max-width: 300px;
+    height: auto;
+    border-radius: 0.1rem;
+    background-color: white;
+}
+
 .video-container {
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */

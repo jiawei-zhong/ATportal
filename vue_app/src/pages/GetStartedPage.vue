@@ -47,8 +47,8 @@
               
               <p>The code for this portal is available via GitHub, and we invite everyone to contribute to this portal by providing new data sets, or by improving current code.</p>
             </div>
-            <div class="intro-image">
-              <img src="@/assets/images/logo_navbar_2.png" alt="Introduction Image">
+            <div class="getstarted_img">
+              <img src="@/assets/images/Logo_GetStarted.png" alt="Introduction Image">
             </div>
           </div>
         </div>
@@ -56,15 +56,16 @@
 <div class="contact_text" id="howto"><h2>How to</h2>  </div>
   
   <div> <hr class="separation_vign" > </div>
-  
+
  <div class="contact_text">
+   <!-- VIDEO how to to be added back later
   <div class="video-container">
             <video controls width="560" height="315">
               <source src="@/assets/videos/WAT knowledge portal — Mozilla Firefox 2024-05-27 20-08-23.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
   </div>
-
+ -->
   <div class="github_howto">
     <div v-html="markdownContent"></div>
   </div>
@@ -257,7 +258,7 @@
       try {
         // Fetch the raw markdown file from GitHub
         const response = await fetch(
-          'https://raw.githubusercontent.com/jiawei-zhong/ATportal/main/docs/howto.md'
+          'https://raw.githubusercontent.com/lmassier/ATportal/main/docs/howto.md'
         );
         const markdownText = await response.text();
         

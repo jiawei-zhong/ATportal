@@ -9,8 +9,7 @@
               <div v-html="geneDescription"></div>
             </div>
             <div class="download-container">
-              <button id="download-data" class="download-button2"
-                style="color: black; max-width: 200px;">Download</button>
+              <button id="download-data" class="download-button2" @click="downloadData" style="max-width: 200px;">Download</button>
               <!-- <button id="download-data" class="btn btn-primary" style="color: black; max-width: 200px;" onclick="downloadPdf()">Download</button> -->
             </div>
           </div>
