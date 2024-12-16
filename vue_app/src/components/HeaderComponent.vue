@@ -9,14 +9,14 @@
           <div class="dropdown">
             <button class="dropbtn">Modules <i class="fa fa-caret-down"></i></button>
             <div class="dropdown-content">
-                <router-link class="dropdown-item" to="/summary">Summary</router-link>
-                <router-link class="dropdown-item" to="/clinical">Clinical Relationships</router-link>
-                <router-link class="dropdown-item" to="/depots">Depot Comparisons</router-link>
-                <router-link class="dropdown-item" to="/celltype">Cell Type</router-link>
-                <router-link class="dropdown-item" to="/singlecell">Single-cell/Single-nucleus RNA Seq.</router-link>
-                <router-link class="dropdown-item" to="/spatial">Spatial Transcriptomics</router-link>
+                <router-link class="dropdown-item" to="/summary">Gene summary</router-link>
+                <router-link class="dropdown-item" to="/clinical">Clinical</router-link>
+                <router-link class="dropdown-item" to="/depots">Depot</router-link>
+                <router-link class="dropdown-item" to="/celltype">Cell type</router-link>
+                <router-link class="dropdown-item" to="/singlecell">Single-cell</router-link>
+                <router-link class="dropdown-item" to="/spatial">Spatial</router-link>
                 <router-link class="dropdown-item" to="/perturbation">Perturbation</router-link>
-                <router-link class="dropdown-item" to="/genefinder">Gene Finder</router-link>
+                <router-link class="dropdown-item" to="/genefinder">Gene finder</router-link>
             </div>
           </div>
           <div class="dropdown">
