@@ -27,30 +27,16 @@
 	vertical-align: top;
 }
 
-
-
-#SearchButton_pc, #SearchButton_sex, #SearchButton_bmicross, #SearchButton_bmilong {
-  background-color: #E2C744;
-  border-color: #1a4659;
-  color:  #1a4659;
+.butt {
+  background-color:  #1a4659; !important
+  color:  #E2C744;!important
 }
-
-
-
-
-#pdf_FeaturePlot_STx, #pdf_ViolinPlot_STx, #pdf_SpatialDimPlot_STx, #pdf_SpatialFeaturePlot_STx {
-  background-color: #1a4659;
-  border-color: #E2C744;
-  color:  #E2C744;
-}
-
 
 input[type=radio]:checked {
          background-color: #1a4659; !important
       }
 
 .side {
-  background-color: #1a4659; !important
   color: #140859;
 }
 
@@ -70,6 +56,11 @@ position: relative;
 }
 
 
+#start {
+  background-color: #E2C744;
+  border-color: #1a4659;
+  color:  #1a4659;
+}
 
 .side-tab {
   background-color: #EDF2F2 ;
@@ -86,13 +77,15 @@ position: relative;
    
 }
 
-#uniqueImage {
-  border: 2px solid #1a4659 !important;
-  max-width: 800px; /* 设置图片的最大宽度 */
-  width: 100%; /* 使图片在容器宽度小于max-width时等比例缩放 */
-  display: block; /* 确保图片以块级元素显示 */
+img {
+  border: 2px solid #1a4659;
+}
+
+.center {
+  display: block;
   margin-left: auto;
   margin-right: auto;
+  width: 50%;
 }
 
 tr:nth-child(even) {
@@ -103,8 +96,7 @@ tr {
   border-bottom: 1px solid #1a4659;
 }
 
-
-#output_op1 th, #output_op2 th, #output_op3 th {
+#output_op th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
@@ -112,42 +104,28 @@ tr {
   color: white;
 }
 
-#output_op1 {
-  width: 100%; /* 确保在max-width允许的范围内表格宽度可以扩展到整个容器宽度 */
-  max-width: 600px; /* 例如，设置最大宽度为800px */
+#output_op {
+	  display: block;
   margin-left: auto;
   margin-right: auto;
-  border-collapse: collapse;
+  width: 50%;
+	border-collapse: collapse;
 }
 
-#output_op2 {
-  width: 100%; /* 确保在max-width允许的范围内表格宽度可以扩展到整个容器宽度 */
-  max-width: 400px; /* 例如，设置最大宽度为800px */
-  margin-left: auto;
-  margin-right: auto;
-  border-collapse: collapse;
-}
-
-#output_op3 {
-  width: 100%; /* 确保在max-width允许的范围内表格宽度可以扩展到整个容器宽度 */
-  max-width: 400px; /* 例如，设置最大宽度为800px */
-  margin-left: auto;
-  margin-right: auto;
-  border-collapse: collapse;
-}
-
-#output_op1 td, #output_op1 th, #output_op2 td, #output_op2 th, #output_op3 td, #output_op3 th {
-  /* border: 1px solid #1a4659; */
+#output_op td, #output_op th {
+  border: 1px solid ##1a4659;
   padding: 8px;
 }
 
 .btn-danger{
-  background-color: #1a4659; !important
+  background-color: #1a4659; !important 
 }
-
 
 .navbar-brand {
    color: #1a4659 !important;
+}
+.tab_head {
+  color: #1a4659 !important;
 }
 
 .tab-content {
@@ -201,4 +179,3 @@ h5 {
 h6 {
      font-size: 13px
 }
-

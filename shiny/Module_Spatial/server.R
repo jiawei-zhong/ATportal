@@ -41,8 +41,8 @@ shinyServer(function(input, output, session) {
   rv_datasetslide <- reactiveValues(dataset = "Jesper_et_al_baseline", slide = "S42")
   rv_datasetfeatureslide <- reactiveValues(dataset = "Jesper_et_al_baseline", feature = "LEP", slide = "S42")
   
-
-
+  
+  
   
   # dataset update
   observeEvent(input$Dataset_STx, {
@@ -58,13 +58,13 @@ shinyServer(function(input, output, session) {
     
     rv_datasetslide$slide <- ifelse(input$Dataset_STx == "Jesper_et_al_baseline", "S42", "S41")
     rv_datasetfeatureslide$slide <- ifelse(input$Dataset_STx == "Jesper_et_al_baseline", "S42", "S41")
-
+    
     updateSelectInput(session = session,
                       inputId = 'Slide_STx',
                       label = 'Slide: ',
                       selected = ifelse(input$Dataset_STx=="Jesper_et_al_baseline","S42","S41"),
                       choices = names(get(input$Dataset_STx)@images))
-
+    
   })
   
   
@@ -74,13 +74,13 @@ shinyServer(function(input, output, session) {
                        choices = c("None"="",gene_all),
                        selected = "LEP",
                        server = TRUE)
-
+  
   updateSelectizeInput(session = session,
                        inputId = 'deconvolution_for_featureplot_STx',
                        choices = c("None"="",cell_type_all),
                        selected = "",
                        server = TRUE)
-
+  
   
   observe({
     
@@ -98,8 +98,8 @@ shinyServer(function(input, output, session) {
       rv_datasetfeature$feature <- NULL
       rv_datasetfeatureslide$feature <- NULL
     }
-
-
+    
+    
   })
   
   
@@ -124,17 +124,17 @@ shinyServer(function(input, output, session) {
     # rv_datasetfeatureslide <- reactiveValues(dataset = input$Dataset_STx, gene = input$gene_for_featureplot_STx, slide = input$Slide_STx)
     rv_datasetslide$slide <- input$Slide_STx
     rv_datasetfeatureslide$slide <- input$Slide_STx
-
+    
   })
   
   
   # FeaturePlot
   plotdata_FeaturePlot_STx <- reactive({
     p1 <- DimPlot_scCustom(seurat_object = get(rv_datasetfeature$dataset))[[1]] + 
-    theme(aspect.ratio=1,text = element_text(family = "Red Hat Display")) + 
-    scale_color_manual(values = discrete_color_gradient(length(levels(get(rv_datasetfeature$dataset))))) +
-    NoAxes() + 
-    NoLegend()
+      theme(aspect.ratio=1,text = element_text(family = "Red Hat Display")) + 
+      scale_color_manual(values = discrete_color_gradient(length(levels(get(rv_datasetfeature$dataset))))) +
+      NoAxes() + 
+      NoLegend()
     
     
     p2 <- FeaturePlot_scCustom(seurat_object = get(rv_datasetfeature$dataset), features = rv_datasetfeature$feature, colors_use = viridis::viridis(n = 10, option = "D"))[[1]] + 
@@ -229,49 +229,49 @@ shinyServer(function(input, output, session) {
   
   
   # SpatialDimPlot
-  plotdata_SpatialDimPlot_STx <- reactive({
-    legend <- as_ggplot(get_legend(DimPlot_scCustom(seurat_object = get(rv_datasetslide$dataset))[[1]] +
-                                     theme(aspect.ratio=1,
-                                           text = element_text(family = "Red Hat Display"),
-                                           legend.position = "bottom",
-                                           legend.text = element_text(size = 9, family = "Red Hat Display")) +
-                                     scale_color_manual(values = discrete_color_gradient(length(levels(get(rv_datasetslide$dataset))))) +
-                                     guides(fill = guide_legend(nrow = 5)) + NoAxes()))
-    
-    p1 <- SpatialDimPlot(object = get(rv_datasetslide$dataset), images = rv_datasetslide$slide)[[1]] + 
-      theme(aspect.ratio=1,
-          text = element_text(family = "Red Hat Display"),
-          legend.position = "none") + 
-      scale_fill_manual(values = discrete_color_gradient(length(levels(get(rv_datasetslide$dataset))))) +
-      NoAxes() 
-      
-    
-    background <- SpatialDimPlot(object = get(rv_datasetslide$dataset), images = rv_datasetslide$slide, alpha = 0)[[1]] + theme(aspect.ratio=1,text = element_text(family = "Red Hat Display"),legend.position = "none") + NoAxes() +
-      scale_fill_manual(values = DiscretePalette_scCustomize(num_colors = 36, palette = "polychrome"))
-    
-    plot_grid(plotlist = list(plot_grid(plotlist = list(p1,background),ncol = 2),legend),ncol = 1,rel_heights = c(1,0.2))
-  })
-  
-  output$SpatialDimPlot_STx <- renderPlot({
-    plotdata_SpatialDimPlot_STx()
-  })
-  
-  output$pdf_SpatialDimPlot_STx <- downloadHandler(
-    filename = function() {
-      paste0(Sys.time(), ".pdf")
-    },
-    content = function(fname) {
-      ggsave(filename = fname, plot = plotdata_SpatialDimPlot_STx(), height = 15, width = 10, units = "in", device = cairo_pdf)
-    }
-  )
-  
-  output$ui_SpatialDimPlot_STx <- renderUI({
-    list(plotOutput("SpatialDimPlot_STx",height = "600px") %>% withLoader(type="html", loader="dnaspin"),
-         br(),
-         downloadButton(outputId = 'pdf_SpatialDimPlot_STx', label = "Download pdf", style= "simple", color = "primary", size = "sm")
-    )
-  })
-  
+  # plotdata_SpatialDimPlot_STx <- reactive({
+  #   legend <- as_ggplot(get_legend(DimPlot_scCustom(seurat_object = get(rv_datasetslide$dataset))[[1]] +
+  #                                    theme(aspect.ratio=1,
+  #                                          text = element_text(family = "Red Hat Display"),
+  #                                          legend.position = "bottom",
+  #                                          legend.text = element_text(size = 9, family = "Red Hat Display")) +
+  #                                    scale_color_manual(values = discrete_color_gradient(length(levels(get(rv_datasetslide$dataset))))) +
+  #                                    guides(fill = guide_legend(nrow = 5)) + NoAxes()))
+  #   
+  #   p1 <- SpatialDimPlot(object = get(rv_datasetslide$dataset), images = rv_datasetslide$slide)[[1]] + 
+  #     theme(aspect.ratio=1,
+  #           text = element_text(family = "Red Hat Display"),
+  #           legend.position = "none") + 
+  #     scale_fill_manual(values = discrete_color_gradient(length(levels(get(rv_datasetslide$dataset))))) +
+  #     NoAxes() 
+  #   
+  #   
+  #   background <- SpatialDimPlot(object = get(rv_datasetslide$dataset), images = rv_datasetslide$slide, alpha = 0)[[1]] + theme(aspect.ratio=1,text = element_text(family = "Red Hat Display"),legend.position = "none") + NoAxes() +
+  #     scale_fill_manual(values = DiscretePalette_scCustomize(num_colors = 36, palette = "polychrome"))
+  #   
+  #   plot_grid(plotlist = list(plot_grid(plotlist = list(p1,background),ncol = 2),legend),ncol = 1,rel_heights = c(1,0.2))
+  # })
+  # 
+  # output$SpatialDimPlot_STx <- renderPlot({
+  #   plotdata_SpatialDimPlot_STx()
+  # })
+  # 
+  # output$pdf_SpatialDimPlot_STx <- downloadHandler(
+  #   filename = function() {
+  #     paste0(Sys.time(), ".pdf")
+  #   },
+  #   content = function(fname) {
+  #     ggsave(filename = fname, plot = plotdata_SpatialDimPlot_STx(), height = 15, width = 10, units = "in", device = cairo_pdf)
+  #   }
+  # )
+  # 
+  # output$ui_SpatialDimPlot_STx <- renderUI({
+  #   list(plotOutput("SpatialDimPlot_STx",height = "600px") %>% withLoader(type="html", loader="dnaspin"),
+  #        br(),
+  #        downloadButton(outputId = 'pdf_SpatialDimPlot_STx', label = "Download pdf", style= "simple", color = "primary", size = "sm")
+  #   )
+  # })
+  # 
   
   # SpatialFeaturePlot
   plotdata_SpatialFeaturePlot_STx <- reactive({
@@ -305,7 +305,3 @@ shinyServer(function(input, output, session) {
   })
   
 })
-
-
-
-

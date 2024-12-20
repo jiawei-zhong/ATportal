@@ -1,0 +1,70 @@
+<html>
+
+<head>
+<title>Details Spatial</title>
+<link rel="stylesheet" href="../www/style_def.css">
+</head>
+
+<body>
+<br>
+<p class="detail-text">
+  <h3>Tissue Preparation and Sequencing</h3>
+<p>
+Adipose tissue sections (16 µm thick) were prepared and stained (H&E) following Visium protocols. Tissue permeabilization was performed for 15 minutes. Libraries were sequenced on the Illumina NovaSeq6000 platform at 80–130M read-pairs per sample, with read lengths of 28 nt (R1), 120 nt (R2), and 10 nt (indexes).
+</p>
+
+<h3>Data Processing and Analysis</h3>
+<p>
+R2 FastQ reads were trimmed to remove polyA homopolymers and template switch oligo sequences using Cutadapt. H&E brightfield images were manually aligned and processed in the Loupe Browser to generate alignment files, which were used alongside FastQ data in the Space Ranger pipeline to map reads to the GRCH38 v93 genome.
+</p>
+<p>
+The processed output was analyzed in R (v.3.6.3) using STUtility and Seurat (v.3). Two datasets were generated:  
+</p>
+<ul>
+  <li><b>Baseline Dataset:</b> Ten fasting-state samples.</li>
+  <li><b>Insulin Dataset:</b> Four pre- and post-hyperinsulinemic clamp samples.</li>
+</ul>
+<p>
+Genes and spots were filtered based on expression thresholds, mitochondrial, and Hb-gene content before normalization and scaling using SCTransform (7,000 most variable genes). Dimensionality reduction employed ICA and Harmony to correct for subject, batch, and insulin stimulation differences. Selected Harmony vectors were used for UMAP projections and cell class identification via Seurat functions, with resolutions set to 1.0 (baseline) and 0.9 (insulin).
+</p>
+
+<h3>Adipocyte Subtype Deconvolution</h3>
+<p>
+Marker genes for adipocyte subtypes were validated using a WAT microarray dataset. Subtypes were re-clustered with ICA, Harmony, and Louvain clustering. Marker gene specificity was analyzed via correlation in bulk microarray data. Cluster-specific eigengene values were calculated using WGCNA and correlated with clinical parameters, such as BMI and insulin sensitivity, as well as functional measures like lipolysis and lipogenesis.
+</p>
+
+
+  <h3>General Statistical Approach</h3>
+  <p>
+  All statistical analyses were performed using standard methods tailored to the dataset and experimental design. Statistical tests, number of observations, and definitions of central tendency and variability are explicitly outlined in the text where relevant. P-values, effect sizes, and confidence intervals were reported to provide robust interpretations of the results.
+  </p>
+  
+  <h3>Visium Data Analysis</h3>
+  <p>
+  Spatial transcriptomics data from the Visium platform were processed and analyzed using R (v.3.6.3) with the STUtility and Seurat (v.3) packages. Two datasets were analyzed:  
+  </p>
+  <ul>
+    <li><b>Baseline Dataset:</b> Samples collected from ten subjects in a fasting state.</li>
+    <li><b>Insulin Dataset:</b> Samples collected from four subjects before and after hyperinsulinemic-euglycemic clamps.</li>
+  </ul>
+  <p>
+  Initial data filtering removed genes with fewer than 100 counts across all spots, genes expressed in fewer than five spots, and spots with fewer than 200 UMIs. Additional filtering excluded spots with high mitochondrial or hemoglobin gene content. Data normalization and scaling were performed using the SCTransform function, retaining the top 7,000 most variable genes for downstream analyses.
+  </p>
+  
+  <h3>Dimensionality Reduction and Cell Class Identification</h3>
+  <p>
+  Dimensionality reduction began with Independent Component Analysis (ICA), followed by Harmony integration to correct for batch effects, inter-subject variation, and insulin stimulation. The most relevant Harmony dimensions were selected based on gene loadings and used for Uniform Manifold Approximation and Projection (UMAP) to visualize clusters.  
+  </p>
+  <p>
+  Cell classes were identified using Seurat’s Shared Nearest Neighbor (SNN) graph and clustering functions (<code>FindNeighbors</code> and <code>FindClusters</code>). Cluster resolutions were set to 1.0 for the baseline dataset and 0.9 for the insulin dataset. Differential expression analyses between cell classes were conducted using the Wilcoxon rank-sum test with default parameters in Seurat.
+  </p>
+  
+  <h3>Validation of Adipocyte Subtype Marker Genes</h3>
+  <p>
+  Adipocyte subtypes were validated using a WAT microarray dataset. Re-clustering was performed on subtypes using ICA, Harmony, and the Louvain algorithm, followed by marker gene selection based on expression specificity. Correlations among marker genes were analyzed using Spearman’s method, and hierarchical clustering was performed using the “average” linkage method with Euclidean distances. Cluster-specific eigengene values were calculated with WGCNA and correlated with clinical measures such as BMI and insulin sensitivity. Linear and multiple regression analyses were performed to adjust for potential confounding variables.
+  </p>
+  
+  <br>
+</p> 
+</body>
+</html>
