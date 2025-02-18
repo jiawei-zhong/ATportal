@@ -117,8 +117,8 @@ shinyServer(function(input, output, session) {
                                                  "Aguilera, CM. (2015)"="GSE9624eset"                                #  om  phenotype
                                                  )
                         ),
-                        choicesOpt = list(subtext = c("sc","om",rep("sc",22),rep("om",8))),
-                        options = pickerOptions(actionsBox = TRUE, size = 10, maxOptions = 100, liveSearch = TRUE))
+                        choicesOpt = list(subtext = c("sc","om",rep("sc",25),rep("om",8))),
+                        options = pickerOptions(actionsBox = FALSE, size = 10, maxOptions = 100, liveSearch = TRUE))
     } else if (length(input$cohort_pc_RNA) == 0) {
       # 如果没有选择任何选项，则根据之前的交互可能需要保持警告显示
       # 不改变showWarning_pc的值，保持当前状态
@@ -2526,4 +2526,3 @@ shinyServer(function(input, output, session) {
   }})
   
 }) # shinyServer
-
