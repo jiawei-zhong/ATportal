@@ -7,6 +7,8 @@ suppressMessages(library(Biobase))
 suppressMessages(library(shiny))
 suppressMessages(library(viridis))
 suppressMessages(library(extrafont))
+suppressMessages(library(dplyr))
+
 
 
 ## data ----
@@ -148,9 +150,9 @@ for (i in list.files(path = "./data") %>% grep(pattern = "^cor_list",value = T))
   eval(parse(text=a))
   
   temp <- get(gsub(pattern = ".RDS",replacement = "",x = i))
-  temp$r <- temp$r[,colSums(is.na(temp$r))<nrow(temp$r)]
-  temp$p <- temp$p[,colSums(is.na(temp$p))<nrow(temp$p)]
-  temp$n <- temp$n[,colSums(is.na(temp$n))<nrow(temp$n)]
+  temp$r <- temp$r[,colSums(is.na(temp$r))<nrow(temp$r),drop=F]
+  temp$p <- temp$p[,colSums(is.na(temp$p))<nrow(temp$p),drop=F]
+  temp$n <- temp$n[,colSums(is.na(temp$n))<nrow(temp$n),drop=F]
   assign(x = gsub(pattern = ".RDS",replacement = "",x = i),value = temp)
 }
 
