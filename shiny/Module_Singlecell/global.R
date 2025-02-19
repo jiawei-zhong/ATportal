@@ -5,232 +5,192 @@ suppressMessages(library(Seurat))
 suppressMessages(library(Biobase))
 suppressMessages(library(shiny))
 suppressMessages(library(viridis))
+suppressMessages(library(ggplotify))
+suppressMessages(library(cowplot))
+suppressMessages(library(scCustomize))
+suppressMessages(library(ggplot2))
+suppressMessages(library(ggplot2))
 
+#read data
+
+#colors
 
 discrete_color <- c("T, NK & NKT" = "#8ca5a5", "B" = "#7dbfb3", "mono. & macro." = "#4f736a", "mast" = "#1a4659", "FAPs" = "#f59b7c", "adipocytes" = "#ba5c28", "vascular" = "#e2c744")
 
 discrete_color_gradient <- colorRampPalette(discrete_color)
 
+#heatmap green to purple
+PRGn <- colorRampPalette(brewer.pal(n = 7, name ="PRGn"))(51)
+RdBu <- colorRampPalette(brewer.pal(n = 7, name ="RdBu"))(51)
+virid <- viridis(51)
+portalcol <- colorRampPalette(colors = c("#1C4759","#EEF2F2", "#E2C744"))(51)
+portalcol2 <- c("#e2c744", "#1a4659", "#ba5c28", "#4f736a", "#f0cbbf", "#edf2f2" ,"#f2ecde", "#adbec4", "#c3b6b6" , "#8ca5a5", "#b2dfda", "#f59b7c", "#7dbfb3" ,"#939a64")
+portal_col_ex <-colorRampPalette(portalcol2)
+farben <- list("default"= portalcol,"PRGn" = PRGn, "RdBu" = RdBu, "viridis"=virid)
 
-
-trait_vector <- c("BMI" = "BMI", "HOMA" = "HOMA", "Age" = "Age", "WHR" = "WHR", "Waist" = "Waist", "Hip" = "Hip", "Glucose" = "Glucose", "Insulin" = "Insulin", "LEP Protein" = "LEP_protein", "TG" = "TG", "Chol" = "Chol", 
-                  "HDL" = "HDL", "LDL" = "LDL", "CRP" = "CRP", "Hba1c" = "Hba1c", "TNF Protein" = "TNF_protein", "MCP1 Protein" = "MCP1_protein", "cell_vol" = "cell_vol", "basal_TG" = "basal_TG", "iso_TG" = "iso_TG", "iso_basal" = "iso_basal")
-
-
-
-
-## Clinical association ----
-
-# cohort_forest <- c("DEOSH"="DEOSHeset_Baseline", "DiOGenes1"="GSE141221_diogenes1", "DiOGenes2"="GSE95640_diogenes2", "EMIF sc"="EMIFeset_sc", "Krieg et al. sc"="Krieg_et_al_sc", "Keller et al. sc"="Keller_et_al_sc", "PO"="POeset_Baseline", "RIKEN"="RIKENeset", "SOWOT"="SOWOTeset","METSIM 770"="METSIM_770eset","METSIM 434"="METSIM_434eset","METSIM 200"="METSIM_200eset","EMIF om"="EMIFeset_om", "Krieg et al. om"="Krieg_et_al_om", "Keller et al. om"="Keller_et_al_om")
-cohort_name <- c("Kerr, A. (2020) Baseline"="DEOSHeset_Baseline",            #  sc  phenotype
-                 "Petrus, P. (2018) Baseline"="POeset_Baseline",             #  sc  phenotype 
-                 "Arner, P. (2018)"="SOWOTeset",                             #  sc  phenotype 
-                 "Keller, M. (2017) om"="Keller_et_al_om",                   #  om  phenotype  sex
-                 "Keller, M. (2017) sc"="Keller_et_al_sc",                   #  sc  phenotype  sex
-                 "Arner, E. (2012)"="RIKENeset",                             #  sc  phenotype
-                 "Stančáková, A. (2012)"="METSIM_204eset",                   #  sc  phenotype
-                 "Raulerson, C. (2019)"="METSIM_434eset",                    #  sc  phenotype
-                 "Civelek, M. (2017)"="METSIM_770eset",                      #  sc  phenotype
-                 "Krieg, L. (2021) sc"="Krieg_et_al_sc",                     #  sc  phenotype  sex
-                 "Krieg, L. (2021) om"="Krieg_et_al_om",                     #  om  phenotype  sex
-                 "Arner, P. (2016) om"="EMIFeset_om",                        #  om  phenotype
-                 "Arner, P. (2016) sc"="EMIFeset_sc",                        #  sc  phenotype
-                 "Imbert, A. (2022)"="GSE141221_diogenes1",                  #  sc  phenotype  sex
-                 "Armenise, C. (2017)"="GSE95640_diogenes2",                 #  sc  phenotype  sex
-                 "Winnier, DA. (2015)"="GSE64567eset",                       #  sc  phenotype  sex
-                 "Keller, P. (2011)"="GSE27949eset",                         #  sc  phenotype
-                 "Vink, RG. (2017) Baseline"="GSE77962eset_Baseline",        #  sc  phenotype  sex
-                 "Barberio, MD. (2019)"="GSE88837eset",                      #  om  phenotype       ethnicity
-                 "Sharma, NK. (2016)"="GSE95674eset",                        #  sc             sex
-                 "GTEx microarray"="GTEx_microarray_sc",                     #  sc             sex
-                 "Lonsdale, J. (2013) om"="GTEx_v4_om",                      #  om             sex
-                 "Lonsdale, J. (2013) sc"="GTEx_v4_sc",                      #  sc             sex
-                 "Aguet, F. (2017) om"="GTEx_v6_om",                         #  om             sex
-                 "Aguet, F. (2017) sc"="GTEx_v6_sc",                         #  sc             sex
-                 "GTEx v7 om"="GTEx_v7_om",                                  #  om             sex
-                 "GTEx v7 sc"="GTEx_v7_sc",                                  #  sc             sex
-                 "Aguet, F. (2020) om"="GTEx_v8_om",                         #  om             sex
-                 "Aguet, F. (2020) sc"="GTEx_v8_sc",                         #  sc             sex
-                 "Drong, A. (2013)"="E_MTAB_54",                             #  sc             sex
-                 "Das, SK. (2015)"="GSE65221eset",                           #  sc             sex  ethnicity
-                 "Naukkarinen, J. (2013)"="E_MTAB_1895",                     #  sc             sex
-                 "Nookaew, I. (2013)"="GSE27916eset"                         #  sc             sex
-                 )
+mode_in <- setNames(c("raw","normalized"),c("mean abundance", "normalized mean abundance"))
 
 
 
-# snRNAseq ----
+Massier_et_al_all <- readRDS("./data/META_all.sub.RDS")
+Massier_et_al_Lymphoid <- readRDS("./data/WAT_all_Lymphoid.RDS")
+Massier_et_al_Myeloid <- readRDS("./data/WAT_all_Myeloid.RDS")
+Massier_et_al_Vascular <- readRDS("./data/WAT_all_Vascular.RDS")
+Massier_et_al_B <- readRDS("./data/WAT_all_B.RDS")
+Massier_et_al_FAPs_sc <- readRDS("./data/WAT_sc_FAPs.RDS")
+Massier_et_al_FAPs_om <- readRDS("./data/WAT_om_FAPs.RDS")
+Massier_et_al_FAPs_pvat <- readRDS("./data/WAT_pvat_FAPs.RDS")
 
-META_all <- readRDS("./data/META_all.sub.RDS")
-META_all_sc <- readRDS("./data/META_all.s.sub.RDS")
-META_all_om <- readRDS("./data/META_all.o.sub.RDS")
-META_all_pvat <- readRDS("./data/META_all.p.sub.RDS")
 
 
-temp <- as.character(Idents(META_all))
+temp <- as.character(Idents(Massier_et_al_all))
 temp[temp=="Lymphoid"] <- "T, NK & NKT"
 temp[temp=="B_cell"] <- "B"
 temp[temp=="Myeloid"] <- "mono. & macro."
 temp[temp=="Mast_cell"] <- "mast"
 temp[temp=="Adipocyte"] <- "adipocytes"
 temp[temp=="Vascular"] <- "vascular"
-temp <- factor(temp,levels = c("T, NK & NKT", "B", "mono. & macro.", "mast", "FAPs", "adipocytes", "vascular"))
-Idents(META_all) <- temp
+temp <- factor(temp,levels = c("T, NK & NKT", "B", "mono. & macro.", "mast", "FAPs", "Mesothelial", "adipocytes", "vascular"))
+Idents(Massier_et_al_all) <- temp
 rm(temp)
 
 
-temp <- as.character(Idents(META_all_sc))
-temp[temp=="Lymphoid"] <- "T, NK & NKT"
-temp[temp=="B_cell"] <- "B"
-temp[temp=="Myeloid"] <- "mono. & macro."
-temp[temp=="Mast_cell"] <- "mast"
-temp[temp=="Adipocyte"] <- "adipocytes"
-temp[temp=="Vascular"] <- "vascular"
-temp <- factor(temp,levels = c("T, NK & NKT", "B", "mono. & macro.", "mast", "FAPs", "adipocytes", "vascular"))
-Idents(META_all_sc) <- temp
-rm(temp)
+Massier_et_al_all_marker <- readRDS("./data/META_all_marker.RDS")
+Massier_et_al_Lymphoid_marker <- readRDS("./data/WAT_all_Lymphoid_marker.RDS")
+Massier_et_al_Myeloid_marker <- readRDS("./data/WAT_all_Myeloid_marker.RDS")
+Massier_et_al_Vascular_marker <- readRDS("./data/WAT_all_Vascular_marker.RDS")
+Massier_et_al_B_marker <- readRDS("./data/WAT_all_B_marker.RDS")
+Massier_et_al_FAPs_sc_marker <- readRDS("./data/WAT_sc_FAPs_marker.RDS")
+Massier_et_al_FAPs_om_marker <- readRDS("./data/WAT_om_FAPs_marker.RDS")
+Massier_et_al_FAPs_pvat_marker <- readRDS("./data/WAT_pvat_FAPs_marker.RDS")
 
 
-temp <- as.character(Idents(META_all_om))
-temp[temp=="Lymphoid"] <- "T, NK & NKT"
-temp[temp=="B_cell"] <- "B"
-temp[temp=="Myeloid"] <- "mono. & macro."
-temp[temp=="Mast_cell"] <- "mast"
-temp[temp=="Adipocyte"] <- "adipocytes"
-temp[temp=="Vascular"] <- "vascular"
-temp <- factor(temp,levels = c("T, NK & NKT", "B", "mono. & macro.", "mast", "FAPs", "adipocytes", "vascular"))
-Idents(META_all_om) <- temp
-rm(temp)
-
-
-temp <- as.character(Idents(META_all_pvat))
-temp[temp=="Lymphoid"] <- "T, NK & NKT"
-# temp[temp=="B_cell"] <- "B"
-temp[temp=="Myeloid"] <- "mono. & macro."
-# temp[temp=="Mast_cell"] <- "mast"
-temp[temp=="Adipocyte"] <- "adipocytes"
-temp[temp=="Vascular"] <- "vascular"
-temp <- factor(temp,levels = c("T, NK & NKT", "mono. & macro.", "FAPs", "adipocytes", "vascular"))
-Idents(META_all_pvat) <- temp
-rm(temp)
+Hinte_et_al_scAT_LTSS <- readRDS("./data/scAT_LTSS.rds")
+Hinte_et_al_scAT_NEFA <- readRDS("./data/scAT_NEFA.rds")
+Hinte_et_al_omAT_LTSS <- readRDS("./data/omAT_LTSS.rds")
+Hinte_et_al_omAT_MTSS <- readRDS("./data/omAT_MTSS.rds")
 
 
 
+Reinisch_et_al_sc <- readRDS("./data/scAT_MHUO.rds")
+Reinisch_et_al_sc_Adipo <- readRDS("./data/scAdipo_MHUO.rds")
+Reinisch_et_al_sc_APCs <- readRDS("./data/scAPCs_MHUO.rds")
+Reinisch_et_al_sc_Immune <- readRDS("./data/scImmuneCs_MHUO.rds")
 
 
-WAT_all_Lymphoid <- readRDS("./data/WAT_all_Lymphoid.RDS")
-WAT_all_Myeloid <- readRDS( "./data/WAT_all_Myeloid.RDS")
-WAT_all_Vascular <- readRDS("./data/WAT_all_Vascular.RDS")
-WAT_all_B <- readRDS("./data/WAT_all_B.RDS")
 
-WAT_sc_Lymphoid <- readRDS("./data/WAT_sc_Lymphoid.RDS")
-WAT_sc_Myeloid <- readRDS( "./data/WAT_sc_Myeloid.RDS")
-WAT_sc_FAPs <- readRDS(    "./data/WAT_sc_FAPs.RDS")
-WAT_sc_Vascular <- readRDS("./data/WAT_sc_Vascular.RDS")
-WAT_sc_B <- readRDS("./data/WAT_sc_B.RDS")
-
-WAT_om_Lymphoid <- readRDS("./data/WAT_om_Lymphoid.RDS")
-WAT_om_Myeloid <- readRDS( "./data/WAT_om_Myeloid.RDS")
-WAT_om_FAPs <- readRDS(    "./data/WAT_om_FAPs.RDS")
-WAT_om_Vascular <- readRDS("./data/WAT_om_Vascular.RDS")
-WAT_om_B <- readRDS("./data/WAT_om_B.RDS")
-
-WAT_pvat_Lymphoid <- readRDS("./data/WAT_pvat_Lymphoid.RDS")
-WAT_pvat_Myeloid <- readRDS( "./data/WAT_pvat_Myeloid.RDS")
-WAT_pvat_FAPs <- readRDS(    "./data/WAT_pvat_FAPs.RDS")
-WAT_pvat_Vascular <- readRDS("./data/WAT_pvat_Vascular.RDS")
-
-META_all_marker <- readRDS("./data/META_all_marker.RDS")
-META_all_marker <- META_all_marker[META_all_marker$avg_log2FC>0.25 & (META_all_marker$pct.1>0.1 | META_all_marker$pct.2>0.1) & META_all_marker$p_val_adj<0.05,]
-META_all_marker$cluster <- as.character(META_all_marker$cluster)
-META_all_marker$cluster[META_all_marker$cluster=="Lymphoid"] <- "T, NK & NKT"
-META_all_marker$cluster[META_all_marker$cluster=="B_cell"] <- "B"
-META_all_marker$cluster[META_all_marker$cluster=="Myeloid"] <- "mono. & macro."
-META_all_marker$cluster[META_all_marker$cluster=="Mast_cell"] <- "mast"
-META_all_marker$cluster[META_all_marker$cluster=="Adipocyte"] <- "adipocytes"
-META_all_marker$cluster[META_all_marker$cluster=="Vascular"] <- "vascular"
+Reinisch_et_al_vis <- readRDS("./data/visAT_MHUO.rds")
+Reinisch_et_al_vis_Adipo <- readRDS("./data/visAdipo_MHUO.rds")
+Reinisch_et_al_vis_APCs <- readRDS("./data/visAPCs_MHUO.rds")
+Reinisch_et_al_vis_Immune <- readRDS("./data/visImmuneCs_MHUO.rds")
+Reinisch_et_al_vis_Meso <- readRDS("./data/visMesoCs_MHUO.rds")
 
 
-META_all_sc_marker <- readRDS("./data/META_all.s_marker.RDS")
-META_all_sc_marker <- META_all_sc_marker[META_all_sc_marker$avg_log2FC>0.25 & (META_all_sc_marker$pct.1>0.1 | META_all_sc_marker$pct.2>0.1) & META_all_sc_marker$p_val_adj<0.05,]
-META_all_sc_marker$cluster <- as.character(META_all_sc_marker$cluster)
-META_all_sc_marker$cluster[META_all_sc_marker$cluster=="Lymphoid"] <- "T, NK & NKT"
-META_all_sc_marker$cluster[META_all_sc_marker$cluster=="B_cell"] <- "B"
-META_all_sc_marker$cluster[META_all_sc_marker$cluster=="Myeloid"] <- "mono. & macro."
-META_all_sc_marker$cluster[META_all_sc_marker$cluster=="Mast_cell"] <- "mast"
-META_all_sc_marker$cluster[META_all_sc_marker$cluster=="Adipocyte"] <- "adipocytes"
-META_all_sc_marker$cluster[META_all_sc_marker$cluster=="Vascular"] <- "vascular"
+
+# Reinisch_et_al_sc <- readRDS("./data/scAT_MHUO.rds")
+# Reinisch_et_al_sc_Adipo <- readRDS("./data/scAdipo_MHUO.rds")
+# Reinisch_et_al_sc_APCs <- readRDS("./data/scAPCs_MHUO.rds")
+# Reinisch_et_al_sc_Immune <- readRDS("./data/scImmuneCs_MHUO.rds")
+# Reinisch_et_al_vis <- readRDS("./data/visAT_MHUO.rds")
+# Reinisch_et_al_vis_Adipo <- readRDS("./data/visAdipo_MHUO.rds")
+# Reinisch_et_al_vis_APCs <- readRDS("./data/visAPCs_MHUO.rds")
+# Reinisch_et_al_vis_Immune <- readRDS("./data/visImmuneCs_MHUO.rds")
+# Reinisch_et_al_vis_Meso <- readRDS("./data/visMesoCs_MHUO.rds")
+# 
+# 
+# Reinisch_et_al_sc[['SCT']] <- NULL
+# Reinisch_et_al_sc_Adipo[['SCT']] <- NULL
+# Reinisch_et_al_sc_APCs[['SCT']] <- NULL
+# Reinisch_et_al_sc_Immune[['SCT']] <- NULL
+# Reinisch_et_al_vis[['SCT']] <- NULL
+# Reinisch_et_al_vis_Adipo[['SCT']] <- NULL
+# Reinisch_et_al_vis_APCs[['SCT']] <- NULL
+# Reinisch_et_al_vis_Immune[['SCT']] <- NULL
+# Reinisch_et_al_vis_Meso[['SCT']] <- NULL
+# 
+# 
+# Reinisch_et_al_sc[['integrated']] <- NULL
+# Reinisch_et_al_sc_Adipo[['integrated']] <- NULL
+# Reinisch_et_al_sc_APCs[['integrated']] <- NULL
+# Reinisch_et_al_sc_Immune[['integrated']] <- NULL
+# Reinisch_et_al_vis[['integrated']] <- NULL
+# Reinisch_et_al_vis_Adipo[['integrated']] <- NULL
+# Reinisch_et_al_vis_APCs[['integrated']] <- NULL
+# Reinisch_et_al_vis_Immune[['integrated']] <- NULL
+# Reinisch_et_al_vis_Meso[['integrated']] <- NULL
+# 
+# 
+# saveRDS(Reinisch_et_al_sc,"./data/scAT_MHUO.rds")
+# saveRDS(Reinisch_et_al_sc_Adipo,"./data/scAdipo_MHUO.rds")
+# saveRDS(Reinisch_et_al_sc_APCs,"./data/scAPCs_MHUO.rds")
+# saveRDS(Reinisch_et_al_sc_Immune,"./data/scImmuneCs_MHUO.rds")
+# saveRDS(Reinisch_et_al_vis,"./data/visAT_MHUO.rds")
+# saveRDS(Reinisch_et_al_vis_Adipo,"./data/visAdipo_MHUO.rds")
+# saveRDS(Reinisch_et_al_vis_APCs,"./data/visAPCs_MHUO.rds")
+# saveRDS(Reinisch_et_al_vis_Immune,"./data/visImmuneCs_MHUO.rds")
+# saveRDS(Reinisch_et_al_vis_Meso,"./data/visMesoCs_MHUO.rds")
 
 
-META_all_om_marker <- readRDS("./data/META_all.o_marker.RDS")
-META_all_om_marker <- META_all_om_marker[META_all_om_marker$avg_log2FC>0.25 & (META_all_om_marker$pct.1>0.1 | META_all_om_marker$pct.2>0.1) & META_all_om_marker$p_val_adj<0.05,]
-META_all_om_marker$cluster <- as.character(META_all_om_marker$cluster)
-META_all_om_marker$cluster[META_all_om_marker$cluster=="Lymphoid"] <- "T, NK & NKT"
-META_all_om_marker$cluster[META_all_om_marker$cluster=="B_cell"] <- "B"
-META_all_om_marker$cluster[META_all_om_marker$cluster=="Myeloid"] <- "mono. & macro."
-META_all_om_marker$cluster[META_all_om_marker$cluster=="Mast_cell"] <- "mast"
-META_all_om_marker$cluster[META_all_om_marker$cluster=="Adipocyte"] <- "adipocytes"
-META_all_om_marker$cluster[META_all_om_marker$cluster=="Vascular"] <- "vascular"
 
 
-META_all_pvat_marker <- readRDS("./data/META_all.p_marker.RDS")
-META_all_pvat_marker <- META_all_pvat_marker[META_all_pvat_marker$avg_log2FC>0.25 & (META_all_pvat_marker$pct.1>0.1 | META_all_pvat_marker$pct.2>0.1) & META_all_pvat_marker$p_val_adj<0.05,]
-META_all_pvat_marker$cluster <- as.character(META_all_pvat_marker$cluster)
-META_all_pvat_marker$cluster[META_all_pvat_marker$cluster=="Lymphoid"] <- "T, NK & NKT"
-META_all_pvat_marker$cluster[META_all_pvat_marker$cluster=="Myeloid"] <- "mono. & macro."
-META_all_pvat_marker$cluster[META_all_pvat_marker$cluster=="Adipocyte"] <- "adipocytes"
-META_all_pvat_marker$cluster[META_all_pvat_marker$cluster=="Vascular"] <- "vascular"
 
-
-WAT_all_B_marker <- readRDS("./data/WAT_all_B_marker.RDS")
-WAT_all_B_marker <- WAT_all_B_marker[WAT_all_B_marker$avg_log2FC>0.25 & (WAT_all_B_marker$pct.1>0.1 | WAT_all_B_marker$pct.2>0.1) & WAT_all_B_marker$p_val_adj<0.05,]
-WAT_all_Lymphoid_marker <- readRDS("./data/WAT_all_Lymphoid_marker.RDS")
-WAT_all_Lymphoid_marker <- WAT_all_Lymphoid_marker[WAT_all_Lymphoid_marker$avg_log2FC>0.25 & (WAT_all_Lymphoid_marker$pct.1>0.1 | WAT_all_Lymphoid_marker$pct.2>0.1) & WAT_all_Lymphoid_marker$p_val_adj<0.05,]
-WAT_all_Myeloid_marker <- readRDS("./data/WAT_all_Myeloid_marker.RDS")
-WAT_all_Myeloid_marker <- WAT_all_Myeloid_marker[WAT_all_Myeloid_marker$avg_log2FC>0.25 & (WAT_all_Myeloid_marker$pct.1>0.1 | WAT_all_Myeloid_marker$pct.2>0.1) & WAT_all_Myeloid_marker$p_val_adj<0.05,]
-WAT_all_Vascular_marker <- readRDS("./data/WAT_all_Vascular_marker.RDS")
-WAT_all_Vascular_marker <- WAT_all_Vascular_marker[WAT_all_Vascular_marker$avg_log2FC>0.25 & (WAT_all_Vascular_marker$pct.1>0.1 | WAT_all_Vascular_marker$pct.2>0.1) & WAT_all_Vascular_marker$p_val_adj<0.05,]
-
-WAT_sc_B_marker <- readRDS("./data/WAT_sc_B_marker.RDS")
-WAT_sc_B_marker <- WAT_sc_B_marker[WAT_sc_B_marker$avg_log2FC>0.25 & (WAT_sc_B_marker$pct.1>0.1 | WAT_sc_B_marker$pct.2>0.1) & WAT_sc_B_marker$p_val_adj<0.05,]
-WAT_sc_FAPs_marker <- readRDS("./data/WAT_sc_FAPs_marker.RDS")
-WAT_sc_FAPs_marker <- WAT_sc_FAPs_marker[WAT_sc_FAPs_marker$avg_log2FC>0.25 & (WAT_sc_FAPs_marker$pct.1>0.1 | WAT_sc_FAPs_marker$pct.2>0.1) & WAT_sc_FAPs_marker$p_val_adj<0.05,]
-WAT_sc_Lymphoid_marker <- readRDS("./data/WAT_sc_Lymphoid_marker.RDS")
-WAT_sc_Lymphoid_marker <- WAT_sc_Lymphoid_marker[WAT_sc_Lymphoid_marker$avg_log2FC>0.25 & (WAT_sc_Lymphoid_marker$pct.1>0.1 | WAT_sc_Lymphoid_marker$pct.2>0.1) & WAT_sc_Lymphoid_marker$p_val_adj<0.05,]
-WAT_sc_Myeloid_marker <- readRDS("./data/WAT_sc_Myeloid_marker.RDS")
-WAT_sc_Myeloid_marker <- WAT_sc_Myeloid_marker[WAT_sc_Myeloid_marker$avg_log2FC>0.25 & (WAT_sc_Myeloid_marker$pct.1>0.1 | WAT_sc_Myeloid_marker$pct.2>0.1) & WAT_sc_Myeloid_marker$p_val_adj<0.05,]
-WAT_sc_Vascular_marker <- readRDS("./data/WAT_sc_Vascular_marker.RDS")
-WAT_sc_Vascular_marker <- WAT_sc_Vascular_marker[WAT_sc_Vascular_marker$avg_log2FC>0.25 & (WAT_sc_Vascular_marker$pct.1>0.1 | WAT_sc_Vascular_marker$pct.2>0.1) & WAT_sc_Vascular_marker$p_val_adj<0.05,]
-
-WAT_om_B_marker <- readRDS("./data/WAT_om_B_marker.RDS")
-WAT_om_B_marker <- WAT_om_B_marker[WAT_om_B_marker$avg_log2FC>0.25 & (WAT_om_B_marker$pct.1>0.1 | WAT_om_B_marker$pct.2>0.1) & WAT_om_B_marker$p_val_adj<0.05,]
-WAT_om_FAPs_marker <- readRDS("./data/WAT_om_FAPs_marker.RDS")
-WAT_om_FAPs_marker <- WAT_om_FAPs_marker[WAT_om_FAPs_marker$avg_log2FC>0.25 & (WAT_om_FAPs_marker$pct.1>0.1 | WAT_om_FAPs_marker$pct.2>0.1) & WAT_om_FAPs_marker$p_val_adj<0.05,]
-WAT_om_Lymphoid_marker <- readRDS("./data/WAT_om_Lymphoid_marker.RDS")
-WAT_om_Lymphoid_marker <- WAT_om_Lymphoid_marker[WAT_om_Lymphoid_marker$avg_log2FC>0.25 & (WAT_om_Lymphoid_marker$pct.1>0.1 | WAT_om_Lymphoid_marker$pct.2>0.1) & WAT_om_Lymphoid_marker$p_val_adj<0.05,]
-WAT_om_Myeloid_marker <- readRDS("./data/WAT_om_Myeloid_marker.RDS")
-WAT_om_Myeloid_marker <- WAT_om_Myeloid_marker[WAT_om_Myeloid_marker$avg_log2FC>0.25 & (WAT_om_Myeloid_marker$pct.1>0.1 | WAT_om_Myeloid_marker$pct.2>0.1) & WAT_om_Myeloid_marker$p_val_adj<0.05,]
-WAT_om_Vascular_marker <- readRDS("./data/WAT_om_Vascular_marker.RDS")
-WAT_om_Vascular_marker <- WAT_om_Vascular_marker[WAT_om_Vascular_marker$avg_log2FC>0.25 & (WAT_om_Vascular_marker$pct.1>0.1 | WAT_om_Vascular_marker$pct.2>0.1) & WAT_om_Vascular_marker$p_val_adj<0.05,]
-
-WAT_pvat_FAPs_marker <- readRDS("./data/WAT_pvat_FAPs_marker.RDS")
-WAT_pvat_FAPs_marker <- WAT_pvat_FAPs_marker[WAT_pvat_FAPs_marker$avg_log2FC>0.25 & (WAT_pvat_FAPs_marker$pct.1>0.1 | WAT_pvat_FAPs_marker$pct.2>0.1) & WAT_pvat_FAPs_marker$p_val_adj<0.05,]
-WAT_pvat_Lymphoid_marker <- readRDS("./data/WAT_pvat_Lymphoid_marker.RDS")
-WAT_pvat_Lymphoid_marker <- WAT_pvat_Lymphoid_marker[WAT_pvat_Lymphoid_marker$avg_log2FC>0.25 & (WAT_pvat_Lymphoid_marker$pct.1>0.1 | WAT_pvat_Lymphoid_marker$pct.2>0.1) & WAT_pvat_Lymphoid_marker$p_val_adj<0.05,]
-WAT_pvat_Myeloid_marker <- readRDS("./data/WAT_pvat_Myeloid_marker.RDS")
-WAT_pvat_Myeloid_marker <- WAT_pvat_Myeloid_marker[WAT_pvat_Myeloid_marker$avg_log2FC>0.25 & (WAT_pvat_Myeloid_marker$pct.1>0.1 | WAT_pvat_Myeloid_marker$pct.2>0.1) & WAT_pvat_Myeloid_marker$p_val_adj<0.05,]
-WAT_pvat_Vascular_marker <- readRDS("./data/WAT_pvat_Vascular_marker.RDS")
-WAT_pvat_Vascular_marker <- WAT_pvat_Vascular_marker[WAT_pvat_Vascular_marker$avg_log2FC>0.25 & (WAT_pvat_Vascular_marker$pct.1>0.1 | WAT_pvat_Vascular_marker$pct.2>0.1) & WAT_pvat_Vascular_marker$p_val_adj<0.05,]
-
-
-for (i in grep("marker$",ls(),value = T)) {
-  eval(parse(text=paste0(i,'$p_val <- signif(',i,'$p_val,4)')))
-  eval(parse(text=paste0(i,'$p_val_adj <- signif(',i,'$p_val_adj,4)')))
-  eval(parse(text=paste0(i,'$avg_log2FC <- signif(',i,'$avg_log2FC,4)')))
-}
-
-
-gene_all <- sort(rownames(META_all))
+gene_all <- sort(rownames(Massier_et_al_all))
 gene_all <- c(gene_all[grep("^AC\\d{6}|^AD\\d{6}|^AE\\d{6}|^AF\\d{6}|^AJ\\d{6}|^AL\\d{6}|^AP\\d{6}|^CATG\\d{6}",gene_all,invert = T)],
               gene_all[grep("^AC\\d{6}|^AD\\d{6}|^AE\\d{6}|^AF\\d{6}|^AJ\\d{6}|^AL\\d{6}|^AP\\d{6}|^CATG\\d{6}",gene_all,invert = F)])
+
+
+citation <- readRDS("./data/citation.RDS")
+
+
+# omAT_LTSS <- readRDS("omAT_LTSS.rds")
+# omAT_MTSS <- readRDS("omAT_MTSS.rds")
+# scAT_LTSS <- readRDS("scAT_LTSS.rds")
+# scAT_NEFA <- readRDS("scAT_NEFA.rds")
+
+# omAT_LTSS[['SCT']] <- NULL
+# omAT_MTSS[['SCT']] <- NULL
+# scAT_LTSS[['SCT']] <- NULL
+# scAT_NEFA[['SCT']] <- NULL
+
+# omAT_LTSS[['integrated']] <- NULL
+# omAT_MTSS[['integrated']] <- NULL
+# scAT_LTSS[['integrated']] <- NULL
+# scAT_NEFA[['integrated']] <- NULL
+
+
+# saveRDS(omAT_LTSS,"omAT_LTSS.rds")
+# saveRDS(omAT_MTSS,"omAT_MTSS.rds")
+# saveRDS(scAT_LTSS,"scAT_LTSS.rds")
+# saveRDS(scAT_NEFA,"scAT_NEFA.rds")
+
+
+### save legend (以防输出空白的画板，导致在vscode运行的时候报错)
+
+
+Cohort_bl__Subcluster_bl <- list(Massier_et_al=c("all" = "all","T, NK & NKT" = "Lymphoid", "mono. & macro." = "Myeloid", "vascular" = "Vascular", "B" = "B", "FAPs subcutaneous"="FAPs_sc", "FAPs omental"="FAPs_om", "FAPs perivascular"="FAPs_pvat"),
+                                 Hinte_et_al=c("omAT_LTSS" = "omAT_LTSS", "omAT_MTSS" = "omAT_MTSS", "scAT_LTSS" = "scAT_LTSS", "scAT_NEFA" = "scAT_NEFA"),
+                                 Reinisch_et_al=c("sc" = "sc", "sc_Adipo" = "sc_Adipo", "sc_APCs" = "sc_APCs", "sc_Immune" = "sc_Immune", "vis" = "vis", "vis_Adipo" = "vis_Adipo", "vis_APCs" = "vis_APCs", "vis_Immune" = "vis_Immune", "vis_Meso" = "vis_Meso"))
+
+# for (cohort in names(Cohort_bl__Subcluster_bl)) {
+#   for (subcluster in Cohort_bl__Subcluster_bl[[cohort]]) {
+#     legend <- as_ggplot(get_legend(DimPlot_scCustom(seurat_object = get(paste0(cohort,"_",subcluster)), repel = T)[[1]] +
+#                                      theme(aspect.ratio=1,
+#                                            text = element_text(family = "Red Hat Display"),
+#                                            legend.position = "bottom",
+#                                            legend.text = element_text(size = 10, family = "Red Hat Display")) +
+#                                      scale_color_manual(values = discrete_color_gradient(length(levels(get(paste0(cohort,"_",subcluster)))))) +
+#                                      NoAxes() +
+#                                      guides(color = guide_legend(nrow = 3, override.aes = list(size=4)))))
+#     assign(x = paste0("legend_",cohort,"_",subcluster), value = legend)
+#     saveRDS(legend, paste0("./data/legend_",cohort,"_",subcluster,'.RDS'))
+#   }
+# }
+
+
+for (cohort in names(Cohort_bl__Subcluster_bl)) {
+  for (subcluster in Cohort_bl__Subcluster_bl[[cohort]]) {
+    assign(x = paste0("legend_",cohort,"_",subcluster),value = readRDS(paste0("./data/legend_",cohort,"_",subcluster,'.RDS')))
+  }
+}
+
 

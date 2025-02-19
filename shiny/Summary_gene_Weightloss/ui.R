@@ -75,4 +75,3 @@ fluidPage(
   uiOutput("ui", height = "auto")
 )
 
-

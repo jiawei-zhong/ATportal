@@ -1,5 +1,24 @@
 @charset "utf-8";
 
+/* latin-ext */
+@font-face {
+    font-family: 'Red Hat Display';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('RedHatDisplay-400-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+    font-family: 'Red Hat Display';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('RedHatDisplay-400-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 .container {
     max-width: 1200px;
     padding-left: auto;
@@ -27,16 +46,30 @@
 	vertical-align: top;
 }
 
-.butt {
-  background-color:  #1a4659; !important
-  color:  #E2C744;!important
+
+
+#SearchButton_pc, #SearchButton_sex, #SearchButton_bmicross, #SearchButton_bmilong {
+  background-color: #E2C744;
+  border-color: #1a4659;
+  color:  #1a4659;
 }
+
+
+
+
+#pdf_pc_RNA, #pdf_sex_RNA, #pdf_bmicross_RNA, #pdf_bmilong, #pdf_pc_protein, #pdf_sex_protein, #pdf_bmicross_protein {
+  background-color: #1a4659;
+  border-color: #E2C744;
+  color:  #E2C744;
+}
+
 
 input[type=radio]:checked {
          background-color: #1a4659; !important
       }
 
 .side {
+  background-color: #1a4659; !important
   color: #140859;
 }
 
@@ -56,11 +89,6 @@ position: relative;
 }
 
 
-#start {
-  background-color: #E2C744;
-  border-color: #1a4659;
-  color:  #1a4659;
-}
 
 .side-tab {
   background-color: #EDF2F2 ;
@@ -77,15 +105,13 @@ position: relative;
    
 }
 
-img {
-  border: 2px solid #1a4659;
-}
-
-.center {
-  display: block;
+#uniqueImage {
+  border: 2px solid #1a4659 !important;
+  max-width: 800px; /* 设置图片的最大宽度 */
+  width: 100%; /* 使图片在容器宽度小于max-width时等比例缩放 */
+  display: block; /* 确保图片以块级元素显示 */
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
 }
 
 tr:nth-child(even) {
@@ -96,7 +122,8 @@ tr {
   border-bottom: 1px solid #1a4659;
 }
 
-#output_op th {
+
+#output_op1 th, #output_op2 th, #output_op3 th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
@@ -104,28 +131,42 @@ tr {
   color: white;
 }
 
-#output_op {
-	  display: block;
+#output_op1 {
+  width: 100%; /* 确保在max-width允许的范围内表格宽度可以扩展到整个容器宽度 */
+  max-width: 600px; /* 例如，设置最大宽度为800px */
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
-	border-collapse: collapse;
+  border-collapse: collapse;
 }
 
-#output_op td, #output_op th {
-  border: 1px solid ##1a4659;
+#output_op2 {
+  width: 100%; /* 确保在max-width允许的范围内表格宽度可以扩展到整个容器宽度 */
+  max-width: 400px; /* 例如，设置最大宽度为800px */
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+}
+
+#output_op3 {
+  width: 100%; /* 确保在max-width允许的范围内表格宽度可以扩展到整个容器宽度 */
+  max-width: 400px; /* 例如，设置最大宽度为800px */
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+}
+
+#output_op1 td, #output_op1 th, #output_op2 td, #output_op2 th, #output_op3 td, #output_op3 th {
+  /* border: 1px solid #1a4659; */
   padding: 8px;
 }
 
 .btn-danger{
-  background-color: #1a4659; !important 
+  background-color: #1a4659; !important
 }
+
 
 .navbar-brand {
    color: #1a4659 !important;
-}
-.tab_head {
-  color: #1a4659 !important;
 }
 
 .tab-content {
@@ -179,3 +220,4 @@ h5 {
 h6 {
      font-size: 13px
 }
+

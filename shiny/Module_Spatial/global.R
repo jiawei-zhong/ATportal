@@ -8,6 +8,9 @@ suppressMessages(library(viridis))
 #read data
 # ## Spatial ----
 
+citation <- readRDS("./data/citation.RDS")
+
+
 Jesper_et_al_baseline <- readRDS("./data/Jesper_et_al_baseline.RDS")
 Jesper_et_al_insulin <- readRDS("./data/Jesper_et_al_insulin.RDS")
 
@@ -56,3 +59,5 @@ mode_in <- setNames(c("raw","normalized"),c("mean abundance", "normalized mean a
 discrete_color <- c("T, NK & NKT" = "#8ca5a5", "B" = "#7dbfb3", "mono. & macro." = "#4f736a", "mast" = "#1a4659", "FAPs" = "#f59b7c", "adipocytes" = "#ba5c28", "vascular" = "#e2c744")
 
 discrete_color_gradient <- colorRampPalette(discrete_color)
+
+citation <- readRDS("./data/citation.RDS")

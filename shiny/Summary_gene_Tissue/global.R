@@ -30,4 +30,3 @@ FANTOM <- readRDS("./data/FANTOM.RDS")
 gene_list <- rownames(FANTOM)
 pd <- pData(FANTOM)
 exprs <- exprs(FANTOM)
-

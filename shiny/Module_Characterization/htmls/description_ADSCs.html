@@ -1,0 +1,70 @@
+<html>
+
+<head>
+  <title>Description ADSCs</title>
+  <link rel="stylesheet" href="../www/style_def.css">
+  <style>
+    .link-button {
+      color: blue;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .link-button:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // 初始化时隐藏表格
+      document.getElementById("output_op3").style.display = "none";
+
+      // 切换显示状态的函数
+      function toggleDisplay() {
+        var table = document.getElementById("output_op3");
+        var toggleText3 = document.getElementById("toggleText3");
+        if (table.style.display === "none") {
+          table.style.display = "";
+          toggleText3.innerHTML = "Hide available output options &utrif;";
+        } else {
+          table.style.display = "none";
+          toggleText3.innerHTML = "Show available output options &dtrif;";
+        }
+      }
+
+      // 绑定点击事件
+      document.getElementById("toggleText3").addEventListener("click", toggleDisplay);
+    });
+  </script>
+</head>
+
+<body>
+  <p class="detail-text">
+    This data set allows a detailed look at effects of adipogenesis on transcript levels in adipose tissue derived
+    stem cells. Details on the differentiation are reported under the “Details” section. Data is available for 16
+    timepoints between induction of adipogenesis and the differentiated state (day 12). Data on the x axis is
+    presented as natural logarithm of the minutes after induction of adipogenesis. Data was generated at Ryden &
+    Mejhert lab.
+    <br>
+  </p>
+  <!-- 可点击的链接来切换表格显示状态 -->
+  <a id="toggleText3" class="link-button">Show available output options &dtrif;</a>
+  <table id="output_op3">
+    <tr>
+      <th>Gene</th>
+      <th>Proteomics</th>
+      <th>Output</th>
+    </tr>
+    <tr>
+      <td>one or multiple</td>
+      <td>FALSE</td>
+      <td>line chart, heatmap, table</td>
+    </tr>
+    <tr>
+      <td>one or multiple</td>
+      <td>TRUE</td>
+      <td>additional line chart and heatmap</td>
+  </table>
+</body>
+
+</html>

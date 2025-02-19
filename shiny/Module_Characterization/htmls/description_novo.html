@@ -1,0 +1,67 @@
+<html>
+
+<head>
+  <title>Description WAT fractionation</title>
+  <link rel="stylesheet" href="../www/style_def.css">
+  <style>
+    .link-button {
+      color: blue;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .link-button:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // 初始化时隐藏表格
+      document.getElementById("output_op2").style.display = "none";
+
+      // 切换显示状态的函数
+      function toggleDisplay() {
+        var table = document.getElementById("output_op2");
+        var toggleText2 = document.getElementById("toggleText2");
+        if (table.style.display === "none") {
+          table.style.display = "";
+          toggleText2.innerHTML = "Hide available output options &utrif;";
+        } else {
+          table.style.display = "none";
+          toggleText2.innerHTML = "Show available output options &dtrif;";
+        }
+      }
+
+      // 绑定点击事件
+      document.getElementById("toggleText2").addEventListener("click", toggleDisplay);
+    });
+  </script>
+</head>
+
+<body>
+  <p class="detail-text">
+    In this data set Acosta et al. isolated subcutaneous adipose tissue from 6 women (see Details) and performed
+    collagenase digest to separate adipocytes and stroma vascular fraction (SVF). Subsequent FACS sorting allowed
+    the generation of adipose tissue and cell type specific gene expression data for major cell classes including T
+    cells, M1 and M2 macrophages, endothelial cells using Clariom D microarrays.
+    <br>
+  </p>
+  <!-- 可点击的链接来切换表格显示状态 -->
+  <a id="toggleText2" class="link-button">Show available output options &dtrif;</a>
+  <table id="output_op2">
+    <tr>
+      <th>Gene</th>
+      <th>Proteomics</th>
+      <th>Output</th>
+    </tr>
+    <tr>
+      <td>one or multiple</td>
+      <td>FALSE</td>
+      <td>heatmap, table</td>
+    </tr>
+  </table>
+  <br>
+  <p>Note: There is currently no Proteomics data available for this module</p>
+</body>
+
+</html>

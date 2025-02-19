@@ -38,7 +38,7 @@ trait_vector <- c("BMI" = "BMI",
 meta_r <- readRDS("./data/meta_sc_r_spearman.RDS")
 meta_p <- readRDS("./data/meta_sc_p_spearman.RDS")
 meta_n <- readRDS("./data/meta_sc_n_spearman.RDS")
-
+# 
 # protein_r <- readRDS("./data/cor_list_Proteomicseset_spearman.RDS")$r
 # protein_p <- readRDS("./data/cor_list_Proteomicseset_spearman.RDS")$p
 # protein_n <- readRDS("./data/cor_list_Proteomicseset_spearman.RDS")$n

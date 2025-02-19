@@ -1,0 +1,33 @@
+<html>
+
+<head>
+<title>Details snSeq baseline</title>
+<link rel="stylesheet" href="../www/style_def.css">
+</head>
+
+<body>
+<br>
+<p class="detail-text">
+  <h3>Collection of Public Datasets</h3>
+  <p>
+  Peer-reviewed WAT datasets (snSeq, scSeq, or STx) published by 31.03.2022 were included (<a href="https://www.nature.com/articles/s41467-023-36983-2#Sec34">Supplementary Table 1</a>). Missing details on sample size, gender, age, and BMI were requested from corresponding authors.
+  </p>
+  
+  <h3>Re-analysis of Datasets</h3>
+  <p>
+  Public datasets were re-analyzed in R (v4.1.2) using Seurat (v4.1.0) and Harmony (v0.1.0) with the removal of mitochondrial, hemoglobin, MALAT2, and NEAT1 genes. Data normalization was performed with SCTransform, followed by ICA and UMAP generation. Clusters were identified using Seurat’s FindNeighbors and FindClusters. Spatial data were analyzed per recent methods.
+  </p>
+  
+  <h3>Cluster Classification</h3>
+  <p>
+  Clusters were classified via supervised network analysis, linking nodes based on overlapping marker genes (&gt;15% overlap in one node and &gt;5% in both). Jaccard similarity was used to construct networks in R (igraph) and visualized with Cytoscape. Integrated annotations were manually curated using reference datasets (<a href="https://www.nature.com/articles/s41467-023-36983-2#Sec34">Supplementary Table 2</a>).
+  </p>
+  
+  <h3>Data Integration and Benchmarking</h3>
+  <p>
+  Integration tools (rPCA, Harmony, BBKNN, scVI) were evaluated using ARI coefficients, LISI scores, and kBET acceptance rates. Batch effects from depots, methods, and cohorts were corrected, with scVI (2000 variable features) chosen for final integration. Depots and cell lineages were analyzed separately for subclustering, with marker genes identified based on log2 fold-change &gt;0.5 and adjusted p-value &lt;0.05.
+  </p>
+  <br>
+</p> 
+</body>
+</html>

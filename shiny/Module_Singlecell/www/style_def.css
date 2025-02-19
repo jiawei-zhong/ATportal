@@ -1,5 +1,24 @@
 @charset "utf-8";
 
+/* latin-ext */
+@font-face {
+    font-family: 'Red Hat Display';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('RedHatDisplay-400-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+    font-family: 'Red Hat Display';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('RedHatDisplay-400-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 .container {
     max-width: 1200px;
     padding-left: auto;
@@ -38,7 +57,7 @@
 
 
 
-#pdf_FeaturePlot_low, #pdf_ViolinPlot_low, #pdf_FeaturePlot_high, #pdf_ViolinPlot_high {
+#pdf_pc_RNA, #pdf_sex_RNA, #pdf_bmicross_RNA, #pdf_bmilong, #pdf_pc_protein, #pdf_sex_protein, #pdf_bmicross_protein {
   background-color: #1a4659;
   border-color: #E2C744;
   color:  #E2C744;

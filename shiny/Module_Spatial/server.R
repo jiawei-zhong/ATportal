@@ -61,7 +61,7 @@ shinyServer(function(input, output, session) {
     
     updateSelectInput(session = session,
                       inputId = 'Slide_STx',
-                      label = 'Slide: ',
+                      label = 'Slide',
                       selected = ifelse(input$Dataset_STx=="Jesper_et_al_baseline","S42","S41"),
                       choices = names(get(input$Dataset_STx)@images))
     

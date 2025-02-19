@@ -30,128 +30,143 @@ suppressMessages(library(shinycustomloader))
 suppressMessages(library(shinyjs))
 
 shinyUI(fluidPage(
-  useShinyjs(),
   tags$head(
-    # tags$script(src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.1/iframeResizer.contentWindow.min.js"),
-    tags$style(HTML("
-      .dataTables_wrapper .dataTable td {
-        white-space: nowrap;
-      }
-    ")),
     tags$link(rel = "stylesheet", type = "text/css", href = "style_def.css")
   ),
-  use_googlefont("Red Hat Display"),
+  # use_googlefont("Red Hat Display"),
   use_theme(create_theme(
     theme = "default",
     bs_vars_font(
       family_sans_serif = "'Red Hat Display', cursive"
     )
   )),
-  div(class="container" ,
-      br(), 
-      br(),
-      sidebarLayout(
-        div(class="sidebar",
-            sidebarPanel(
-              width=3,div(id="side-tab",
-                          tabsetPanel(
-                            tabPanel("Input",     
-                                     #br(),
-                                     div("Please select a single gene of interest or a cell type below", class="highlight"),
-                                     #br(),
-                                     #selectInput(inputId= "scseq_cohort", label="Cohort: ", choices = c("Massier et al.","Hinte et al.","Wang et al."), selected = "Massier et al."),
-                                     br(),
-                                     selectizeInput(inputId = 'gene_for_featureplot_STx',
-                                                    label = 'Gene: ',
-                                                    choices = NULL,
-                                                    # selected = "LEP",
-                                                    width = "200px",
-                                                    # inline = TRUE,
-                                                    multiple = FALSE),
-                                     tags$hr(),
-                                     selectizeInput(inputId = 'deconvolution_for_featureplot_STx',
-                                                    label = 'Cell type: ',
-                                                    choices = NULL,
-                                                    # selected = "LEP",
-                                                    width = "200px",
-                                                    # inline = TRUE,
-                                                    multiple = FALSE),
-                                     br(),
-                                     selectInput(inputId = "Dataset_STx",
-                                                 label = "Dataset: ",
-                                                 width = "200px",
-                                                 choices = c("Bäckdahl et al. baseline"="Jesper_et_al_baseline", "Bäckdahl et al. insulin"="Jesper_et_al_insulin"),
-                                                 selected = "Jesper_et_al_baseline"),
-                                     
-                                     br(),
-                                     selectInput(inputId = "Slide_STx",
-                                                 label = "Slide: ",
-                                                 width = "200px",
-                                                 choices = NA,
-                                                 selected = NULL),
-                                     br(),
-                                     actionButton(inputId = "start", "Visualize!"),
-                                     tags$br()),
-                            tabPanel("Customization"
-                                     # tags$br(),
-                                     # div("You can use default settings or customize visualizations below:"),
-                                     # tags$br(),
-                                     # div("Gradient colors", class="highlight"),
-                                     # div("applies to heatmaps"),
-                                     # tags$br(),
-                                     # radioButtons(inputId="gradient_col", choiceNames =  c("Default", "Purple to green", "Red to Blue" , "Viridis" ), choiceValues = c("default", "PRGn", "RdBu", "viridis"), selected = "default", label = NULL),
-                                     # tags$br(),
-                                     # div("Discrete colors",class="highlight"),
-                                     # div("applies to line and bar charts"),
-                                     # tags$br(),
-                                     # radioButtons(inputId="discrete_col_sel", choiceNames =  c("Default", "Colorbrewer 2"), choiceValues = c("default_2", "CB2"), selected = "default_2", label = NULL),
-                                     # div("if you selected ColorBrewer 2, please select a colorscheme below"),
-                                     # selectInput(inputId= "discrete_col", label=NULL, choices = c("Accent","Dark2","Paired","Pastel1","Pastel2","Set1","Set2","Set3","Spectral",
-                                     #                                                              "RdYlGn","RdYlBu","RdGy","RdBu","PuOr","PRGn","PiYG","BrBG"), selected = "Dark2"),
-                                     # div("See", a(href="https://colorbrewer2.org/", "ColorBrewer2"), "for more"),
-                                     # tags$br(),
-                                     # div("Clustering method for heatmaps", class="highlight"),
-                                     # tags$br(),
-                                     # selectInput(inputId= "cluster_method", label=NULL, choices = c("ward.D","ward.D2","single","complete","average","mcquitty","median","centroid"), selected = "ward.D")
-                            )
-                          )))), # end sidebar
-        div(class="main-content",
-            mainPanel(
-              navbarPage("Spatial", id ="spatial",
-                         tabPanel("Baseline", value="scseq_base",
-                                             includeHTML("htmls/description_baseline.html"), 
-                                             tabsetPanel(
-                                               
-                                               tabPanel("Spatial Feature Plot",
-                                                        #content Spatial FeaturePlot
-                                                        uiOutput("ui_SpatialFeaturePlot_STx"),
-                                                        tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
-                                               tabPanel("Feature Plot",
-                                                        uiOutput("ui_FeaturePlot_STx"),
-                                                        #content Feature Plot
-                                                        tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
-                                               tabPanel("Violin Plot",
-                                                        #content Violin Plot
-                                                        uiOutput("ui_ViolinPlot_STx"),
-                                                        tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))),
-                                               tabPanel("Marker genes",
-                                                        #content all unfiltered marker genes
-                                                        uiOutput("ui_DT_STx")
-                                                        ),
-                                               tabPanel("Details",
-                                                        includeHTML("htmls/details_baseline.html")
-                                               ),
-                                               tabPanel("Interpretation",
-                                                        includeHTML("htmls/interpretation_baseline.html")
-                                               )),
-                                             tags$br(),
-                                             tags$hr(),
-                                             includeHTML("htmls/reference_baseline.html") 
-                                    ), #end tabPanel
-                         ), #end navbarPage
-              )) #end div and mainPanel
-      ) #end sidebar layout
-        
-      ) #end div class container
+  tags$head(
+    tags$script(src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.1/iframeResizer.contentWindow.min.js"),
+    # tags$style('
+    #   /* .sidebar {position: sticky; top: 0;} /*
+    #   .col-sm-3 { padding-left: 0px; padding-right: 15px; }
+    #   .col-sm-9 { padding-left: 15px; padding-right: 0px; }
+    # ')
+    tags$style('
+      .col-sm-3 { padding-left: 0px; padding-right: 15px; }
+      .col-sm-9 { padding-left: 15px; padding-right: 0px; }
+    ')
+  ),
+  
+  tags$script(HTML("
+    $(document).ready(function() {
+        window.addEventListener('message', function(event) {
+            if (event.origin !== 'https://www.adiposetissue.org/clinical') { // 替换为外部页面的实际来源
+                return;
+            }
+            if (event.data.type === 'scroll') {
+                $('.sticky-sidebar').css('top', event.data.scrollTop + 'px');
+            } else if (event.data.type === 'resize') {
+                $('.sticky-sidebar').css('height', event.data.height + 'px');
+            }
+        });
+    });
+  ")),
+  
+  
+  sidebarLayout(
+    div(class="sidebar",
+        sidebarPanel(
+          width=3,div(id="side-tab",
+                      tabsetPanel(
+                        tabPanel("Input",     
+                                 br(),
+                                 div("Please select a single gene of interest or a cell type below", class="highlight"),
+                                 #br(),
+                                 #selectInput(inputId= "scseq_cohort", label="Cohort: ", choices = c("Massier et al.","Hinte et al.","Wang et al."), selected = "Massier et al."),
+                                 br(),
+                                 selectizeInput(inputId = 'gene_for_featureplot_STx',
+                                                label = 'Gene',
+                                                choices = NULL,
+                                                # selected = "LEP",
+                                                # width = "200px",
+                                                # inline = TRUE,
+                                                multiple = FALSE),
+                                 selectizeInput(inputId = 'deconvolution_for_featureplot_STx',
+                                                label = 'Cell type',
+                                                choices = NULL,
+                                                # selected = "LEP",
+                                                # width = "200px",
+                                                # inline = TRUE,
+                                                multiple = FALSE),
+                                 selectInput(inputId = "Dataset_STx",
+                                             label = "Dataset",
+                                             # width = "200px",
+                                             choices = c("baseline"="Jesper_et_al_baseline", "insulin"="Jesper_et_al_insulin"),
+                                             selected = "Jesper_et_al_baseline"),
+                                 
+                                 selectInput(inputId = "Slide_STx",
+                                             label = "Slide",
+                                             # width = "200px",
+                                             choices = NA,
+                                             selected = NULL),
+                                 actionButton(inputId = "start", "Submit"),
+                                 tags$br()),
+                        tabPanel("Customization"
+                                 # tags$br(),
+                                 # div("You can use default settings or customize visualizations below:"),
+                                 # tags$br(),
+                                 # div("Gradient colors", class="highlight"),
+                                 # div("applies to heatmaps"),
+                                 # tags$br(),
+                                 # radioButtons(inputId="gradient_col", choiceNames =  c("Default", "Purple to green", "Red to Blue" , "Viridis" ), choiceValues = c("default", "PRGn", "RdBu", "viridis"), selected = "default", label = NULL),
+                                 # tags$br(),
+                                 # div("Discrete colors",class="highlight"),
+                                 # div("applies to line and bar charts"),
+                                 # tags$br(),
+                                 # radioButtons(inputId="discrete_col_sel", choiceNames =  c("Default", "Colorbrewer 2"), choiceValues = c("default_2", "CB2"), selected = "default_2", label = NULL),
+                                 # div("if you selected ColorBrewer 2, please select a colorscheme below"),
+                                 # selectInput(inputId= "discrete_col", label=NULL, choices = c("Accent","Dark2","Paired","Pastel1","Pastel2","Set1","Set2","Set3","Spectral",
+                                 #                                                              "RdYlGn","RdYlBu","RdGy","RdBu","PuOr","PRGn","PiYG","BrBG"), selected = "Dark2"),
+                                 # div("See", a(href="https://colorbrewer2.org/", "ColorBrewer2"), "for more"),
+                                 # tags$br(),
+                                 # div("Clustering method for heatmaps", class="highlight"),
+                                 # tags$br(),
+                                 # selectInput(inputId= "cluster_method", label=NULL, choices = c("ward.D","ward.D2","single","complete","average","mcquitty","median","centroid"), selected = "ward.D")
+                        )
+                      )))), # end sidebar
+    div(class="main-content",
+        mainPanel(
+          width = 9,
+          navbarPage("Spatial", id ="spatial",
+                     tabPanel("Baseline", value="scseq_base",
+                              includeHTML("htmls/description_baseline.html"), 
+                              tabsetPanel(
+                                
+                                tabPanel("Spatial Feature Plot",
+                                         #content Spatial FeaturePlot
+                                         uiOutput("ui_SpatialFeaturePlot_STx"),
+                                         tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
+                                tabPanel("Feature Plot",
+                                         uiOutput("ui_FeaturePlot_STx"),
+                                         #content Feature Plot
+                                         tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))), 
+                                tabPanel("Violin Plot",
+                                         #content Violin Plot
+                                         uiOutput("ui_ViolinPlot_STx"),
+                                         tags$head(tags$style(".butt {background-color:  #1a4659;} .butt{color: #E2C744;} .butt{border-color: #E2C744;}"))),
+                                tabPanel("Marker genes",
+                                         #content all unfiltered marker genes
+                                         uiOutput("ui_DT_STx")
+                                ),
+                                tabPanel("Details",
+                                         includeHTML("htmls/details_baseline.html")
+                                ),
+                                tabPanel("Interpretation",
+                                         includeHTML("htmls/interpretation_baseline.html")
+                                )),
+                              tags$br(),
+                              tags$hr(),
+                              includeHTML("htmls/reference_baseline.html") 
+                     ), #end tabPanel
+          ), #end navbarPage
+        )) #end div and mainPanel
+  ) #end sidebar layout
+  
 )
 )#end shiny UI

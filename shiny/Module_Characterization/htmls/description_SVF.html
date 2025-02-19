@@ -1,0 +1,68 @@
+<html>
+
+<head>
+  <title>Description SVF</title>
+  <link rel="stylesheet" href="../www/style_def.css">
+  <style>
+    .link-button {
+      color: blue;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .link-button:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // 初始化时隐藏表格
+      document.getElementById("output_op4").style.display = "none";
+
+      // 切换显示状态的函数
+      function toggleDisplay() {
+        var table = document.getElementById("output_op4");
+        var toggleText4 = document.getElementById("toggleText4");
+        if (table.style.display === "none") {
+          table.style.display = "";
+          toggleText4.innerHTML = "Hide available output options &utrif;";
+        } else {
+          table.style.display = "none";
+          toggleText4.innerHTML = "Show available output options &dtrif;";
+        }
+      }
+
+      // 绑定点击事件
+      document.getElementById("toggleText4").addEventListener("click", toggleDisplay);
+    });
+  </script>
+</head>
+
+<body>
+  <p class="detail-text">
+    For this data set on ex vivo differentiation of isolated fibroblasts the stroma vascular fraction of abdominal
+    subcutaneous adipose tissue from four individuals was obtained by collagenase digestion. Cells were
+    differentiated as detailed in the "Details" section, and RNA was collected at 4, 8 and 12 days after
+    differentiation. Transcript information was obtained by CAGE sequencing. Isolated adipocytes from the same
+    subjects serve as control samples.
+    <br>
+  </p>
+  <!-- 可点击的链接来切换表格显示状态 -->
+  <a id="toggleText4" class="link-button">Show available output options &dtrif;</a>
+  <table id="output_op4">
+    <tr>
+      <th>Gene</th>
+      <th>Add Proteomics</th>
+      <th>Output</th>
+    </tr>
+    <tr>
+      <td>one or multiple</td>
+      <td>FALSE</td>
+      <td>line chart, heatmap, table</td>
+    </tr>
+  </table>
+  <br>
+  <p>Note: There is currently no protein data available for SVF timecourse data</p>
+</body>
+
+</html>

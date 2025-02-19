@@ -37,5 +37,6 @@ GSE141221_diogenes1_WL$time_point <- GSE141221_diogenes1_WL$time_point %>% as.ch
 GSE95640_diogenes2_WL$time_point <- GSE95640_diogenes2_WL$time_point %>% as.character() %>% gsub(pattern = " week",replacement = "") %>% as.numeric() %>% factor(levels = c(0,8))
 # GSE95640_diogenes2_WL <- GSE95640_diogenes2_WL[,colnames(GSE95640_diogenes2_WL)[GSE95640_diogenes2_WL$subject %in% names(table(GSE95640_diogenes2_WL$subject)[table(GSE95640_diogenes2_WL$subject)>1])]]
 
+
 #define function to scale values between 0 and 1
 scale_values <- function(x){(x-min(x))/(max(x)-min(x))}

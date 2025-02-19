@@ -1,0 +1,69 @@
+<html>
+
+<head>
+  <title>Description Tissue Comparison</title>
+  <link rel="stylesheet" href="../www/style_def.css">
+  <style>
+    .link-button {
+      color: blue;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .link-button:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // 初始化时隐藏表格
+      document.getElementById("output_op1").style.display = "none";
+
+      // 切换显示状态的函数
+      function toggleDisplay() {
+        var table = document.getElementById("output_op1");
+        var toggleText1 = document.getElementById("toggleText1");
+        if (table.style.display === "none") {
+          table.style.display = "";
+          toggleText1.innerHTML = "Hide available output options &utrif;";
+        } else {
+          table.style.display = "none";
+          toggleText1.innerHTML = "Show available output options &dtrif;";
+        }
+      }
+
+      // 绑定点击事件
+      document.getElementById("toggleText1").addEventListener("click", toggleDisplay);
+    });
+  </script>
+</head>
+
+<body>
+  <p class="detail-text">
+    For now, this module shows the fold change of in vivo adipocyte or in vitro differentiated adipocyte specific
+    expression over the rest of the FANTOM data set, indicating adipocyte/ adipose tissue specificity
+  </p>
+  <!-- 可点击的链接来切换表格显示状态 -->
+  <a id="toggleText1" class="link-button">Show available output options &dtrif;</a>
+  <table id="output_op1">
+    <tr>
+      <th>Gene</th>
+      <th>Add Proteomics</th>
+      <th>Output</th>
+    </tr>
+    <tr>
+      <td>one</td>
+      <td>FALSE</td>
+      <td>waterfall plot, table</td>
+    </tr>
+    <tr>
+      <td>multiple</td>
+      <td>FALSE</td>
+      <td>heatmap, table</td>
+    </tr>
+  </table>
+  <br>
+  <p>Note: There is currently no Proteomics data available for this module</p>
+</body>
+
+</html>
